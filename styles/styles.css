@@ -19,7 +19,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transform: translateX();
 }
+
+
 
 header nav ul {
     list-style: none;
