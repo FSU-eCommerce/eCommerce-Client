@@ -1,0 +1,36 @@
+.CTA {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+img {
+    width: 40%;
+    display: flex;
+    margin: 10px;
+}
+
+#woman_fashion-button {
+    position: absolute;
+    left:19%;
+    top:300px;
+    width: 20%;
+    height:35px;
+    background-color: rgba(139, 21, 21, 0.658);
+    border-radius: 8px;
+    color: #fff;
+    border: none;
+}
+
+#men_fashion-button {
+    position: absolute;
+    right: 19%;
+    top: 300px;
+    width: 20%;
+    height: 35px;
+    background-color: rgba(114, 13, 13, 0.993);
+    border-radius: 8px;
+    color: #fff;
+    border: none;
+}
