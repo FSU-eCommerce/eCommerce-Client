@@ -7,18 +7,26 @@
     <title>Ecommerce Client</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/productlist.css">
+    <link rel="stylesheet" href="styles/navbar.css">
 </head>
 <body>
     <header>
-        <h1>Logo</h1>
+        <img src="./img/logo.png" alt="Logo" class="logo">
+  
         <nav>
-            <ul>
-                <li><a href="#">Hem</a></li>
-                <li><a href="#">Produkter</a></li>
-                <li><a href="#">Kontakt</a></li>
+            <div class="hamburger" id="hamburger-icon">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul id="menu" class="menu">
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-    </header>
+      </header>
     
     <main>
         <section class="swiper">
