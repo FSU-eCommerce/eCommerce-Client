@@ -18,7 +18,7 @@ productItemWrapper.href =
 // 
 
 const displayLatestProducts = () => {
-    categories.forEach(categroy)
+    categories.forEach(category)
 }
 
 const productWrapper = document.createElement('div');
