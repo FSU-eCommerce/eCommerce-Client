@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const sex = queryParams.get('sex') // "Women" or "Men"
         products.filter((p) =>  p.categories.includes(sex)).slice(productsDisplayedCount, productsDisplayedCount + pageSize).forEach((p) => {
             const productItemWrapper = document.createElement('a')
-            productItemWrapper.href = "product-details.html?id=" + p._id
+            productItemWrapper.href = "productdetails.html?id=" + p._id
             productItemWrapper.classList = "product-item-wrapper"
             productListWrapper.appendChild(productItemWrapper)
 
