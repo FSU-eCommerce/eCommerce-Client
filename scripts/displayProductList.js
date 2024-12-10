@@ -1,6 +1,8 @@
 let productsDisplayedCount = 0
 const pageSize = 6; // only fetch products 6 each time
 
+const queryParams = new URLSearchParams(window.location.search);
+
 document.addEventListener("DOMContentLoaded", () => {
     const [showMoreBtn] = document.getElementsByClassName('show-more-products')
     const [productListWrapper] = document.getElementsByClassName('product-list')
@@ -12,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // TODO: what to do if products is empty??
         }
 
-        products.slice(productsDisplayedCount, productsDisplayedCount + pageSize).forEach((p) => {
+        const sex = queryParams.get('sex') // "Women" or "Men"
+        products.filter((p) =>  p.categories.includes(sex)).slice(productsDisplayedCount, productsDisplayedCount + pageSize).forEach((p) => {
             const productItemWrapper = document.createElement('a')
             productItemWrapper.href = "product-details.html?id=" + p._id
             productItemWrapper.classList = "product-item-wrapper"
