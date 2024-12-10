@@ -8,13 +8,29 @@
 img {
     width: 40%;
     display: flex;
-
+    margin: 10px;
 }
 
-.woman_fashion {
-    
+#woman_fashion-button {
+    position: absolute;
+    left:20%;
+    top:45%;
+    width: 250px;
+    height: 40px;
+    background-color: red;
+    border-radius: 8px;
+    color: #fff;
+    border: none;
 }
 
-.men_fasion {
-    display: 
+#men_fashion-button {
+    position: absolute;
+    right: 20%;
+    top: 45%;
+    width: 250px;
+    height: 40px;
+    background-color: red;
+    border-radius: 8px;
+    color: #fff;
+    border: none;
 }
