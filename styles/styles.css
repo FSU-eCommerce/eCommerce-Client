@@ -9,37 +9,9 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
+ 
 }
 
-header {
-    background: #101010;
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-
-header nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-header nav ul li {
-    display: inline;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
 
 #hero {
     padding: 20px;
@@ -67,12 +39,9 @@ header nav ul li a {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100vw;
     text-align: center;
     padding: 10px 0;
     background: #333;
     color: #fff;
-    margin-top: 20px;
 }
