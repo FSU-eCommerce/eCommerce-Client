@@ -13,11 +13,11 @@ img {
 
 #woman_fashion-button {
     position: absolute;
-    left:20%;
+    left:19%;
     top:45%;
-    width: 250px;
-    height: 40px;
-    background-color: red;
+    width: 20%;
+    height:5%;
+    background-color: rgba(139, 21, 21, 0.658);
     border-radius: 8px;
     color: #fff;
     border: none;
@@ -25,11 +25,11 @@ img {
 
 #men_fashion-button {
     position: absolute;
-    right: 20%;
+    right: 19%;
     top: 45%;
-    width: 250px;
-    height: 40px;
-    background-color: red;
+    width: 20%;
+    height: 5%;
+    background-color: rgba(114, 13, 13, 0.993);
     border-radius: 8px;
     color: #fff;
     border: none;
