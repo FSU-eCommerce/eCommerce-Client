@@ -1,8 +1,7 @@
 
 .swiper {
     width: 100%;
-    height: auto;
-    max-height: 84vh;
+    height: 84vh;
     overflow: hidden;
     display: flex;
 }
