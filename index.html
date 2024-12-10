@@ -7,6 +7,7 @@
     <title>Ecommerce Client</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/FT-31.css">
+    <link rel="stylesheet" href="styles/FT-20.css">
 </head>
 <body>
     <header>
@@ -21,7 +22,26 @@
     </header>
     
     <main>
-     
+        <section class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"> <img src="img/pexels-kelvin-garba-1353555573-29688037.jpg" alt="Image 1" style="width: 100%;"></div>
+                <div class="swiper-slide"> <img src="img/pexels-thelazyartist-1300550.jpg" alt="Image 1" style="width: 100%; "></div>
+                <div class="swiper-slide"> <img src="img/pexels-stockphotoartist-1034859.jpg" alt="Image 1" style="width: 100%;"></div>
+                <div class="swiper-slide"> <img src="img/pexels-godisable-jacob-226636-932401.jpg" alt="Image 1" style="width: 100%;"></div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next">Next</div>
+            <div class="swiper-button-prev">Previous</div>
+        </section>
+    
+
+        <section id="hero">
+            <h2>Hitta de bästa produkterna här!</h2>
+            <button id="cta-button">Köp Nu</button>
+        </section>
+
         <section class='CTA'>
           <img src="img/pexels-godisable-jacob-226636-794063.jpg" 
           alt="woman_fashion-button" />
@@ -38,8 +58,12 @@
         <p>&copy; 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
     </footer>-->
 
-    <script type="module" src="scripts/main.js"></script>
+
+
     <script type="module" src="scripts/fetchProducts.js"></script>
-    
+    <script src="scripts/main.js"></script>
+    <script src="scripts/FT-20.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 </body>
 </html>
