@@ -1,6 +1,3 @@
-import productContext from '../context/productContext.js';  // Import the context
-
-
 let productsDisplayedCount = 0
 const pageSize = 6; // only fetch products 6 each time
 
@@ -9,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const [productListWrapper] = document.getElementsByClassName('product-list')
 
     const displayProductList = () => {
-        const products = productContext.getProducts()
+        const products = JSON.parse(localStorage.getItem('products') || '[]');    
 
         if (products.length === 0) {
             // TODO: what to do if products is empty??
@@ -17,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         products.slice(productsDisplayedCount, productsDisplayedCount + pageSize).forEach((p) => {
             const productItemWrapper = document.createElement('a')
-            productItemWrapper.href = "product-details?id=" + p._id
+            productItemWrapper.href = "product-details.html?id=" + p._id
             productItemWrapper.classList = "product-item-wrapper"
             productListWrapper.appendChild(productItemWrapper)
 
