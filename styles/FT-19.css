@@ -38,3 +38,7 @@ background-color: none;
 position: absolute;
 color: #fff;
 }
+
+.swiper-button-next:hover, .swiper-button-prev:hover{
+    color: orange
+}
