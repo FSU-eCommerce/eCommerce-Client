@@ -22,7 +22,34 @@ productRow1.classList.add('product-row');
 const productRow2 = document.createElement('div');
 productRow2.classList.add('product-row');
 
+limitedOffers.forEach((product, index) => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-name');
+    
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.classList.add('product-image');
+    
+    const price = document.createElement('p');
+    price.textContent = `$${product.price}`;
+    price.classList.add('product-price');
+    
+    const productLink //oklart 
+    
+    productCard.appendChild(img);
+    productCard.appendChild(name);
+    productCard.appendChild(price);
+
+    if (index < 6) {
+        productRow1.appendChild(productLink);
+      } else {
+        productRow2.appendChild(productLink);
+      }
+    });
+    productOfferDiv.appendChild(productRow1);
+    productOfferDiv.appendChild(productRow2);
 });
+
 
 // const fetchProducts = async () => {
 //     try {
