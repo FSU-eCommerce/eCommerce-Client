@@ -43,12 +43,7 @@
             <div class="swiper-button-next">Next</div>
             <div class="swiper-button-prev">Previous</div>
         </section>
-    
 
-        <section id="hero">
-            <h2>Hitta de bästa produkterna här!</h2>
-            <button id="cta-button">Köp Nu</button>
-        </section>
 
         <section class='CTA'>
           <img src="img/pexels-godisable-jacob-226636-794063.jpg" 
@@ -59,17 +54,29 @@
           <a href="productlist.html?sex=Men"><button id='men_fashion-button'>MEN FASHION</button></a>
         </section>
 
+
+        <!-- Test Product List -->
    
+        <section id="productListSection">
+            <h2>Available Products</h2>
+            <div id="productList"></div>
+        </section>
+
+        <!-- Test Cart -->
+        <section id="cartSection">
+            <h2>Your Cart</h2>
+            <div id="cartContainer"></div>
+        </section>
+
+
     </main>
     
    <footer>
         <p>&copy; 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
     </footer>
 
-    <div id="productList"></div>
-    <button id="viewCart">Visa varukorg</button>
   
-
+    <script type="module" src="scripts/fetchProducts.js"></script>
     <script type="module" src="./scripts/main.js"></script>
     <script src="scripts/FT-20.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
