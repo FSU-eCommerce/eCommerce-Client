@@ -21,3 +21,18 @@ productOfferDiv.innerHTML='';
 
     const productRow2 = document.createElement('div');
     productRow2.classList.add('product-row');
+    
+// produktkort
+limitedOffers.forEach((product, index) => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-name');
+
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.classList.add('product-image');
+
+    const price = document.createElement('p');
+    price.textContent = `$${product.price}`;
+    price.classList.add('product-price');
+
+})
