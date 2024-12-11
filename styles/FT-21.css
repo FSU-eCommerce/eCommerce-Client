@@ -1,0 +1,30 @@
+ #product-latest-container {
+    display: flex;
+    grid-template-columns: repeat(5, 1 fr);
+    justify-content: space-between;
+    box-sizing: border-box;
+    gap: 20px;
+    width: 100%;
+
+}
+.product-latest-grid {
+display:flex;
+gap: 20px;
+flex-wrap: wrap;
+justify-content: flex-start;
+
+}
+
+.product-image{
+
+}
+.product-name {
+
+}
+
+.product-card {
+    text-align: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
