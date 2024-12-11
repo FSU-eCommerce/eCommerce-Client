@@ -1,8 +1,7 @@
 // scripts/main.js
 import fetchProducts from './fetchProducts.js';  // Import the function to fetch products
 import { renderProducts } from './renderProducts.js'; // Import the rendering logic
-import { renderCart } from './cart.js'; // Import the cart handling logic
-import { addToCart } from './cart.js'; // Import the addToCart function
+import { addToCart, renderCart } from './FT-7.js'; // Import the addToCart and renderCart functions
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch products before rendering
