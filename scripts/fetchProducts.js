@@ -21,6 +21,4 @@ const fetchProducts = async () => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetchProducts();
-});
+export default fetchProducts;
