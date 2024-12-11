@@ -1,6 +1,6 @@
 import productContext from '../context/productContext.js';  // Import the context
 
-const fetchProducts = async () => {
+ export const fetchProducts = async () => {
   try {
     const response = await fetch('https://e-commerce-server-beta-flax.vercel.app/products');
 
