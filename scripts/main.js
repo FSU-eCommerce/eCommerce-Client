@@ -1,18 +1,20 @@
-// scripts/main.js
 import fetchProducts from './fetchProducts.js';  // Import the function to fetch products
-import { renderProducts } from './renderProducts.js'; // Import the rendering logic
-import { renderCart } from './cart.js'; // Import the cart handling logic
-import { addToCart } from './cart.js'; // Import the addToCart function
+
+// Had to comment this out because it cause a problem preventing the rest of the code to execute
+import { renderCart } from './FT-7.js';  // Import cart rendering logic
+
+console.log("main.js");
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Fetch products before rendering
+  console.log('Fetching products...');
   await fetchProducts(); // Fetch and store products in the context
 
-  // Make addToCart globally available
-  window.addToCart = addToCart;
 
-  // Now that products are fetched, render them
-  renderProducts();
+  // Fire a custom event to notify other scripts that products are ready
+  const productsReadyEvent = new Event('productsReady');
+  document.dispatchEvent(productsReadyEvent);
+
+// Had to comment this out because it cause a problem preventing the rest of the code to execute
+  // Render other components like the cart
   renderCart();
 });
-

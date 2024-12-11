@@ -6,17 +6,33 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles/FT-33.css" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
   </head>
   <body>
     <header>
-      <h1>Logo</h1>
+      <img src="./img/logo.png" alt="Logo" class="logo">
+
       <nav>
-        <ul>
-          <li><a href="#">Hem</a></li>
-          <li><a href="#">Produkter</a></li>
-          <li><a href="#">Kontakt</a></li>
-        </ul>
+          <div class="hamburger" id="hamburger-icon">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+          </div>
+          <ul id="menu" class="menu">
+              <li><a href="#">Cart</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="productlist.html">Products</a></li>
+              <li><a href="productpage.html">Productpage</a></li>
+              <li><a href="comtact.html">Contact</a></li>
+          </ul>
       </nav>
+
+      <!--Shopping cart div-->
+      <div id="cart" class="cart" >
+          <h2>Varukorg</h2>
+          <div id="cartContainer"></div>
+          <button id="closeCart" class="close-cart">Stäng</button>
+      </div>
     </header>
 
     <div class="container">
