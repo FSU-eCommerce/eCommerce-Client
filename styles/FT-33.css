@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 2200px;
+  margin: 0 auto;
+  padding: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  /* align-items: center; */
+}
+
+.productImageDiv {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.productImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.productDetailsContainer {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.productDetails {
+  max-width: 800px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.price {
+  font-size: 32px;
+  margin-bottom: 1.5em;
+}
+
+.color {
+  font-size: 20px;
+  margin-bottom: 1.5em;
+}
+
+.sizes {
+  margin: 3em 0px 4em 0px;
+  font-size: 20px;
+}
+
+.sizes button {
+  border: 2px solid #d9d9d9;
+  background: none;
+  padding: 10px 15px;
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.sizes button:hover {
+  border-color: #000;
+}
+
+.add-to-bag {
+  display: inline-block;
+  margin-bottom: 4em;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 120px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+.add-to-bag:hover {
+  background-color: #444;
+}
+
+.description {
+  margin: 20px 0px;
+  font-size: 18px;
+}
+
+.description p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.description ul {
+  padding-left: 20px;
+}
+
+.description ul li {
+  margin-bottom: 10px;
+}
