@@ -53,14 +53,51 @@ const fetchProducts = async () => {
         throw new Error('Failed to fetch products');
       }
       const products = await response.json();
-
+      //efter kategorie
       const categoriesToShow = ["Women", "Men", "Formal", "Casual", "Dress"];
     const filteredProducts = products.filter(product =>
       product.categories.some(category => categoriesToShow.includes(category))
     );
-      
+    //efter datum
+      const sortedProducts = filteredProducts.sort((a, b) => {
+        const dateA = new Date (a.date.$date);
+        const dateB = new Date (b.date.$date);
+        return dateB - dateA;
+      }
+    );
+     //hämta en product för varje kategori
+    const getLatestProductsByCategory ={}; //tom behållare för object
+   for (const product of sortedProducts) {
+    for (const category of product.categories) {
+        if (categoriesToShow.includes(category) && !getLatestProductsByCategory[category]) {
+            getLatestProductsByCategory[category] = product;
+         }
+     }
+   }
+   //i html
+   const productLatestDiv = document.getElementById('product-latest');
+   productLatestDiv.innerHTML='';
+// 
+   Object.keys(getLatestProductsByCategory).forEach(category => { 
+    const product = getLatestProductsByCategory[category];
 
-      console.log(filteredProducts); // Kontrollera att datan hämtas korrekt
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card');
+
+    const name = document.createElement('p');
+    name.textContent = product.name;
+    name.classList.add('product-name');
+
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.classList.add('product-image');
+
+    productCard.appendChild(img);
+    productCard.appendChild(name);
+    productLatestDiv.appendChild(productCard);
+   })
+    
+
     } catch (error) {
       console.error(error);
     }
@@ -68,3 +105,7 @@ const fetchProducts = async () => {
     document.addEventListener('DOMContentLoaded', () => {
         fetchProducts();
       });
+
+
+
+
