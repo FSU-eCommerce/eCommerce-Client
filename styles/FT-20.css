@@ -20,22 +20,24 @@
 }
 
 .swiper-button-prev{
-    width: 50px;
-    height: 20px;
-    background-color: none;
-    position: absolute;
     top: 48%;
     left: 10px;
-    color: #fff;
 }
 
 .swiper-button-next{
-    width: 50px;
-    height: 20px;
-    background-color: none;
-    position: absolute;
     top: 50%;
     right: 0px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    width: 50px;
+    height: 20px;
+    background-color: transparent;
+    position: absolute;
     color: #fff;
-    
+    cursor: pointer;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+   color: rgb(219, 97, 40);
 }
