@@ -50,13 +50,39 @@ export const addToCart = (productId) => {
         <h3>${item.name}</h3>
         <p>${item.description}</p>
         <p>Price: ${item.price.amount} ${item.price.currency}</p>
+          <div>
+          <button onclick="changeQuantity('${item._id}', -1)">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="changeQuantity('${item._id}', 1)">+</button>
+        </div>
         <button onclick="removeFromCart('${item._id}')">Remove</button>
       </div>
     `).join('');
   };
   
 // ____________________________________________________________________________________________
-  
+// Function to change the quantity
+export const changeQuantity = (productId, change) =>  {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const product = cart.find(item => item._id === productId);
+
+  if (product) {
+    product.quantity += change;
+
+    if (product.quantity < 1) {
+      product.quantity = 1;
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(`${product.name} quantity changed to ${product.quantity}`);
+    renderCart();
+  } else {
+    console.error('product not found')
+  }
+};
+
+//_____________________________________________________________________________________________  
  // Function to remove a product from the cart
 export const removeFromCart = (productId) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -82,4 +108,4 @@ document.getElementById('cartLink').addEventListener('click', () => {
 
 document.getElementById('closeCart').addEventListener('click', () => {
     document.getElementById('cart').classList.remove('open');
-})
+});
