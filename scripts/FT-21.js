@@ -45,9 +45,14 @@ const fetchProducts = async () => {
     img.src = product.image;
     img.classList.add('product-image');
 
+    // koppla till id
+    const productLink = document.createElement('a');
+    productLink.href=`/displayProductList.html?id=${product.id}`;
+    productLink.appendChild(productCard);
+
     productCard.appendChild(img);
     productCard.appendChild(name);
-    productLatestDiv.appendChild(productCard);
+    productLatestDiv.appendChild(productLink);
    })
     
 
