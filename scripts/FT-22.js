@@ -21,7 +21,7 @@ productOfferDiv.innerHTML='';
 
     const productRow2 = document.createElement('div');
     productRow2.classList.add('product-row');
-    
+
 // produktkort
 limitedOffers.forEach((product, index) => {
     const productCard = document.createElement('div');
@@ -35,4 +35,23 @@ limitedOffers.forEach((product, index) => {
     price.textContent = `$${product.price}`;
     price.classList.add('product-price');
 
-})
+    const productLink //oklart 
+
+    productCard.appendChild(img);
+    productCard.appendChild(name);
+    productCard.appendChild(price);
+
+    //12 bilder 
+    if (index < 6) {
+        productRow1.appendChild(productLink);
+    } else {
+        productRow2.appendChild(productLink);
+    }
+});
+    productOfferDiv.appendChild(productRow1);
+    productOfferDiv.appendChild(productRow2);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchProducts();
+  });
