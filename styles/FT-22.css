@@ -1,0 +1,35 @@
+#product-offer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.product-row {
+    display: flex;
+}
+
+.product-card {
+    width: 100%;
+    padding: 10px;
+    
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 200px;
+    
+}
+
+.product-name {
+    
+}
+
+.product-price {
+    
+}
+
+.product-link {
+    
+}
