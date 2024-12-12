@@ -18,6 +18,8 @@
     align-items: center;
     font-size: 24px;
     color: #fff;
+    padding: 0px 10%;
+    justify-content: space-evenly;
 }
 
 .swiper-button-prev{
@@ -44,20 +46,13 @@ cursor: pointer;
     color: orange
 }
 
-#product-slide {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .product {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-    width: 200px;
-  }
-
-  .product img {
-    max-width: 100%;
-    height: auto;
-  }
+.swiper-text {
+    color: orange;
+    position: absolute;
+    top: 35%;
+    left: 20%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    text-shadow: 1px 1px black;
+}
