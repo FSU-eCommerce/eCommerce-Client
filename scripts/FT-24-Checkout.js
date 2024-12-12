@@ -1,6 +1,7 @@
 // Function to render the cart on the checkout page
 export const renderCart = () => {
     const cartContainer = document.getElementById('cartItemList');
+    const summayContent = document.getElementById('summaryContent');
     const cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve cart from localStorage
   
     // Check if the cart is empty
@@ -8,19 +9,36 @@ export const renderCart = () => {
       cartContainer.innerHTML = '<p>Your cart is empty.</p>';
       return;
     }
+    console.log(cart)
   
     // Render cart items
     cartContainer.innerHTML = cart.map(item => `
       <div class="checkout-cart-item">
         <h3>${item.name}</h3>
         <p>${item.description}</p>
-        <p>Price: ${item.price.amount} ${item.price.currency}</p>
+        <p>Price: ${item.price.$numberDecimal}</p>
+        <p>Qty: ${item.quantity}</p>
         <button onclick="removeFromCart('${item._id}')">Remove</button>
       </div>
     `).join('');
+
+
+    
+
+    // Render cart items
+    summayContent.innerHTML = cart.map(item => `
+      <div class="checkout-cart-item">
+        <p>Price: $${item.price.$numberDecimal}</p>
+      </div>
+    `).join('');
+
   
+
     // Render total price
-    const total = cart.reduce((sum, item) => sum + item.price.amount, 0);
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  
+
     const currency = cart[0]?.price.currency || ''; // Assuming all items have the same currency
     cartContainer.innerHTML += `<p>Total: ${total} ${currency}</p>`;
   };

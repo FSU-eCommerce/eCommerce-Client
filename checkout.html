@@ -36,8 +36,84 @@
             <div class="header">
                 <h2>1. Delivery</h2>
             </div>
-            <div class="checkoutForm"></div>
-              <p>Checkout form</p>
+            <div class="checkoutForm">
+
+              <div class="checkoutForm">
+                <form id="checkout-form" action="#" method="POST">
+
+                  <div class="form-grid">
+                
+                    <!-- Column for Labels -->
+                    <div class="form-labels">
+                      <label for="firstName">First Name*</label>
+                      <label for="lastName">Last Name*</label>
+                      <label for="postalCode">Postal Code*</label>
+                      <label for="addressLine1">Address Line 1*</label>
+                      <label for="addressLine2">Address Line 2 (optional)</label>
+                      <label for="province">Province/State*</label>
+                      <label for="country">Country/Region*</label>
+                      <label for="phone">Shipping Phone*</label>
+                      <label for="email" class="space">Email*</label>
+                    </div>
+                
+                    <!-- Column for Inputs -->
+                    <div class="form-inputs">
+                      <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                      <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                      <input type="text" id="postalCode" name="postalCode" required placeholder="Enter your postal code">
+                      <input type="text" id="addressLine1" name="addressLine1" required placeholder="Enter your address">
+                      <input type="text" id="addressLine2" class="space" name="addressLine2" placeholder="Apartment, suite, etc. (optional)">
+                      <select id="province" name="province" required>
+                        <option value="">Select your province/state</option>
+                        <option value="province1">Province 1</option>
+                        <option value="province2">Province 2</option>
+                        <option value="province3">Province 3</option>
+                      </select>
+                      <select id="country" name="country" required>
+                        <option value="">Select your country/region</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="SE">Sweden</option>
+                        <option value="other">Other</option>
+                      </select>
+                      <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                      <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                
+                  </div>
+                
+                  <!-- Delivery Method -->
+                  <label>Select Delivery Method</label>
+                  <div>
+                    <input type="radio" id="standard" name="deliveryMethod" value="standard" required>
+                    <label for="standard">Standard FREE</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="express" class="space" name="deliveryMethod" value="express">
+                    <label for="express" >Express $40.00</label>
+                  </div>
+                
+                  <!-- Newsletter -->
+                  <div>
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Join our newsletter for the latest news, deals and coupons</label>
+                  </div>
+                
+                  <!-- Sign In Link -->
+                  <p class="space">Already a member? <a href="#">Sign in</a>.</p>
+                
+                  <!-- Privacy Policy -->
+                  <div>
+                    <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+                    <label for="privacyConsent">I have read and consent to STYLE’s processing my information in accordance with the Privacy Statement and Cookie Policy.</label>
+                  </div>
+                
+                  <!-- Submit Button -->
+                  <button type="submit" class="topspace">Proceed to Checkout</button>
+                </form>
+              </div>
+              
+            </div>
         </section>
 
 
@@ -47,7 +123,7 @@
                 <div class="header2">
                     <h2>Summary</h2>
                 </div>
-                <div class="summayContent"></div>
+                <div id="summaryContent"></div>
             </section>
 
 
@@ -75,7 +151,7 @@
   <script type="module" src="scripts/FT-8-Hamburger.js"></script>
   <script type="module" src="scripts/FT-24-Checkout.js"></script>
   <script type="module">
-    import { renderCart, proceedToCheckout, removeFromCart } from './scripts/FT-24-Checkout.js';
+  import { renderCart, proceedToCheckout, removeFromCart } from './scripts/FT-24-Checkout.js';
 
     document.addEventListener('DOMContentLoaded', () => {
       // Make removeFromCart function globally available
