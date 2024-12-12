@@ -43,3 +43,11 @@ footer {
     background: #333;
     color: #fff;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rem;
+    color: #bbb;
+}

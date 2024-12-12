@@ -83,7 +83,7 @@ window.removeFromCart = removeFromCart;
 //     document.getElementById('cart').classList.add('open');
 // })
 
-document.getElementById('closeCart').addEventListener('click', () => {
-    document.getElementById('cart').classList.remove('open');
-})
+// document.getElementById('closeCart').addEventListener('click', () => {
+//     document.getElementById('cart').classList.remove('open');
+// })
 

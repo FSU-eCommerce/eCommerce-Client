@@ -15,7 +15,7 @@ const fetchProducts = async () => {
       productContext.addProduct(product);  // Save each product in the context
     });
 
-    console.log('Products saved to context:', productContext.getProducts());
+    // console.log('Products saved to context:', productContext.getProducts());
   } catch (error) {
     console.error('Error fetching products:', error);
   }
