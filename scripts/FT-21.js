@@ -47,7 +47,7 @@ const fetchProducts = async () => {
 
     // koppla till id
     const productLink = document.createElement('a');
-    productLink.href=`/displayProductList.html?id=${product.id}`;
+    productLink.href=`/productpage.html?id=${product._id}`;
     productLink.appendChild(productCard);
 
     productCard.appendChild(img);
