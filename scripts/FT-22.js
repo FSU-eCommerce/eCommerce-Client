@@ -1,4 +1,4 @@
-import fetchProducts from './fetchProducts.js'; 
+// import fetchProducts from './fetchProducts.js'; 
 import productContext from '../context/productContext.js'; 
 
 document.addEventListener('DOMContentLoaded', async () => {
