@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/FT-33.css" />
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/FT-7.css" />
   </head>
   <body>
     <header>
@@ -43,7 +44,8 @@
             class="productImg"
           />
         </div>
-        <div class="productDetailsContainer">
+
+        <!-- <div class="productDetailsContainer">
           <div class="productDetails">
             <h1>A-Line Denim Mini Shirt Dress</h1>
             <div class="price">1050,00 sek</div>
@@ -84,10 +86,34 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
+
+        <main>
+          <div class="container">
+            <p id="loading">Loading product details...</p>
+            <div class="productImageDiv" style="display: none">
+              <img src="" alt="product image" class="productImg" />
+            </div>
+            <div class="productDetailsContainer" style="display: none">
+              <div class="productDetails">
+                <h1></h1>
+                <div class="price"></div>
+                <div class="color"></div>
+                <div class="sizes"></div>
+                <a href="#" class="add-to-bag">ADD TO BAG</a>
+                <div class="description">
+                  <h3 class="decriptionHeader">Description</h3>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     </main>
 
-    <script src="scripts/FT-42-productpageinfo.js"></script>
+    <script type="module" src="scripts/FT-42-productpageinfo.js"></script>
+    <script type="module" src="scripts/fetchProducts.js"></script>
+    <script type="module" src="scripts/main.js"></script>
   </body>
 </html>
