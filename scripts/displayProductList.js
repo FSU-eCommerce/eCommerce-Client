@@ -1,68 +1,77 @@
 import productContext from '../context/productContext.js';  // Import the product context
 
-let productsDisplayedCount = 0;
-const pageSize = 6; // Display 6 products per page
-const queryParams = new URLSearchParams(window.location.search);
+console.log("displayProductList.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const [showMoreBtn] = document.getElementsByClassName('show-more-products');
-  const [productListWrapper] = document.getElementsByClassName('product-list');
-
-  // Check if the DOM elements are present
-  if (!productListWrapper) {
-    console.error('Product list wrapper not found!');
-    return;
-  }
+  const showMoreBtn = document.querySelector('.show-more-products');
+  const productList = document.querySelector('.product-list');
   
-  if (!showMoreBtn) {
-    console.error('Show more button not found!');
-    return;
-  }
+  let productsDisplayedCount = 0; // Track how many products have been displayed
+  const pageSize = 6; // Number of products to display at a time
 
-  // Display products after they're fetched (from context)
-  const displayProductList = () => {
-    const products = productContext.getProducts();    
-    console.log('Products in context:', products);  // Debugging line
+  // Ensure that products are ready before rendering
+  const renderProducts = () => {
+    const products = productContext.getProducts();
+    console.log('Products in context from displayProductList (displayProductList.js):', products); // Debugging line
 
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
       console.log('No products available');
-      productListWrapper.innerHTML = '<p>No products available</p>';
-      return;  // You could show an alternative message here if you like
+      productList.innerHTML = '<p>No products available</p>';
+      return;
     }
 
-    const sex = queryParams.get('sex'); // "Women" or "Men"
-    // Filter products by category and then slice to limit the number shown
-    products
-      .filter((p) => p.categories.includes(sex))
-      .slice(productsDisplayedCount, productsDisplayedCount + pageSize)
-      .forEach((p) => {
-        const productItemWrapper = document.createElement('a');
-        productItemWrapper.href = "productdetails.html?id=" + p._id;
-        productItemWrapper.classList = "product-item-wrapper";
-        productListWrapper.appendChild(productItemWrapper);
+    // Determine the slice of products to render
+    const nextProducts = products.slice(productsDisplayedCount, productsDisplayedCount + pageSize);
 
-        const img = document.createElement('img');
-        const name = document.createElement('p');
-        const price = document.createElement('p');
+    nextProducts.forEach(product => {
+      const productItem = document.createElement('div');
+      productItem.classList.add('product-item');
 
-        img.src = p.image;
-        img.classList = "product-item-img";
-        name.textContent = p.name;
-        name.classList = "product-item-name";
-        price.textContent = '$' + p.price.$numberDecimal;
-        price.classList = "product-item-price";
+      productItem.innerHTML = `
+        <a href="productpage.html?id=${product._id}" class="product-link">
+          <img src="${product.image}" alt="${product.name}" class="product-img">
+          <h3>${product.name}</h3>
+          <p>Price: $${product.price.$numberDecimal}</p>
+        </a>
+      `;
+      productList.appendChild(productItem);
+    });
 
-        productItemWrapper.appendChild(img);
-        productItemWrapper.appendChild(name);
-        productItemWrapper.appendChild(price);
-      });
+    // Update the count of displayed products
+    productsDisplayedCount += nextProducts.length;
 
-    productsDisplayedCount += pageSize;
+    // Hide the "Show More" button if all products are displayed
+    if (productsDisplayedCount >= products.length) {
+      showMoreBtn.style.display = 'none';
+    }
   };
 
-  displayProductList();
+  // Attach the event listener to handle when the products are ready
+  const productsReadyHandler = () => {
+    console.log("ProductsReady event received in displayProductList.js");
+    renderProducts();
 
-  showMoreBtn.addEventListener("click", () => {
-    displayProductList();
-  });
+    // Attach "Show More" button listener
+    showMoreBtn?.addEventListener('click', () => {
+      renderProducts();
+    });
+  };
+
+  // Attach the event listener early
+  document.addEventListener('productsReady', productsReadyHandler);
+
+  // If products are already available (i.e., fetched before the listener is attached), render them immediately
+  if (productContext.getProducts().length > 0) {
+    console.log("Products were already available in context.");
+    productsReadyHandler();
+  } else {
+    // Polling fallback if products are not yet available
+    const checkIfProductsReady = setInterval(() => {
+      if (productContext.getProducts().length > 0) {
+        console.log("Products are now available, rendering...");
+        clearInterval(checkIfProductsReady); // Stop polling once products are ready
+        productsReadyHandler();
+      }
+    }, 100); // Check every 100ms
+  }
 });

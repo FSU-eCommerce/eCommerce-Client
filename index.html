@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/FT-31.css">
     <link rel="stylesheet" href="styles/FT-20.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/FT-7.css">
 </head>
 <body>
     <header>
@@ -21,13 +22,20 @@
                 <div class="line"></div>
             </div>
             <ul id="menu" class="menu">
-                <li><a href="#">Cart</a></li>
+                <li><a href="#" id="cartLink">Cart</a></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="productlist.html">Products</a></li>
                 <li><a href="productpage.html">Productpage</a></li>
                 <li><a href="comtact.html">Contact</a></li>
             </ul>
         </nav>
+
+        <div id="cart" class="cart" >
+            <h2>Your Cart</h2>
+            <div id="cartContainer"></div>
+            <button id="checkoutLink">Go to checkout</button>
+            <button id="closeCart" class="close-cart">Close cart</button>
+        </div>
       </header>
     
     <main>
@@ -67,16 +75,16 @@
 
         <!-- Test Product List -->
    
+      
         <section id="productListSection">
             <h2>Available Products</h2>
             <div id="productList"></div>
         </section>
 
-        <!-- Test Cart -->
-        <section id="cartSection">
-            <h2>Your Cart</h2>
-            <div id="cartContainer"></div>
-        </section>
+
+
+
+
 
 
     </main>
@@ -87,10 +95,10 @@
 
   
     <script type="module" src="scripts/fetchProducts.js"></script>
-    <script type="module" src="./scripts/main.js"></script>
+    <script type="module" src="scripts/main.js"></script>
     <script src="scripts/FT-20.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="scripts/FT-8-Hamburger.js"></script>
-    <script src="scripts/FT-22.js"></script>
+    <script type="module" src="scripts/FT-7.js"></script>
 </body>
 </html>
