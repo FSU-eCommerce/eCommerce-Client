@@ -22,19 +22,17 @@ export const addToCart = (productId) => {
       console.log(`${product.name} added to cart with quantity 1`);
     }
 
-    // Save updated cart to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Log the updated cart
-    console.log('Cart:', cart);
+  console.log('Cart:', cart);
 
-    renderCart(); // Re-render the cart after adding the item
+  renderCart();
   } else {
     console.error('Product could not be added to the cart.');
   }
-};
+  };
 
-// ____________________________________________________________________________________________
+  // ____________________________________________________________________________________________
 
 // Function to render the cart
 export const renderCart = () => {
@@ -55,6 +53,29 @@ export const renderCart = () => {
     </div>
   `).join('');
 };
+  
+// ____________________________________________________________________________________________
+// Function to change the quantity
+export const changeQuantity = (productId, change) =>  {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const product = cart.find(item => item._id === productId);
+
+  if (product) {
+    product.quantity += change;
+
+    if (product.quantity < 1) {
+      product.quantity = 1;
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(`${product.name} quantity changed to ${product.quantity}`);
+    renderCart();
+  } else {
+    console.error('product not found')
+  }
+};
+
 
 // ____________________________________________________________________________________________
 
@@ -78,12 +99,32 @@ window.removeFromCart = removeFromCart;
 
 //______________________________________________________________________________________________
 
-//function to open and close cart
-// document.getElementById('cartLink').addEventListener('click', () => {
-//     document.getElementById('cart').classList.add('open');
-// })
+// function to open and close cart
+document.getElementById('cartLink').addEventListener('click', () => {
+    document.getElementById('cart').classList.add('open');
+})
 
-// document.getElementById('closeCart').addEventListener('click', () => {
-//     document.getElementById('cart').classList.remove('open');
-// })
+document.getElementById('closeCart').addEventListener('click', () => {
+    document.getElementById('cart').classList.remove('open');
+});
 
+//_______________________________________________________________________________________________
+// Function to navigate to checkout-page
+document.addEventListener('DOMContentLoaded', () => {
+  const checkoutLink = document.getElementById('checkoutLink');
+  const cartContainer = document.getElementById('cartContainer');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    if (cart.length === 0) {
+      cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+      return;
+    }
+
+  checkoutLink.addEventListener('click', () => {
+    if (cart.length > 0) {
+      window.location.href = '#.html';
+    }
+  });
+
+  renderCart();
+});
