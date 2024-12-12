@@ -22,29 +22,6 @@
     justify-content: space-evenly;
 }
 
-.swiper-button-prev{
-    top: 40% ;
-    left: 10px;
-}
-
-.swiper-button-next{
-    position: absolute;
-    top: 40%;
-    right: 0px; 
-}
-
-.swiper-button-next, .swiper-button-prev {
-width: 50px;
-height: 20px;
-background-color: none;
-position: absolute;
-color: #fff;
-cursor: pointer;
-}
-
-.swiper-button-next:hover, .swiper-button-prev:hover{
-    color: orange
-}
 
 .swiper-text {
     color: orange;
