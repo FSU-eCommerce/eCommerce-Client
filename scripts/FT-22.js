@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 const products = productContext.getProducts();
     
 
-const specialOffers = products.filter(product => product.price < 30); //max 30 price. filter = ny lista
+const specialOffers = products.filter(product => product.price < 500); //max 30 price. filter = ny lista
 const sortedOffers = specialOffers.sort((a, b) => a.price - b.price); //sortera efter pris
 const limitedOffers = sortedOffers.slice(0,12);//12 produkter ska visas på sidan
 
