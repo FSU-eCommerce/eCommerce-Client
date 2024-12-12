@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/FT-31.css">
     <link rel="stylesheet" href="styles/FT-20.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/FT-7.css">
 </head>
 <body>
     <header>
@@ -54,14 +55,28 @@
 
 
         <section class='CTA'>
-          <img src="img/pexels-godisable-jacob-226636-794063.jpg" 
+        <div class ="img-wrapper">
+          <img src="img/CTA-woman.jpg" 
           alt="woman_fashion-button" />
           <a href="productlist.html?sex=Women"><button id='woman_fashion-button'>WOMEN FASHION</button></a>
-          <img src="img/pexels-eddson-lens-748406628-29704262.jpg" 
+        </div>
+        <div class="img-wrapper">
+          <img src="img/CTA-man.jpg" 
           alt="men_fasion-button" />
           <a href="productlist.html?sex=Men"><button id='men_fashion-button'>MEN FASHION</button></a>
+        </div>
         </section>
 
+<!--         <section id="productListSection">
+            <h2>Available Products</h2>
+            <div id="productList"></div>
+        </section> -->
+
+        <!-- Test Cart -->
+<!--         <section id="cartSection">
+            <h2>Your Cart</h2>
+            <div id="cartContainer"></div>
+        </section> -->
 
 
     </main>
@@ -72,9 +87,10 @@
 
   
     <script type="module" src="scripts/fetchProducts.js"></script>
-    <script type="module" src="./scripts/main.js"></script>
+    <script type="module" src="scripts/main.js"></script>
     <script src="scripts/FT-20.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="scripts/FT-8-Hamburger.js"></script>
+    <script type="module" src="scripts/FT-7.js"></script>
 </body>
 </html>

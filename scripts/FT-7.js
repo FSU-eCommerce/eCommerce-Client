@@ -2,6 +2,7 @@ import productContext from '../context/productContext.js'; // Import productCont
 
 // Function to add a product to the cart
 export const addToCart = (productId) => {
+
   const products = productContext.getProducts();
   const product = products.find(p => p._id === productId);
 
@@ -73,23 +74,16 @@ export const removeFromCart = (productId) => {
 // Make sure the removeFromCart function is globally accessible
 window.removeFromCart = removeFromCart;
 
+
+
 //______________________________________________________________________________________________
 
-// Function to open and close cart
-document.addEventListener('DOMContentLoaded', () => {
-  const cartLink = document.getElementById('cartLink');
-  const closeCart = document.getElementById('closeCart');
+//function to open and close cart
+document.getElementById('cartLink').addEventListener('click', () => {
+    document.getElementById('cart').classList.add('open');
+})
 
-  // Only add event listeners if the elements exist
-  if (cartLink) {
-    cartLink.addEventListener('click', () => {
-      document.getElementById('cart').classList.add('open');
-    });
-  }
+document.getElementById('closeCart').addEventListener('click', () => {
+    document.getElementById('cart').classList.remove('open');
+})
 
-  if (closeCart) {
-    closeCart.addEventListener('click', () => {
-      document.getElementById('cart').classList.remove('open');
-    });
-  }
-});
