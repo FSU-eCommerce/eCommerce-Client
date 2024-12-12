@@ -47,7 +47,7 @@ export const addToCart = (productId) => {
   
     cartContainer.innerHTML = cart.map(item => `
       <div class="cart-item">
-        <h3>${item.name}</h3>
+        <h3><a href="productpage.htlm?id=${item._id}">${item.name}</a></h3>
         <p>${item.description}</p>
         <p>Price: ${item.price.amount} ${item.price.currency}</p>
           <div>
