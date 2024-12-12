@@ -1,4 +1,3 @@
-
 // scripts/displayProductList.js
 import productContext from '../context/productContext.js';  // Import the product context
 
@@ -139,4 +138,3 @@ document.addEventListener("DOMContentLoaded", () => {
     displayProductList();
   });
 });
-
