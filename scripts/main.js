@@ -1,6 +1,9 @@
-import fetchProducts from './fetchProducts.js';
-import { addToCart, renderCart, changeQuantity } from './FT-7.js';
+
+// scripts/main.js
+import fetchProducts from './fetchProducts.js';  // Import the function to fetch products
+import { addToCart, renderCart, changeQuantity } from './FT-7.js'; // Import the addToCart and renderCart functions
 import { getProducts } from './test.js';
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {
