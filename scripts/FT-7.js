@@ -101,12 +101,14 @@ window.removeFromCart = removeFromCart;
 
 // function to open and close cart
 document.getElementById('cartLink').addEventListener('click', () => {
-    document.getElementById('cart').classList.add('open');
+  document.getElementById('cart').classList.add('open');
 })
 
+
 document.getElementById('closeCart').addEventListener('click', () => {
-    document.getElementById('cart').classList.remove('open');
+  document.getElementById('cart').classList.remove('open');
 });
+
 
 //_______________________________________________________________________________________________
 // Function to navigate to checkout-page
