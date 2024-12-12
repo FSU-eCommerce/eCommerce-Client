@@ -22,21 +22,37 @@ export const addToCart = (productId) => {
       console.log(`${product.name} added to cart with quantity 1`);
     }
 
-  
-    cartContainer.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <h3><a href="productpage.htlm?id=${item._id}">${item.name}</a></h3>
-        <p>${item.description}</p>
-        <p>Price: ${item.price.amount} ${item.price.currency}</p>
-          <div>
-          <button onclick="changeQuantity('${item._id}', -1)">-</button>
-          <span>${item.quantity}</span>
-          <button onclick="changeQuantity('${item._id}', 1)">+</button>
-        </div>
-        <button onclick="removeFromCart('${item._id}')">Remove</button>
-      </div>
-    `).join('');
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  console.log('Cart:', cart);
+
+  renderCart();
+  } else {
+    console.error('Product could not be added to the cart.');
+  }
   };
+
+  // ____________________________________________________________________________________________
+
+// Function to render the cart
+export const renderCart = () => {
+  const cartContainer = document.getElementById('cartContainer');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+    return;
+  }
+
+  cartContainer.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <h3>${item.name}</h3>
+      <p>${item.description}</p>
+      <p>Price: ${item.price.amount} ${item.price.currency}</p>
+      <button onclick="removeFromCart('${item._id}')">Remove</button>
+    </div>
+  `).join('');
+};
   
 // ____________________________________________________________________________________________
 // Function to change the quantity
@@ -60,42 +76,6 @@ export const changeQuantity = (productId, change) =>  {
   }
 };
 
-//_____________________________________________________________________________________________  
- // Function to remove a product from the cart
-  
-    // Save updated cart to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Log the updated cart
-    console.log('Cart:', cart);
-
-    renderCart(); // Re-render the cart after adding the item
-  } else {
-    console.error('Product could not be added to the cart.');
-  }
-};
-
-// ____________________________________________________________________________________________
-
-// Function to render the cart
-export const renderCart = () => {
-  const cartContainer = document.getElementById('cartContainer');
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  if (cart.length === 0) {
-    cartContainer.innerHTML = '<p>Your cart is empty.</p>';
-    return;
-  }
-
-  cartContainer.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <h3>${item.name}</h3>
-      <p>${item.description}</p>
-      <p>Price: ${item.price.amount} ${item.price.currency}</p>
-      <button onclick="removeFromCart('${item._id}')">Remove</button>
-    </div>
-  `).join('');
-};
 
 // ____________________________________________________________________________________________
 
