@@ -33,6 +33,10 @@ limitedOffers.forEach((product, index) => {
     const price = document.createElement('p');
     price.textContent = `$${product.price}`;
     price.classList.add('product-price');
+
+    const name = document.createElement('p');
+    name.textContent = `${product.name}`;
+    name.classList.add('product-name');
     
     const productLink //oklart 
     
