@@ -24,10 +24,10 @@ justify-content: flex-start;
     width: 100%;
     height: auto;
     border-radius: 4px;
-    object-fit: ;
+    object-fit: scale-down;
 }
 .product-name {
-
+ color: rgb(65, 62, 62);
 }
 
 .product-card {
@@ -36,6 +36,8 @@ justify-content: flex-start;
     box-sizing: border-box;
     width: 300px;
     padding: 10px;
+    box-sizing: border-box;
+
 
 }
 
