@@ -1,7 +1,7 @@
 
 .swiper {
     width: 100%;
-    height: 84vh;
+    height: auto;
     overflow: hidden;
     display: flex;
 }
@@ -19,13 +19,14 @@
     color: #fff;
 }
 
+
 .swiper-button-prev{
-    top: 48%;
+    top: 35%;
     left: 10px;
 }
 
 .swiper-button-next{
-    top: 50%;
+    top: 35%;
     right: 0px;
 }
 
