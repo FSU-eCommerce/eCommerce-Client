@@ -71,8 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     productsReadyHandler();
   }
 });
-=======
-import productContext from '../context/productContext.js';  // Import the product context
+
 
 let productsDisplayedCount = 0;
 const pageSize = 6; // Display 6 products per page
