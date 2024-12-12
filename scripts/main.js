@@ -1,7 +1,10 @@
+
 // scripts/main.js
 import fetchProducts from './fetchProducts.js';  // Import the function to fetch products
-import { renderProducts } from './renderProducts.js'; // Import the rendering logic
 import { addToCart, renderCart, changeQuantity } from './FT-7.js'; // Import the addToCart and renderCart functions
+import { getProducts } from './test.js';
+
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch products before rendering
@@ -11,8 +14,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addToCart = addToCart;
   window.changeQuantity = changeQuantity;
 
-  // Now that products are fetched, render them
-  renderProducts();
+   // Fire a custom event to notify other scripts that products are ready
+   const productsReadyEvent = new Event('productsReady');
+   document.dispatchEvent(productsReadyEvent);
+
+  getProducts();
   renderCart();
 });
 
