@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Checkout Page for Ecommerce">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/FT-24-Checkout.css">
+</head>
+<body>
+  <header>
+    <img src="./img/logo.png" alt="Logo" class="logo">
+    <nav>
+      <div class="hamburger" id="hamburger-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul id="menu" class="menu">
+        <li><a href="#">Cart</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productlist.html">Products</a></li>
+        <li><a href="productpage.html">Productpage</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-wrapper">
+      <h1>Checkout</h1>
+    <section class="row">
+
+        <section class="checkoutFormContainer">
+            <div class="header">
+                <h2>1. Delivery</h2>
+            </div>
+            <div class="checkoutForm"></div>
+              <p>Checkout form</p>
+        </section>
+
+
+        <section class="column">
+
+            <section id="summaryContainer">
+                <div class="header2">
+                    <h2>Summary</h2>
+                </div>
+                <div class="summayContent"></div>
+            </section>
+
+
+            <section id="checkoutCartContainer">
+                <div class="header2">
+                    <h2>In your cart (<cart-item-amount>)</h2>
+                </div>
+                <div id="cartItemList">
+                    <!-- Cart items will be rendered dynamically here -->
+                </div>
+            </section>
+
+        </section>
+
+     
+    </section>
+
+    <button id="checkoutButton">Checkout</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Ecommerce Client. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="scripts/FT-8-Hamburger.js"></script>
+  <script type="module" src="scripts/FT-24-Checkout.js"></script>
+  <script type="module">
+    import { renderCart, proceedToCheckout, removeFromCart } from './scripts/FT-24-Checkout.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Make removeFromCart function globally available
+      window.removeFromCart = removeFromCart;
+
+      // Render the cart on page load
+      renderCart();
+
+      // Attach event listener to checkout button
+      const checkoutButton = document.getElementById('checkoutButton');
+      checkoutButton.addEventListener('click', proceedToCheckout);
+    });
+  </script>
+</body>
+</html>

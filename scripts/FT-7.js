@@ -76,9 +76,9 @@ export const removeFromCart = (productId) => {
 //______________________________________________________________________________________________
 
 //function to open and close cart
-document.getElementById('cartLink').addEventListener('click', () => {
-    document.getElementById('cart').classList.add('open');
-})
+// document.getElementById('cartLink').addEventListener('click', () => {
+//     document.getElementById('cart').classList.add('open');
+// })
 
 document.getElementById('closeCart').addEventListener('click', () => {
     document.getElementById('cart').classList.remove('open');
