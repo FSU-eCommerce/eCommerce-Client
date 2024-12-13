@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  // Wait for products to load first
   document.addEventListener("productsReady", async () => {
     const product = await fetchProductById(productId);
     renderProductDetails(product);
