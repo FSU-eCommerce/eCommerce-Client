@@ -9,12 +9,13 @@ body {
 }
 
 .container {
+  height: 100vh;
   max-width: 2200px;
   margin: 0 auto;
-  padding: 80px;
+  padding: 180px 50px 80px 50px;
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 5%;
   /* align-items: center; */
 }
 
@@ -22,7 +23,6 @@ body {
   flex: 1;
   min-width: 300px;
   display: flex;
-  align-items: center;
   justify-content: center;
   height: 80vh;
 }
