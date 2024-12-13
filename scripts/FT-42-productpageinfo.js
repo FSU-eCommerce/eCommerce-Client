@@ -52,7 +52,9 @@ const renderProductDetails = (product) => {
   document.querySelector(".productImg").src = product.image;
   document.querySelector(".productImg").alt = product.name;
   document.querySelector(".productDetails h1").textContent = product.name;
-  document.querySelector(".price").textContent = `${product.price} sek`;
+  document.querySelector(
+    ".price"
+  ).textContent = `${product.price.$numberDecimal} sek`;
   document.querySelector(".color").innerHTML = `Color <br>${
     product.color || "N/A"
   }`;
