@@ -100,13 +100,24 @@ window.removeFromCart = removeFromCart;
 //______________________________________________________________________________________________
 
 // function to open and close cart
-document.getElementById('cartLink').addEventListener('click', () => {
+document.getElementById('cartLink').addEventListener('click', (event) => {
+  event.preventDefault();
   document.getElementById('cart').classList.add('open');
 })
 
 
 document.getElementById('closeCart').addEventListener('click', () => {
   document.getElementById('cart').classList.remove('open');
+});
+
+window.addEventListener('click', (event) => {
+  const cart = document.getElementById('cart');
+  const cartLink = document.getElementById('cartLink');
+
+  // If the click is outside the cart and not on the cart link, close the cart
+  if (!cart.contains(event.target) && event.target !== cartLink) {
+    cart.classList.remove('open');
+  }
 });
 
 
