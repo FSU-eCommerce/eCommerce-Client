@@ -9,7 +9,7 @@ const getProductIdFromQuery = () => {
 };
 
 // Function to fetch a specific product by ID from the context
-export const fetchProductById = async (productId) => {
+const fetchProductById = async (productId) => {
   const products = productContext.getProducts();
   console.log("ID", productId);
   console.log("context", products);
@@ -43,7 +43,7 @@ export const fetchProductById = async (productId) => {
 
 // To render the product details on the page
 const renderProductDetails = (product) => {
-  console.log(product);
+  console.log("Rendering product:", product);
   if (!product) {
     document.querySelector(".container").innerHTML = "<p>Product not found</p>";
     return;
@@ -75,6 +75,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  const product = await fetchProductById(productId);
-  renderProductDetails(product);
+  document.addEventListener("productsReady", async () => {
+    const product = await fetchProductById(productId);
+    renderProductDetails(product);
+  });
 });
