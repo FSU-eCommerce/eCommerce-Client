@@ -113,6 +113,14 @@ console.log("Limited offers:", limitedOffers);
         name.textContent = product.name;
         name.classList.add('product-name');
 
+        const priceButton = document.createElement('button');
+        priceButton.textContent = product.pricebutton || `Show me`;
+        priceButton.classList.add('product-button');
+
+        priceButton.addEventListener('click', () => {
+            window.location.href = `/productpage.html?id=${product._id}`;
+    });
+
         const rawPrice = product.price?.$numberDecimal || product.price || 0;
         const priceValue = parseFloat(rawPrice);
         console.log("Price value being added to card:", priceValue);
@@ -129,6 +137,7 @@ console.log("Limited offers:", limitedOffers);
         productCard.appendChild(img);
         productCard.appendChild(name);
         productCard.appendChild(price);
+        productCard.appendChild(priceButton);
 
         if (index < 6) {
             productRow1.appendChild(productLink);
