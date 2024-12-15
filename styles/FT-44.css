@@ -1,7 +1,9 @@
 .contact {
     position: absolute;
     top: 200px;
-    left: 50%;
+    left: 55%;
+    margin-bottom: 100px;
+
 }
 
 .questionAnswer{
@@ -19,14 +21,23 @@ ul:hover {
     color: orange;
 }
 
-#sendForm {
-    width: 300px;
-    height: 75px;
-    position: relative;
-    display: inline-block;
-}
-#sendForm::placeholder{
+.img-wrapper{
+    width: 50%;
+    height: 40vh;
+    display: flex;
+    overflow: hidden;
     position: absolute;
-    bottom: 5px;
-    left: 5px;
+    top: 35%;
+    left: 3%;
 }
+.yellow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer{
+    position: fixed;
+    bottom: 0px;
+}
+
