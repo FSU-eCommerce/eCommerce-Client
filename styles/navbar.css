@@ -28,14 +28,12 @@ ul {
   padding: 0;
 }
 
-li {
-  margin: 0 15px;
-}
 
 a {
   color: white;
   text-decoration: none;
   font-size: 16px;
+  display: block;
 }
 
 /* Hide hamburger on desktop */
@@ -59,6 +57,60 @@ a {
   display: flex;
   flex-direction: row;
 }
+
+.menu-link {
+  margin: 0 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  position: relative;
+  display: inline-block;
+}
+
+
+/* Hide the dropdown menu by default */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f9f9f9;
+
+  width: 200px; /* Set the width of the dropdown */
+}
+
+/* Show the dropdown when hovering over the Products link */
+li:hover .dropdown {
+  display: block;
+}
+
+/* Style for the dropdown items */
+.dropdown li {
+  display: block;
+  text-align: center;
+}
+
+.dropdown-link {
+  margin: 0;
+
+  
+}
+
+/* Optional: Styling for dropdown links */
+.dropdown a {
+  padding: 10px 0;
+  color: #333;
+}
+
+.dropdown a:hover {
+  background-color: #ececec;
+}
+
+
 
 @media (max-width: 768px) {
 
