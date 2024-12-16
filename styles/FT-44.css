@@ -1,0 +1,43 @@
+.contact {
+    position: absolute;
+    top: 200px;
+    left: 55%;
+    margin-bottom: 100px;
+
+}
+
+.questionAnswer{
+    display: none;
+    margin: 10px 0px;
+}
+
+ul{
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+ul:hover {
+    color: orange;
+}
+
+.img-wrapper{
+    width: 50%;
+    height: 40vh;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    top: 35%;
+    left: 3%;
+}
+.yellow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer{
+    position: fixed;
+    bottom: 0px;
+}
+
