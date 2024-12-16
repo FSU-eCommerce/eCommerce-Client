@@ -14,12 +14,12 @@ export const renderProducts = () => {
   }
 
   // Map and render the products
-  productList.innerHTML = products.map(product => `
-    <div class="product">
-      <h3>${product.name}</h3>
-      <p>${product.description}</p>
-      <p>Price: ${product.price.amount} ${product.price.currency}</p>
-      <button onclick="addToCart('${product._id}')">Köp</button>
-    </div>
-  `).join('');
+  // productList.innerHTML = products.map(product => `
+  //   <div class="product">
+  //     <h3>${product.name}</h3>
+  //     <p>${product.description}</p>
+  //     <p>Price: ${product.price.amount} ${product.price.currency}</p>
+  //     <button onclick="addToCart('${product._id}')">Köp</button>
+  //   </div>
+  // `).join('');
 };

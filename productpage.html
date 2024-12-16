@@ -6,55 +6,47 @@
     <title>Product Page</title>
     <link rel="stylesheet" href="styles/FT-33.css" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/FT-7.css" />
   </head>
   <body>
     <header>
-      <img src="./img/logo.png" alt="Logo" class="logo">
+      <img src="./img/logo.png" alt="Logo" class="logo" />
 
       <nav>
-          <div class="hamburger" id="hamburger-icon">
-              <div class="line"></div>
-              <div class="line"></div>
-              <div class="line"></div>
-          </div>
-          <ul id="menu" class="menu">
-              <li><a href="#">Cart</a></li>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="productlist.html">Products</a></li>
-              <li><a href="productpage.html">Productpage</a></li>
-              <li><a href="comtact.html">Contact</a></li>
-          </ul>
+        <div class="hamburger" id="hamburger-icon">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <ul id="menu" class="menu">
+          <li><a href="#" id="cartLink">Cart</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="productlist.html">Products</a></li>
+          <li><a href="productpage.html">Productpage</a></li>
+          <li><a href="comtact.html">Contact</a></li>
+        </ul>
       </nav>
 
       <!--Shopping cart div-->
-      <div id="cart" class="cart" >
-          <h2>Varukorg</h2>
-          <div id="cartContainer"></div>
-          <button id="closeCart" class="close-cart">Stäng</button>
+      <div id="cart" class="cart">
+        <h2>Your Cart</h2>
+        <div id="cartContainer"></div>
+        <button id="checkoutLink">Go to checkout</button>
+        <button id="closeCart" class="close-cart">Close cart</button>
       </div>
     </header>
-    <main>
-
-  
 
     <div class="container">
-      <div class="productImageDiv">
-        <img
-          src="img/pexels-mika-borgia-562014-1317712.jpg"
-          alt="product image"
-          class="productImg"
-        />
+      <p id="loading">Loading product details...</p>
+      <div class="productImageDiv" style="display: none">
+        <img src="" alt="product image" class="productImg" />
       </div>
-      <div class="productDetailsContainer">
+      <div class="productDetailsContainer" style="display: none">
         <div class="productDetails">
-          <h1>A-Line Denim Mini Shirt Dress</h1>
-          <div class="price">1050,00 sek</div>
-          <div class="color">
-            Color <br />
-            Denim Dark Blue
-          </div>
-
+          <h1></h1>
+          <div class="price"></div>
+          <div class="color"></div>
           <div class="sizes">
             <p>EU SIZE</p>
 
@@ -64,30 +56,16 @@
             <button>L</button>
             <button>XL</button>
           </div>
-
           <a href="#" class="add-to-bag">ADD TO BAG</a>
-
           <div class="description">
-            <h3 class="decriptionHeader">Decription</h3>
-            <p>
-              Inspired by architectural lines, this A-line dress embodies a
-              refined simplicity that reflects the thoughtful COS design
-              philosophy. Crafted from dark-wash denim, it offers a versatile
-              base for a range of styling possibilities.
-            </p>
-            <ul>
-              <li>Regular fit</li>
-              <li>Button closure</li>
-              <li>Back box pleat and practical side slip pockets</li>
-            </ul>
-            <p>
-              Material Composition: Shell: 100% Cotton (excluding trims).
-              Designed for durability and ease of care, it is machine washable.
-            </p>
+            <h3 class="decriptionHeader">Description</h3>
+            <p></p>
           </div>
         </div>
       </div>
     </div>
-  </main>
+
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/FT-42-productpageinfo.js"></script>
   </body>
 </html>
