@@ -7,15 +7,16 @@
 
 .product-row {
     display: flex;
+   
     
 }
 
 .product-card {
     width: 100%;
     padding: 10px;
-    
     border-radius: 5px;
     text-align: center;
+    
     
 }
 
@@ -57,5 +58,15 @@ h2 {
     color: rgb(153, 153, 246);
     background-color: rgb(58, 51, 51);
     border-radius: 10%;
+}
+
+@media screen and (max-width: 600px){
+    #product-offer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        border: 1px solid #ddd;
+    }
+    
 }
 
