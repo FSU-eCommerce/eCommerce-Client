@@ -2,7 +2,7 @@
 // scripts/main.js
 import fetchProducts from './fetchProducts.js';  // Import the function to fetch products
 import { addToCart, renderCart, changeQuantity } from './FT-7.js'; // Import the addToCart and renderCart functions
-import { getProducts } from './test.js';
+import { getProductsForFT22 } from './FT-22.js';
 
 
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
    const productsReadyEvent = new Event('productsReady');
    document.dispatchEvent(productsReadyEvent);
 
-  getProducts();
+  getProductsForFT22();
   renderCart();
 });
 
