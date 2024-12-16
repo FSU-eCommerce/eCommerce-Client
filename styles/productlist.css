@@ -8,27 +8,29 @@
   row-gap: 30px;
 }
 
-
-.product-item-wrapper {
-  text-decoration: none;
-  color: black;
+.product-item {
   max-width: 30%;
   overflow: hidden;
-  transition: transform .2s; /* Animation */
   border: 2px solid lightgrey;
+  transition: transform .2s; /* Animation */
+}
+
+.product-link {
+  text-decoration: none;
+  color: black;
 }
 
 
-.product-item-wrapper:hover {
+.product-item:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
 
-.product-item-wrapper img {
+.product-item img {
   height: 400px;
 }
 
-.product-item-wrapper p {
+.product-item p {
   padding: 1rem;
 }
 
@@ -39,7 +41,8 @@
 
 .show-more-products-wrapper {
   display: flex;
-justify-content: space-around;
+  justify-content: space-around;
+  padding-bottom: 40px;
 }
 
 .show-more-products {
