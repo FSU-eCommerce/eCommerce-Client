@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En enkel e-handelssida byggd med HTML, CSS och JS">
+    <meta name="description" content="En enkel e-handelssida byggd med HTML, CSS och JS">    
     <title>Ecommerce Client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/FT-31.css">
     <link rel="stylesheet" href="styles/FT-20.css">
@@ -13,7 +14,7 @@
 </head>
 <body>
     <header>
-        <img src="./img/logo.png" alt="Logo" class="logo">
+       <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
   
         <nav>
             <div class="hamburger" id="hamburger-icon">
@@ -22,11 +23,17 @@
                 <div class="line"></div>
             </div>
             <ul id="menu" class="menu">
-                <li><a href="#" id="cartLink">Cart</a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="productlist.html">Products</a></li>
-                <li><a href="productpage.html">Productpage</a></li>
-                <li><a href="comtact.html">Contact</a></li>
+                <li class="menu-link"><a href="productlist.html">Products</a>
+                    <ul class="dropdown">
+                      <li class="dropdown-link"><a href="allproducts.html">All Products</a></li>
+                      <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
+                      <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
+                    </ul>
+                  </li>
+                <!-- <li><a href="productpage.html">Productpage</a></li> -->
+                <li class="menu-link"><a href="#" id="cartLink"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+                <li class="menu-link"><a href="comtact.html"><i class="fa-solid fa-phone"></i></a></li>
             </ul>
         </nav>
 
