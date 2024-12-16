@@ -1,16 +1,21 @@
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
 }
 
 .container {
+  height: 100vh;
   max-width: 2200px;
   margin: 0 auto;
-  padding: 80px;
+  padding: 180px 50px 80px 50px;
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 5%;
   /* align-items: center; */
 }
 
@@ -18,7 +23,6 @@ body {
   flex: 1;
   min-width: 300px;
   display: flex;
-  align-items: center;
   justify-content: center;
   height: 80vh;
 }
@@ -99,7 +103,9 @@ h1 {
 }
 
 .description ul {
+  display: block;
   padding-left: 20px;
+  list-style-type: disc;
 }
 
 .description ul li {

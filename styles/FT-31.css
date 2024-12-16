@@ -3,34 +3,40 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-left: 20px;
+}
+
+.img-wrapper{
+    position: relative;
+    display: inline-block;
 }
 
 img {
-    width: 40%;
-    display: flex;
+    width: 90%;
+    display: block;
     margin: 10px;
 }
 
-#woman_fashion-button {
+#woman_fashion-button, #men_fashion-button {
     position: absolute;
-    left:19%;
-    top:300px;
-    width: 20%;
-    height:35px;
+    top:90px;
+    width: 30%;
+    height:40px;
     background-color: rgba(139, 21, 21, 0.658);
     border-radius: 8px;
     color: #fff;
     border: none;
+    font-size: medium;
 }
 
-#men_fashion-button {
-    position: absolute;
-    right: 19%;
-    top: 300px;
-    width: 20%;
-    height: 35px;
-    background-color: rgba(114, 13, 13, 0.993);
-    border-radius: 8px;
-    color: #fff;
-    border: none;
+#woman_fashion-button {   
+    left:32%;   
+}
+
+#men_fashion-button {   
+    right: 35%;
+}
+
+#woman_fashion-button:hover, #men_fashion-button:hover {
+    background-color: rgb(107, 34, 34);
 }

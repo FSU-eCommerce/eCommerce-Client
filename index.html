@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="styles/FT-31.css">
     <link rel="stylesheet" href="styles/FT-20.css">
     <link rel="stylesheet" href="styles/navbar.css">
+
     <link rel="stylesheet" href="styles/FT-21.css">
+    <link rel="stylesheet" href="styles/FT-7.css">
+
 </head>
 <body>
     <header>
@@ -22,12 +25,20 @@
                 <div class="line"></div>
             </div>
             <ul id="menu" class="menu">
-                <li><a href="#">Cart</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#" id="cartLink">Cart</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="productlist.html">Products</a></li>
+                <li><a href="productpage.html">Productpage</a></li>
+                <li><a href="comtact.html">Contact</a></li>
             </ul>
         </nav>
+
+        <div id="cart" class="cart" >
+            <h2>Your Cart</h2>
+            <div id="cartContainer"></div>
+            <button id="checkoutLink">Go to checkout</button>
+            <button id="closeCart" class="close-cart">Close cart</button>
+        </div>
       </header>
     
     <main>
@@ -45,6 +56,7 @@
             <div class="swiper-button-prev">Previous</div>
         </section>
 
+
         <!-- FT-21 -->
         <section id="product-latest-container">
             <h2>Our latest products</h2>
@@ -53,34 +65,49 @@
         </section>
         <!-- ends here -->
 
-        <section id="hero">
-            <h2>Hitta de bästa produkterna här!</h2>
-            <button id="cta-button">Köp Nu</button>
-        </section>
+
 
         <section class='CTA'>
-          <img src="img/pexels-godisable-jacob-226636-794063.jpg" 
+        <div class ="img-wrapper">
+          <img src="img/CTA-woman.jpg" 
           alt="woman_fashion-button" />
           <a href="productlist.html?sex=Women"><button id='woman_fashion-button'>WOMEN FASHION</button></a>
-          <img src="img/pexels-eddson-lens-748406628-29704262.jpg" 
+        </div>
+        <div class="img-wrapper">
+          <img src="img/CTA-man.jpg" 
           alt="men_fasion-button" />
           <a href="productlist.html?sex=Men"><button id='men_fashion-button'>MEN FASHION</button></a>
+        </div>
         </section>
 
-   
+      
+        <section id="productListSection">
+            <h2>Available Products</h2>
+            <div id="productList"></div>
+        </section>
+
+
+
+
+
+
+
     </main>
     
    <footer>
         <p>&copy; 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
     </footer>
 
-
-
+  
     <script type="module" src="scripts/fetchProducts.js"></script>
     <script type="module" src="scripts/main.js"></script>
     <script src="scripts/FT-20.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="scripts/FT-8-Hamburger.js"></script>
+
     <script src="scripts/FT-21.js"></script>
+
+    <script type="module" src="scripts/FT-7.js"></script>
+
 </body>
 </html>
