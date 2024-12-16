@@ -151,3 +151,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderCart();
 });
+
+
+
+//____________________________________________________________________________________
+//FT-42 quantity codes
+// Main logic to load the product page
+/* document.addEventListener("DOMContentLoaded", async () => {
+  const productId = getProductIdFromQuery();
+
+  if (!productId) {
+    console.error("No product ID found in the URL");
+    document.querySelector(".container").innerHTML =
+      "<p>No product selected</p>";
+    return;
+  } */
+
+  // Wait for products to load first
+  /* document.addEventListener("productsReady", async () => {
+    const product = await fetchProductById(productId);
+    renderProductDetails(product);
+    addToCartListener(productId);
+  });
+}); */
+
+//AddToCartBtn functions, Peter
+/* const addToCartListener = (productId) => {
+  document.getElementById('addToCartBtn').addEventListener("click", (event) => {
+    event.preventDefault(); */
+
+  /*   const quantityInput = document.getElementById('quantity');
+    const quantity = parseInt(quantityInput.value, 10);
+
+    const product = await fetchProductById(productId);
+    const availableStock = product ? product.stock : 0;
+
+    if (quantity > 0 && quantity <= availableStock) {
+      addToCart(productId, quantity);
+    }   */ 
+   /* if (productId) {
+    addToCart(productId);
+    }
+  });
+}; */
+
+//Functions to check stock and able quantity to add to cart
+/* const increaseQuantity = async (productId) => {
+  const quantityInput = document.getElementById('quantity');
+  let currentQuantity = parseInt(quantityInput.value, 10);
+
+  const product = await fetchProductById(productId); 
+  const availableStock = product ? product.stock : 0;
+
+  if (currentQuantity < availableStock) {
+    quantityInput.value = currentQuantity + 1;
+  } else {
+    console.log("Sorry, we don't have enough stock for this product.");
+  }
+};
+
+const decreaseQuantity = () => {
+  const quantityInput = document.getElementById('quantity');
+  let currentQuantity = parseInt(quantityInput.value, 10);
+  if (currentQuantity > 1) {
+    quantityInput.value = currentQuantity - 1;
+  }
+}; */
+
+/* document.getElementById('increaseBtn').addEventListener('click', () => increaseQuantity(productId));
+console.log(increaseQuantity(productId));
+document.getElementById('decreaseBtn').addEventListener('click', decreaseQuantity()); */

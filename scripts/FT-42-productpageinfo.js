@@ -82,11 +82,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("productsReady", async () => {
     const product = await fetchProductById(productId);
     renderProductDetails(product);
-
-    const addToCartBtn = document.getElementById("addToCartBtn"); //Peter
-    addToCartBtn.addEventListener("click", (event) => {
-      event.preventDefault(); // Prevent default link behavior
-      addToCart(productId);  // Call addToCart with the product ID
-    }); // Peter
+    addToCartListener(productId);
   });
 });
+
+//AddToCartBtn functions, Peter
+const addToCartListener = (productId) => {
+  document.getElementById('addToCartBtn').addEventListener("click", (event) => {
+    event.preventDefault();
+
+   if (productId) {
+    addToCart(productId);
+    }
+  });
+};
+
+
+
