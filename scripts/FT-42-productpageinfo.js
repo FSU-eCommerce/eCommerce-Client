@@ -1,4 +1,5 @@
 import productContext from "../context/productContext.js";
+import { addToCart } from "./FT-7.js"; //Peter
 
 // Function to get the product ID from the query string
 const getProductIdFromQuery = () => {
@@ -81,5 +82,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("productsReady", async () => {
     const product = await fetchProductById(productId);
     renderProductDetails(product);
+
+    const addToCartBtn = document.getElementById("addToCartBtn"); //Peter
+    addToCartBtn.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent default link behavior
+      addToCart(productId);  // Call addToCart with the product ID
+    }); // Peter
   });
 });
