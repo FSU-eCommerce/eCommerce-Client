@@ -1,9 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .contact {
     position: absolute;
     top: 200px;
-    left: 55%;
-    margin-bottom: 100px;
+    left: 50%;
+    justify-content: left;
+    width: 50%;
 
+}
+
+h3{
+    margin: 20px 0;
 }
 
 .questionAnswer{
@@ -21,19 +32,34 @@ ul:hover {
     color: orange;
 }
 
-.img-wrapper{
+
+.img-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: right;
+    padding: 20px;
     width: 50%;
-    height: 40vh;
-    display: flex;
-    overflow: hidden;
     position: absolute;
-    top: 35%;
-    left: 3%;
+    top: 170px;
 }
-.yellow{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.yellow {
+    position: relative;
+    overflow: hidden;
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.social-media-wrapper{
+height: auto;
+justify-content: center;
+}
+
+.socialmedia-img{
+    width: 30px;
+
 }
 
 footer{
