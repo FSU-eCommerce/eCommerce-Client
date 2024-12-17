@@ -60,6 +60,28 @@ const renderProductDetails = (product) => {
   document.getElementById("loading").style.display = "none";
   document.querySelector(".productImageDiv").style.display = "block";
   document.querySelector(".productDetailsContainer").style.display = "block";
+
+  // Size button with stock notification and low in stock
+  const sizeContainer = document.querySelector(".sizes");
+  sizeContainer.innerHTML = `<p class="sizeText">EU SIZE</p>`;
+
+  const sizes = ["XS", "S", "M", "L", "XL"];
+  sizes.forEach((size) => {
+    const button = document.createElement("button");
+
+    button.textContent = size;
+    button.style.marginRight = "15px";
+
+    // Check stock
+    if (product.stock === 0) {
+      button.textContent = `${size} ✖`;
+      button.disabled = true;
+    } else if (product.stock <= 5) {
+      const lowStockText = document.createElement("span");
+      lowStockText.classList.add("lowStockText");
+      lowStockText.textContent = "Low stock";
+    }
+  });
 };
 
 // Main logic to load the product page
