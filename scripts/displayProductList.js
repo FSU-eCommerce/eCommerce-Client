@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ensure that products are ready before rendering
   const renderProducts = () => {
     const sex = queryParams.get('sex') // "Women" or "Men"
-    const products = productContext.getProducts().filter((p) =>  p.categories.includes(sex))
+    const products = productContext.getProducts().filter((p) => !sex || p.categories.includes(sex))
     console.log('Products in context from displayProductList (displayProductList.js):', products); // Debugging line
 
     if (!products || products.length === 0) {
