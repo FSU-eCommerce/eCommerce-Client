@@ -1,77 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En enkel e-handelssida byggd med HTML, CSS och JS">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="En enkel e-handelssida byggd med HTML, CSS och JS"
+    />
     <title>Ecommerce Client</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/productlist.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/FT-19.css">
-    <link rel="stylesheet" href="styles/FT-7.css">
-
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/productlist.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/FT-19.css" />
+    <link rel="stylesheet" href="styles/FT-7.css" />
+    <link rel="stylesheet" href="styles/FT-3.css" />
+  </head>
+  <body>
     <header>
-        <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
-   
-         <nav>
-             <div class="hamburger" id="hamburger-icon">
-                 <div class="line"></div>
-                 <div class="line"></div>
-                 <div class="line"></div>
-             </div>
-             <ul id="menu" class="menu">
-                 <li class="menu-link"><a href="productlist.html">Products</a>
-                     <ul class="dropdown">
-                       <li class="dropdown-link"><a href="allproducts.html">All Products</a></li>
-                       <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
-                       <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
-                     </ul>
-                   </li>
-                 <!-- <li><a href="productpage.html">Productpage</a></li> -->
-                 <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
-                 <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
-                 <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
-             </ul>
-         </nav>
- 
-         <div id="cart" class="cart" >
-             <h2>Your Cart</h2>
-             <div id="cartContainer"></div>
-             <button id="checkoutLink">Go to checkout</button>
-             <button id="closeCart" class="close-cart">Close cart</button>
-         </div>
-       </header>
-    
+      <a href="index.html"
+        ><img src="./img/logo.png" alt="Logo" class="logo"
+      /></a>
+      <!-- Search -->
+      <section class="search">
+        <div class="search-container">
+          <div class="alert"></div>
+          <form action="/search.html" class="search-form">
+            <div class="search-flex">
+              <input
+                type="text"
+                id="search-term"
+                name="search-term"
+                placeholder="Search..."
+              />
+              <button type="submit" class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <nav>
+        <div class="hamburger" id="hamburger-icon">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <ul id="menu" class="menu">
+          <li class="menu-link">
+            <a href="productlist.html">Products</a>
+            <ul class="dropdown">
+              <li class="dropdown-link">
+                <a href="allproducts.html">All Products</a>
+              </li>
+              <li class="dropdown-link">
+                <a href="productlist.html?sex=Men">Men</a>
+              </li>
+              <li class="dropdown-link">
+                <a href="productlist.html?sex=Women">Women</a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a href="productpage.html">Productpage</a></li> -->
+          <li class="menu-link">
+            <a href="#"
+              ><i class="fa-solid fa-bag-shopping" id="cartLink"></i
+            ></a>
+          </li>
+          <li class="menu-link">
+            <a href="index.html"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="menu-link">
+            <a href="contactpage.html"><i class="fa-solid fa-phone"></i></a>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="cart" class="cart">
+        <h2>Your Cart</h2>
+        <div id="cartContainer"></div>
+        <button id="checkoutLink">Go to checkout</button>
+        <button id="closeCart" class="close-cart">Close cart</button>
+      </div>
+    </header>
+
     <main>
-        <section class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"> <img src="img/FT-19 men_shoes.jpg" alt="Image 1" style="height: 100%;"></div>
-                <div class="swiper-slide"> <img src="img/FT-19 watch.jpg" alt="Image 2" style="height: 100%;"></div>
-                <div class="swiper-slide"> <img src="img/FT-19 bags.jpg" alt="Image 3" style="height: 100%;"></div>
-                <div class="swiper-slide"> <img src="img/FT-19 bag.jpg" alt="Image 4" style="height: 100%;"></div>
-            </div>
-            <div class="swiper-text">"Outfits for every story, <br> styles for every you"</div>
+      <section class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="img/FT-19 men_shoes.jpg"
+              alt="Image 1"
+              style="height: 100%"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/FT-19 watch.jpg" alt="Image 2" style="height: 100%" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/FT-19 bags.jpg" alt="Image 3" style="height: 100%" />
+          </div>
+          <div class="swiper-slide">
+            <img src="img/FT-19 bag.jpg" alt="Image 4" style="height: 100%" />
+          </div>
+        </div>
+        <div class="swiper-text">
+          "Outfits for every story, <br />
+          styles for every you"
+        </div>
+      </section>
 
-        </section>
-
-        <section>
-            <div class="product-list">
-            </div>
-            <div class="show-more-products-wrapper">
-                <button class="show-more-products">Show More</button>
-            </div>
-        </section>
-
-
-            
+      <section>
+        <div class="product-list"></div>
+        <div class="show-more-products-wrapper">
+          <button class="show-more-products">Show More</button>
+        </div>
+      </section>
     </main>
 
-   <footer>
-        <p>&copy; 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
+    <footer>
+      <p>&copy; 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
     </footer>
 
     <script type="module" src="scripts/main.js"></script>
@@ -80,5 +131,6 @@
     <script type="module" src="scripts/fetchProducts.js"></script>
     <script src="scripts/FT-19.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-</body>
+    <script type="module" src="scripts/FT-3.js"></script>
+  </body>
 </html>
