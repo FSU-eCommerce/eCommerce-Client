@@ -1,34 +1,71 @@
 import productContext from '../context/productContext.js'; 
 
 // Function to add a product to the cart
-export const addToCart = (productId) => {
+export const addToCart = (productId, quantity) => {
+  const product = findProductById(productId);
+  const maxStock = product.stock;
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  const products = productContext.getProducts();
-  const product = products.find(p => p._id === productId);
-
-  if (product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingProduct = cart.find(item => item._id === productId);
-
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-      console.log(`${product.name} quantity increased to ${existingProduct.quantity}`);
-    } else {
-      cart.push({ ...product, quantity: 1 });
-      console.log(`${product.name} added to cart with quantity 1`);
-    }
-
-  localStorage.setItem('cart', JSON.stringify(cart));
-
-  console.log('Cart:', cart);
-
-  renderCart();
-  } else {
-    console.error('Product could not be added to the cart.');
+  if (!product) {
+    console.log('product not found');
+    return;
   }
-  };
 
-  // ____________________________________________________________________________________________
+  if (!checkValidQuantity(quantity, maxStock)) {
+    return;
+  }
+  
+  cart = updateExistingProduct(cart, product, quantity) || addNewProductToCart(cart, product, quantity);
+  saveTolocalStorage(cart);
+  renderCart();
+};
+
+//Function to find productId
+const findProductById = (productId) => {
+  const products = productContext.getProducts();
+  return products.find(p => p._id === productId);
+};
+
+//Function to check quantity validity
+const checkValidQuantity = (quantity, maxStock) => {
+  if (quantity <= 0) {
+    console.log("Quantity must be at least 1");
+    return false;
+  }
+
+  if (quantity > maxStock) {
+    console.log(`You can only add up to ${maxStock} of this product to your cart.`);
+    return false;
+  }
+  return true;
+}
+
+//function to update eexisting product in cart
+const updateExistingProduct = (cart, product, quantity) => {
+  const existingProduct = cart.find(item => item._id === product._id);
+  if (existingProduct) {
+    const newQuantity = existingProduct.quantity + quantity;
+    if (newQuantity > product.stock) {
+      alert(`You can only add up to ${maxStock} of this product to your cart.`);
+        return cart;
+    }
+  return cart;  
+  }
+};
+
+//function to add new product
+const addNewProductToCart = (cart, product, quantity) => {
+  cart.push({ ...product, quantity });
+  console.log(`${product.name} added to cart with quantity ${quantity}`);
+  return cart;
+}
+ //function to save to local
+const saveTolocalStorage = (cart) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Saved to Cart:', cart);
+}
+
+// ____________________________________________________________________________________________
 
 // Function to render the cart
 export const renderCart = () => {
@@ -69,6 +106,12 @@ export const changeQuantity = (productId, change) =>  {
 
     if (product.quantity < 1) {
       product.quantity = 1;
+    }
+
+    const maxStock = product.stock;
+
+    if (product.quantity > maxStock) {
+      product.quantity = maxStock;
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -152,72 +195,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCart();
 });
 
-
-
 //____________________________________________________________________________________
-//FT-42 quantity codes
-// Main logic to load the product page
-/* document.addEventListener("DOMContentLoaded", async () => {
-  const productId = getProductIdFromQuery();
-
-  if (!productId) {
-    console.error("No product ID found in the URL");
-    document.querySelector(".container").innerHTML =
-      "<p>No product selected</p>";
-    return;
-  } */
-
-  // Wait for products to load first
-  /* document.addEventListener("productsReady", async () => {
-    const product = await fetchProductById(productId);
-    renderProductDetails(product);
-    addToCartListener(productId);
-  });
-}); */
-
-//AddToCartBtn functions, Peter
-/* const addToCartListener = (productId) => {
-  document.getElementById('addToCartBtn').addEventListener("click", (event) => {
-    event.preventDefault(); */
-
-  /*   const quantityInput = document.getElementById('quantity');
-    const quantity = parseInt(quantityInput.value, 10);
-
-    const product = await fetchProductById(productId);
-    const availableStock = product ? product.stock : 0;
-
-    if (quantity > 0 && quantity <= availableStock) {
-      addToCart(productId, quantity);
-    }   */ 
-   /* if (productId) {
-    addToCart(productId);
-    }
-  });
-}; */
-
-//Functions to check stock and able quantity to add to cart
-/* const increaseQuantity = async (productId) => {
-  const quantityInput = document.getElementById('quantity');
-  let currentQuantity = parseInt(quantityInput.value, 10);
-
-  const product = await fetchProductById(productId); 
-  const availableStock = product ? product.stock : 0;
-
-  if (currentQuantity < availableStock) {
-    quantityInput.value = currentQuantity + 1;
-  } else {
-    console.log("Sorry, we don't have enough stock for this product.");
-  }
-};
-
-const decreaseQuantity = () => {
-  const quantityInput = document.getElementById('quantity');
-  let currentQuantity = parseInt(quantityInput.value, 10);
-  if (currentQuantity > 1) {
-    quantityInput.value = currentQuantity - 1;
-  }
-}; */
-
-/* document.getElementById('increaseBtn').addEventListener('click', () => increaseQuantity(productId));
-console.log(increaseQuantity(productId));
-document.getElementById('decreaseBtn').addEventListener('click', decreaseQuantity()); */

@@ -81,8 +81,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Wait for products to load first
   document.addEventListener("productsReady", async () => {
     const product = await fetchProductById(productId);
-    renderProductDetails(product);
-    addToCartListener(productId);
+    if (product) {
+      renderProductDetails(product);
+      initializeQuantityControls(product);
+      addToCartListener(productId);
+    }  
   });
 });
 
@@ -90,12 +93,75 @@ document.addEventListener("DOMContentLoaded", async () => {
 const addToCartListener = (productId) => {
   document.getElementById('addToCartBtn').addEventListener("click", (event) => {
     event.preventDefault();
+   
+  const quantityInput = document.getElementById('quantity');
+  const quantity = parseInt(quantityInput.value);
 
-   if (productId) {
-    addToCart(productId);
+   if (productId && quantity > 0) {
+    addToCart(productId, quantity);
     }
   });
 };
 
+//Function for checking and changing the quantity
+const updateQuantityDisplay = (quantityInput, maxStock) => {
+  const currentQuantity = parseInt(quantityInput.value);
+  if (currentQuantity > maxStock) {
+    quantityInput.value = maxStock;
+  }
+};
 
+const decreaseQuantity = (quantityInput) => {
+  let currentQuantity = parseInt(quantityInput.value);
+  if (currentQuantity > 1) {
+    quantityInput.value = currentQuantity - 1;
+  }
+};
 
+const increaseQuantity = (quantityInput, maxStock) => {
+  let currentQuantity = parseInt(quantityInput.value);
+  if (currentQuantity < maxStock) {
+    quantityInput.value = currentQuantity + 1;
+  }
+};
+
+const validateQuantityInput = (quantityInput, maxStock) => {
+  let currentQuantity = parseInt(quantityInput.value);
+  if (currentQuantity < 1) {
+    quantityInput.value = 1;
+  } else if (currentQuantity > maxStock) {
+    quantityInput.value = maxStock;
+  }
+};
+
+const initializeQuantityControls = (product) => {
+  const quantityInput = document.getElementById('quantity');
+  const increaseBtn = document.getElementById('increaseBtn');
+  const decreaseBtn = document.getElementById('decreaseBtn');
+
+  const maxStock = product.stock;
+
+  // Set the initial quantity based on stock
+  if (maxStock > 0) {
+    quantityInput.value = 1;
+  } else {
+    quantityInput.value = 0;
+    console.log('This product is out of stock.');
+  }
+
+  // Add event listeners for buttons
+  decreaseBtn.addEventListener("click", () => {
+    decreaseQuantity(quantityInput);
+    updateQuantityDisplay(quantityInput, maxStock);
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    increaseQuantity(quantityInput, maxStock);
+    updateQuantityDisplay(quantityInput, maxStock);
+  });
+
+  // Add event listener to validate manual input
+  quantityInput.addEventListener("input", () => {
+    validateQuantityInput(quantityInput, maxStock);
+  });
+};
