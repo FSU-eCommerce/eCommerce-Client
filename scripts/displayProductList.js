@@ -2,6 +2,8 @@ import productContext from '../context/productContext.js';  // Import the produc
 
 console.log("displayProductList.js loaded");
 
+const queryParams = new URLSearchParams(window.location.search);
+
 document.addEventListener("DOMContentLoaded", () => {
   const showMoreBtn = document.querySelector('.show-more-products');
   const productList = document.querySelector('.product-list');
@@ -11,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ensure that products are ready before rendering
   const renderProducts = () => {
-    const products = productContext.getProducts();
+    const sex = queryParams.get('sex') // "Women" or "Men"
+    const products = productContext.getProducts().filter((p) => !sex || p.categories.includes(sex))
     console.log('Products in context from displayProductList (displayProductList.js):', products); // Debugging line
 
     if (!products || products.length === 0) {
@@ -63,14 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // If products are already available (i.e., fetched before the listener is attached), render them immediately
   if (productContext.getProducts().length > 0) {
     console.log("Products were already available in context.");
-    productsReadyHandler();
+    // productsReadyHandler();
   } else {
     // Polling fallback if products are not yet available
     const checkIfProductsReady = setInterval(() => {
       if (productContext.getProducts().length > 0) {
         console.log("Products are now available, rendering...");
         clearInterval(checkIfProductsReady); // Stop polling once products are ready
-        productsReadyHandler();
+       // productsReadyHandler();
       }
     }, 100); // Check every 100ms
   }

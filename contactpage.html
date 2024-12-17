@@ -4,36 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ContactPage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/FT-44.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/FT-44.css">
+    <link rel="stylesheet" href="styles/FT-7.css">
+
 </head>
 <body>
-    <header>
-        <img src="./img/logo.png" alt="Logo" class="logo">
-  
-        <nav>
-            <div class="hamburger" id="hamburger-icon">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <ul id="menu" class="menu">
-                <li><a href="#" id="cartLink">Cart</a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="productlist.html">Products</a></li>
-                <li><a href="productpage.html">Productpage</a></li>
-                <li><a href="comtact.html">Contact</a></li>
-            </ul>
-        </nav>
 
-        <div id="cart" class="cart" >
-            <h2>Your Cart</h2>
-            <div id="cartContainer"></div>
-            <button id="checkoutLink">Go to checkout</button>
-            <button id="closeCart" class="close-cart">Close cart</button>
-        </div>
-      </header>
+        <header>
+        <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
+   
+         <nav>
+             <div class="hamburger" id="hamburger-icon">
+                 <div class="line"></div>
+                 <div class="line"></div>
+                 <div class="line"></div>
+             </div>
+             <ul id="menu" class="menu">
+                 <li class="menu-link"><a href="productlist.html">Products</a>
+                     <ul class="dropdown">
+                       <li class="dropdown-link"><a href="allproducts.html">All Products</a></li>
+                       <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
+                       <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
+                     </ul>
+                   </li>
+                 <!-- <li><a href="productpage.html">Productpage</a></li> -->
+                 <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
+                 <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+                 <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
+             </ul>
+         </nav>
+ 
+         <div id="cart" class="cart" >
+             <h2>Your Cart</h2>
+             <div id="cartContainer"></div>
+             <button id="checkoutLink">Go to checkout</button>
+             <button id="closeCart" class="close-cart">Close cart</button>
+         </div>
+       </header>
+
+
       <main>
         <div class="img-wrapper">
         <img class="yellow" src="img/bright yellow.jpg">

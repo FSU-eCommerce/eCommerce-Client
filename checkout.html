@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Checkout Page for Ecommerce">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/FT-24-Checkout.css">
+  <link rel="stylesheet" href="styles/FT-7.css">
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
+
+     <nav>
+         <div class="hamburger" id="hamburger-icon">
+             <div class="line"></div>
+             <div class="line"></div>
+             <div class="line"></div>
+         </div>
+         <ul id="menu" class="menu">
+             <li class="menu-link"><a href="productlist.html">Products</a>
+                 <ul class="dropdown">
+                   <li class="dropdown-link"><a href="allproducts.html">All Products</a></li>
+                   <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
+                   <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
+                 </ul>
+               </li>
+             <!-- <li><a href="productpage.html">Productpage</a></li> -->
+             <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
+             <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+             <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
+         </ul>
+     </nav>
+
+     <div id="cart" class="cart" >
+         <h2>Your Cart</h2>
+         <div id="cartContainer"></div>
+         <button id="checkoutLink">Go to checkout</button>
+         <button id="closeCart" class="close-cart">Close cart</button>
+     </div>
+   </header>
+
+  <main class="main-wrapper">
+      <h1>Checkout</h1>
+    <section class="row">
+3
+        <section class="checkoutFormContainer">
+          <!-- <div class="checkoutForm"> -->
+            
+            <div class="checkoutForm">
+                <div class="header">
+                    <h2>1. Shipping</h2>
+                </div>
+                <form id="checkout-form" action="#" method="POST">
+
+                  <div class="form-grid">
+                
+                    <!-- Column for Labels -->
+                    <div class="form-labels">
+                      <label for="firstName">First Name*</label>
+                      <label for="lastName">Last Name*</label>
+                      <label for="postalCode">Postal Code*</label>
+                      <label for="addressLine1">Address Line 1*</label>
+                      <label for="addressLine2">Address Line 2 (optional)</label>
+                      <label for="province">Province/State*</label>
+                      <label for="country">Country/Region*</label>
+                      <label for="phone">Shipping Phone*</label>
+                      <label for="email" class="space">Email*</label>
+                    </div>
+                
+                    <!-- Column for Inputs -->
+                    <div class="form-inputs">
+                      <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                      <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                      <input type="text" id="postalCode" name="postalCode" required placeholder="Enter your postal code">
+                      <input type="text" id="addressLine1" name="addressLine1" required placeholder="Enter your address">
+                      <input type="text" id="addressLine2" class="space" name="addressLine2" placeholder="Apartment, suite, etc. (optional)">
+                      <select id="province" name="province" required>
+                        <option value="">Select your province/state</option>
+                        <!-- United States -->
+                        <option value="">Select your state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+
+                        <!-- Canada -->
+                        <option value="">Select your province</option>
+                        <option value="AB">Alberta</option>
+                        <option value="BC">British Columbia</option>
+                        <option value="MB">Manitoba</option>
+                        <option value="NB">New Brunswick</option>
+                        <option value="NL">Newfoundland and Labrador</option>
+                        <option value="NS">Nova Scotia</option>
+                        <option value="ON">Ontario</option>
+                        <option value="PE">Prince Edward Island</option>
+                        <option value="QC">Quebec</option>
+                        <option value="SK">Saskatchewan</option>
+                        <option value="NT">Northwest Territories</option>
+                        <option value="NU">Nunavut</option>
+                        <option value="YT">Yukon</option>
+
+                        <!-- Australia -->
+                        <option value="">Select your state/territory</option>
+                        <option value="ACT">Australian Capital Territory</option>
+                        <option value="NSW">New South Wales</option>
+                        <option value="NT">Northern Territory</option>
+                        <option value="QLD">Queensland</option>
+                        <option value="SA">South Australia</option>
+                        <option value="TAS">Tasmania</option>
+                        <option value="VIC">Victoria</option>
+                        <option value="WA">Western Australia</option>
+
+                        <!-- United Kingdom -->
+                        <option value="">Select your region</option>
+                        <option value="ENG">England</option>
+                        <option value="NIR">Northern Ireland</option>
+                        <option value="SCT">Scotland</option>
+                        <option value="WLS">Wales</option>
+
+                        <!-- Germany -->
+                        <option value="">Select your state</option>
+                        <option value="BW">Baden-Württemberg</option>
+                        <option value="BY">Bavaria (Bayern)</option>
+                        <option value="BE">Berlin</option>
+                        <option value="BB">Brandenburg</option>
+                        <option value="HB">Bremen</option>
+                        <option value="HH">Hamburg</option>
+                        <option value="HE">Hesse (Hessen)</option>
+                        <option value="MV">Mecklenburg-Western Pomerania</option>
+                        <option value="NI">Lower Saxony (Niedersachsen)</option>
+                        <option value="NW">North Rhine-Westphalia (Nordrhein-Westfalen)</option>
+                        <option value="RP">Rhineland-Palatinate (Rheinland-Pfalz)</option>
+                        <option value="SL">Saarland</option>
+                        <option value="SN">Saxony (Sachsen)</option>
+                        <option value="ST">Saxony-Anhalt (Sachsen-Anhalt)</option>
+                        <option value="SH">Schleswig-Holstein</option>
+                        <option value="TH">Thuringia (Thüringen)</option>
+
+                      </select>
+                      <select id="country" name="country" required>
+                        <option value="">Select your country/region</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AT">Austria</option>
+                        <option value="AU">Australia</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BR">Brazil</option>
+                        <option value="CA">Canada</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="CN">China</option>
+                        <option value="CL">Chile</option>
+                        <option value="DE">Germany</option>
+                        <option value="DK">Denmark</option>
+                        <option value="ES">Spain</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IL">Israel</option>
+                        <option value="IN">India</option>
+                        <option value="IT">Italy</option>
+                        <option value="JP">Japan</option>
+                        <option value="KR">South Korea</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MX">Mexico</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="NO">Norway</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PT">Portugal</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SE">Sweden</option>
+                        <option value="SG">Singapore</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TW">Taiwan</option>
+                        <option value="US">United States</option>
+                        <option value="VN">Vietnam</option>
+                        <option value="ZA">South Africa</option>
+
+                      </select>
+                      <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                      <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                
+                  </div>
+                
+                  <!-- Delivery Method -->
+                   <div class="topspace bold gap">
+
+                     <label>Select Delivery Method</label>
+                     <div>
+                       <input type="radio" id="standard" name="deliveryMethod" value="standard" required>
+                       <label for="standard">Standard <span class="orange">FREE</span></label>
+                     </div>
+                     <div class="space">
+                       <input type="radio" id="express" class="space" name="deliveryMethod" value="express">
+                       <label for="express" >Express <span class="regular">$40.00</span></label>
+                     </div>
+                   </div>
+                
+                  <!-- Newsletter -->
+                  <div>
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter" class="bold margin">Join our newsletter for the latest news, deals and coupons</label>
+                  </div>
+                
+                  <!-- Sign In Link -->
+                  <p class="space bold">Already a member? <a href="login.html" class="link">Sign in.</a></p>
+                
+                  <!-- Privacy Policy -->
+                  <div class="agreement">
+                    <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+                    <label for="privacyConsent">I have read and consent to STYLE’s processing my information in accordance with the Privacy Statement and Cookie Policy.</label>
+                  </div>
+                  <p class="required">* Required fields</p>
+                  
+
+                  
+                  
+                  <!-- Submit Button -->
+                  <button type="submit" class="topspace">Proceed to Payment</button>
+                </form>
+
+              </div>
+              
+            <!-- </div> -->
+
+
+
+            <section class="payment">
+  
+              
+              <!-- <div class="checkoutForm"> -->
+                
+              <div class="checkoutForm">
+                <div class="header">
+                  <h2>2. Payment</h2>
+                </div>
+              <form id="checkout-form" action="#" method="POST">
+
+                <div class="form-grid d-none">
+          
+                  <!-- Column for Labels -->
+                  <div class="form-labels">
+                    <label for="cardInfo">Card information*</label>
+                    <label for="nameOnCard">Name on card*</label>
+                  </div>
+            
+                <!-- Column for Inputs -->
+                <div class="form-inputs">
+                  <input type="text" id="cardInfo" name="cardInfo" required placeholder="1234 1234 1234 1234">
+                  <input type="text" id="cardDate" name="cardDate" required placeholder="MM/YY">
+                  <input type="text" id="cvc" name="cvc" required placeholder="CVC">
+                  <input type="text" id="nameOnCard" name="nameOnCard" required placeholder="Full name as shown">
+                  <button id="checkoutButton">Submit order</button>
+                </div>
+              </form>
+            </section>
+          </section>
+          
+          
+<!-- Right side - Summary & Cart -->
+
+          <section class="column">
+
+            <section id="summaryContainer">
+                <div class="header2">
+                    <h2>Summary</h2>
+                </div>
+                <div id="summaryContent"></div>
+            </section>
+
+
+            <section id="checkoutCartContainer">
+                <div class="header2">
+                    <h2>In your cart (<cart-item-amount>)</h2>
+                </div>
+                <div id="cartItemList">
+                    <!-- Cart items will be rendered dynamically here -->
+                </div>
+            </section>
+
+        </section>
+
+     
+    </section>
+
+  </main>
+
+  <!-- <footer>
+    <p>&copy; 2024 Ecommerce Client. All rights reserved.</p>
+  </footer> -->
+
+  <script type="module" src="scripts/main.js"></script>
+  <script type="module" src="scripts/FT-8-Hamburger.js"></script>
+  <script type="module" src="scripts/FT-24-Checkout.js"></script>
+  <script src="scripts/FT-8-Hamburger.js"></script>
+    <script type="module" src="scripts/FT-7.js"></script>
+
+</body>
+</html>

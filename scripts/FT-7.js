@@ -1,4 +1,4 @@
-import productContext from '../context/productContext.js'; // Import productContext
+import productContext from '../context/productContext.js'; 
 
 // Function to add a product to the cart
 export const addToCart = (productId) => {
@@ -8,16 +8,12 @@ export const addToCart = (productId) => {
 
   if (product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Check if the product is already in the cart
     const existingProduct = cart.find(item => item._id === productId);
 
     if (existingProduct) {
-      // If the product is already in the cart, increase its quantity
       existingProduct.quantity += 1;
       console.log(`${product.name} quantity increased to ${existingProduct.quantity}`);
     } else {
-      // If the product is not in the cart, add it with quantity 1
       cart.push({ ...product, quantity: 1 });
       console.log(`${product.name} added to cart with quantity 1`);
     }
@@ -46,9 +42,16 @@ export const renderCart = () => {
 
   cartContainer.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <h3>${item.name}</h3>
+      <a href="productpage.html?id=${item._id}" class="cart-product-link">
+        <h3>${item.name}</h3>
+      </a>
       <p>${item.description}</p>
-      <p>Price: ${item.price.amount} ${item.price.currency}</p>
+      <p>Price: ${item.price.$numberDecimal} $</p>
+      <div class="quantity">
+      <button onclick="changeQuantity('${item._id}', -1)">-</button>
+      <span>${item.quantity}</span> <!-- Display current quantity -->
+      <button onclick="changeQuantity('${item._id}', 1)">+</button>
+    </div>
       <button onclick="removeFromCart('${item._id}')">Remove</button>
     </div>
   `).join('');
@@ -83,16 +86,14 @@ export const changeQuantity = (productId, change) =>  {
 export const removeFromCart = (productId) => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Remove product by ID
   cart = cart.filter(item => item._id !== productId);
   localStorage.setItem('cart', JSON.stringify(cart));
 
   console.log('Product removed from cart.');
 
-  renderCart(); // Re-render the cart after removal
+  renderCart();
 };
 
-// Make sure the removeFromCart function is globally accessible
 window.removeFromCart = removeFromCart;
 
 
@@ -100,13 +101,33 @@ window.removeFromCart = removeFromCart;
 //______________________________________________________________________________________________
 
 // function to open and close cart
-document.getElementById('cartLink').addEventListener('click', () => {
+document.getElementById('cartLink').addEventListener('click', (event) => {
+  event.preventDefault();
   document.getElementById('cart').classList.add('open');
 })
 
-
 document.getElementById('closeCart').addEventListener('click', () => {
   document.getElementById('cart').classList.remove('open');
+});
+
+window.addEventListener('click', (event) => {
+  const cart = document.getElementById('cart');
+  const cartLink = document.getElementById('cartLink');
+
+  if (!cart.contains(event.target) && event.target !== cartLink) {
+    cart.classList.remove('open');
+  }
+});
+
+document.getElementById('cart').addEventListener('click', (event) => {
+  event.stopPropagation(); 
+});
+
+const quantityButtons = document.querySelectorAll('.cart-item .quantity button');
+quantityButtons.forEach(button => {
+  button.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
 });
 
 

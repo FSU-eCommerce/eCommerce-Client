@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En enkel e-handelssida byggd med HTML, CSS och JS">
+    <meta name="description" content="En enkel e-handelssida byggd med HTML, CSS och JS">    
     <title>Ecommerce Client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/FT-31.css">
     <link rel="stylesheet" href="styles/FT-20.css">
     <link rel="stylesheet" href="styles/navbar.css">
+
+    <link rel="stylesheet" href="styles/FT-21.css">
     <link rel="stylesheet" href="styles/FT-7.css">
+
+    <link rel="stylesheet" href="styles/FT-22.css">
+
 </head>
 <body>
+    
     <header>
-        <img src="./img/logo.png" alt="Logo" class="logo">
-  
-        <nav>
-            <div class="hamburger" id="hamburger-icon">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <ul id="menu" class="menu">
-                <li><a href="#" id="cartLink">Cart</a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="productlist.html">Products</a></li>
-                <li><a href="productpage.html">Productpage</a></li>
-                <li><a href="contactpage.html">Contact</a></li>
-            </ul>
-        </nav>
+        <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
+   
+         <nav>
+             <div class="hamburger" id="hamburger-icon">
+                 <div class="line"></div>
+                 <div class="line"></div>
+                 <div class="line"></div>
+             </div>
+             <ul id="menu" class="menu">
+                 <li class="menu-link"><a href="productlist.html">Products</a>
+                     <ul class="dropdown">
+                       <li class="dropdown-link"><a href="allproducts.html">All Products</a></li>
+                       <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
+                       <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
+                     </ul>
+                   </li>
+                 <!-- <li><a href="productpage.html">Productpage</a></li> -->
+                 <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
+                 <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+                 <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
+             </ul>
+         </nav>
+ 
+         <div id="cart" class="cart" >
+             <h2>Your Cart</h2>
+             <div id="cartContainer"></div>
+             <button id="checkoutLink">Go to checkout</button>
+             <button id="closeCart" class="close-cart">Close cart</button>
+         </div>
+       </header>
 
-        <div id="cart" class="cart" >
-            <h2>Your Cart</h2>
-            <div id="cartContainer"></div>
-            <button id="checkoutLink">Go to checkout</button>
-            <button id="closeCart" class="close-cart">Close cart</button>
-        </div>
-      </header>
     
     <main>
         <section class="swiper">
@@ -54,6 +68,16 @@
         </section>
 
 
+        <!-- FT-21 -->
+        <section id="product-latest-container">
+            <h2>Our latest products</h2>
+            <div id="product-latest" class="product-latest-grid">
+            </div>
+        </section>
+        <!-- ends here -->
+
+
+
         <section class='CTA'>
         <div class ="img-wrapper">
           <img src="img/CTA-woman.jpg" 
@@ -67,6 +91,21 @@
         </div>
         </section>
 
+        <!-- section FT-22 -->
+        <section id="product-offer-container">
+             <h2>Special Offers</h2> 
+             <div id="product-offer"></div> 
+        </section>
+
+        <!-- Test Product List -->
+   
+      
+        <section id="productListSection">
+            <h2>Available Products</h2>
+            <div id="productList"></div>
+        </section>
+
+
     </main>
     
    <footer>
@@ -79,6 +118,10 @@
     <script src="scripts/FT-20.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="scripts/FT-8-Hamburger.js"></script>
+
+    <script src="scripts/FT-21.js"></script>
+
     <script type="module" src="scripts/FT-7.js"></script>
+
 </body>
 </html>
