@@ -25,6 +25,7 @@ body {
   display: flex;
   justify-content: center;
   height: 80vh;
+  display: none;
 }
 
 .productImg {
@@ -38,6 +39,7 @@ body {
   min-width: 300px;
   display: flex;
   justify-content: center;
+  display: none;
 }
 
 .productDetails {

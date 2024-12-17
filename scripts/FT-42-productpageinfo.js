@@ -15,13 +15,6 @@ const fetchProductById = async (productId) => {
   console.log("ID", productId);
   console.log("context", products);
 
-  //   products.forEach((product) => {
-  //     console.log("Comparing:", product._id, "with", productId);
-  //     console.log("Match:", product._id === productId);
-  //   });
-
-  //const product = products.find((product) => product._id === productId.trim());
-
   const product = products.find((p) => p._id === productId);
   console.log("Product found in context", product);
 
@@ -42,11 +35,13 @@ const fetchProductById = async (productId) => {
   return product;
 };
 
-// To render the product details on the page
+// To render the product details on the html product page
 const renderProductDetails = (product) => {
   console.log("Rendering product:", product);
   if (!product) {
-    document.querySelector(".container").innerHTML = "<p>Product not found</p>";
+    document.querySelector(
+      ".container"
+    ).innerHTML = `<p class="noProductText">Product not found</p>`;
     return;
   }
 
@@ -86,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const addToCartBtn = document.getElementById("addToCartBtn"); //Peter
     addToCartBtn.addEventListener("click", (event) => {
       event.preventDefault(); // Prevent default link behavior
-      addToCart(productId);  // Call addToCart with the product ID
+      addToCart(productId); // Call addToCart with the product ID
     }); // Peter
   });
 });
