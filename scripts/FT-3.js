@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const params = new URLSearchParams(queryStr);
 
     const searchResults = [];
-    globalObj.search.term = params.get('search-term');
+    globalObj.search.term = params.get('search-term').toLowerCase();
 
     if (globalObj.search.term !== '' && globalObj.search.term !== null) {
       products.forEach((result) => {
@@ -87,7 +87,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       >`;
 
         document.querySelector('#search-results-heading').innerHTML = `
-                <h2>${results.length} search results </h2>
+                <h2><u>${
+                  results.length
+                }</u> SEARCH RESULT(S) FOR <u>"${globalObj.search.term.toUpperCase()}</u>"</h2>
       `;
         document.getElementById('search-results').appendChild(div);
       });
