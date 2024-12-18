@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const products = productContext.getProducts();
   //   console.log(products);
 
+  //Search function
   async function searchAll() {
     const queryStr = window.location.search;
     const params = new URLSearchParams(queryStr);
@@ -133,12 +134,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  //   Show message in case of Empty Search
+  // Show message in case of Empty Search
   function showAlert(message) {
     const alertEl = document.querySelector('.alert');
     alertEl.classList.add('alert', 'error');
     alertEl.innerText = message;
   }
+
+  // Add eventlistener to search button
+  function addClassActive() {
+    const search = document.querySelector('.search-flex');
+    const btn = document.querySelector('.btn');
+    const input = document.querySelector('#search-term');
+
+    btn.addEventListener('click', (e) => {
+      search.classList.toggle('active');
+      input.focus();
+      if (!search.classList.contains('active')) {
+        btn.setAttribute('type', 'submit');
+      }
+    });
+  }
+
+  addClassActive();
 
   // Init Function
   function init() {
@@ -150,19 +168,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         searchAll();
         break;
     }
-    // highlightLink();
   }
 
   init();
-  const search = document.querySelector('.search-flex');
-  const btn = document.querySelector('.btn');
-  const input = document.querySelector('#search-term');
-
-  btn.addEventListener('click', (e) => {
-    search.classList.toggle('active');
-    input.focus();
-    if (!search.classList.contains('active')) {
-      btn.setAttribute('type', 'submit');
-    }
-  });
 });
