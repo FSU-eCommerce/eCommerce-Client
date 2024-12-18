@@ -14,17 +14,15 @@ const globalObj = {
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch products before rendering
   await fetchProducts(); // Fetch and store products in the context
-
   const products = productContext.getProducts();
-  //   console.log(products);
 
   //Search function
   async function searchAll() {
     const queryStr = window.location.search;
     const params = new URLSearchParams(queryStr);
+    globalObj.search.term = params.get('search-term').toLowerCase();
 
     const searchResults = [];
-    globalObj.search.term = params.get('search-term').toLowerCase();
 
     if (globalObj.search.term !== '' && globalObj.search.term !== null) {
       products.forEach((result) => {
