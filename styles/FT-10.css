@@ -1,0 +1,72 @@
+/* Swiper */
+/* Mobile Slider */
+.swiper {
+  width: 70%;
+  height: 50%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Tekrar bakilacak */
+  all: unset;
+  display: revert;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif !important;
+  flex-shrink: 0;
+  position: relative;
+  transition-property: transform;
+  height: auto;
+  width: 266.667px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-rating {
+  padding: 10px;
+}
+
+/* Card */
+.product-card {
+  background: #fff;
+  max-width: 300px;
+  border-radius: 5px;
+  margin: 40px 10px;
+}
+
+.product-card img {
+  width: 90%;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.card-body {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.product-card:hover {
+  transform: scale(1.04);
+  transition: all 0.5s ease-in-out;
+  /* background: #0a4b8f; */
+}
+
+.product-card:hover * {
+  color: #fff;
+}
