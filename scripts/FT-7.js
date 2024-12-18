@@ -1,34 +1,71 @@
 import productContext from '../context/productContext.js'; 
 
 // Function to add a product to the cart
-export const addToCart = (productId) => {
+export const addToCart = (productId, quantity) => {
+  const product = findProductById(productId);
+  const maxStock = product.stock;
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  const products = productContext.getProducts();
-  const product = products.find(p => p._id === productId);
-
-  if (product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingProduct = cart.find(item => item._id === productId);
-
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-      console.log(`${product.name} quantity increased to ${existingProduct.quantity}`);
-    } else {
-      cart.push({ ...product, quantity: 1 });
-      console.log(`${product.name} added to cart with quantity 1`);
-    }
-
-  localStorage.setItem('cart', JSON.stringify(cart));
-
-  console.log('Cart:', cart);
-
-  renderCart();
-  } else {
-    console.error('Product could not be added to the cart.');
+  if (!product) {
+    console.log('product not found');
+    return;
   }
-  };
 
-  // ____________________________________________________________________________________________
+  if (!checkValidQuantity(quantity, maxStock)) {
+    return;
+  }
+  
+  cart = updateExistingProduct(cart, product, quantity) || addNewProductToCart(cart, product, quantity);
+  saveTolocalStorage(cart);
+  renderCart();
+};
+
+//Function to find productId
+const findProductById = (productId) => {
+  const products = productContext.getProducts();
+  return products.find(p => p._id === productId);
+};
+
+//Function to check quantity validity
+const checkValidQuantity = (quantity, maxStock) => {
+  if (quantity <= 0) {
+    console.log("Quantity must be at least 1");
+    return false;
+  }
+
+  if (quantity > maxStock) {
+    console.log(`You can only add up to ${maxStock} of this product to your cart.`);
+    return false;
+  }
+  return true;
+}
+
+//function to update eexisting product in cart
+const updateExistingProduct = (cart, product, quantity) => {
+  const existingProduct = cart.find(item => item._id === product._id);
+  if (existingProduct) {
+    const newQuantity = existingProduct.quantity + quantity;
+    if (newQuantity > product.stock) {
+      alert(`You can only add up to ${maxStock} of this product to your cart.`);
+        return cart;
+    }
+  return cart;  
+  }
+};
+
+//function to add new product
+const addNewProductToCart = (cart, product, quantity) => {
+  cart.push({ ...product, quantity });
+  console.log(`${product.name} added to cart with quantity ${quantity}`);
+  return cart;
+}
+ //function to save to local
+const saveTolocalStorage = (cart) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Saved to Cart:', cart);
+}
+
+// ____________________________________________________________________________________________
 
 // Function to render the cart
 export const renderCart = () => {
@@ -69,6 +106,12 @@ export const changeQuantity = (productId, change) =>  {
 
     if (product.quantity < 1) {
       product.quantity = 1;
+    }
+
+    const maxStock = product.stock;
+
+    if (product.quantity > maxStock) {
+      product.quantity = maxStock;
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -151,3 +194,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderCart();
 });
+
+//____________________________________________________________________________________
