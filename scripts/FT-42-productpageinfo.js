@@ -96,7 +96,7 @@ const handleSizeButtonClick = (size, selectedColorStock) => {
 // Function to update quantity based on the selected size
 const updateQuantityForSize = (size, selectedColorStock) => {
   const sizeStock = selectedColorStock.filter(item => item.size === size);
-  const maxStock = sizeStock.reduce((sum, item) => sum + item.quantity, 0); // Sum of all stock for the selected size
+  const maxStock = sizeStock.reduce((sum, item) => sum + item.quantity, 0); 
 
   initializeQuantityControls(sizeStock, maxStock);
 };
@@ -122,7 +122,7 @@ const renderSizeButtons = (selectedColorStock) => {
   sizeButtons.forEach(button => {
     button.addEventListener("click", () => {
       const size = button.textContent;
-      handleSizeButtonClick(size, selectedColorStock); // Call the function when a size is clicked
+      handleSizeButtonClick(size, selectedColorStock);
     });
   });
 
@@ -130,7 +130,7 @@ const renderSizeButtons = (selectedColorStock) => {
   if (firstAvailableSize) {
     const firstSizeButton = document.querySelector(`[data-size="${firstAvailableSize}"]`);
     firstSizeButton.classList.add('selected');
-    updateQuantityForSize(firstAvailableSize, selectedColorStock); // Update the quantity based on the first size
+    updateQuantityForSize(firstAvailableSize, selectedColorStock);
   }
 };
 
