@@ -18,82 +18,148 @@ const fetchProductById = async (productId) => {
   const product = products.find((p) => p._id === productId);
   console.log("Product found in context", product);
 
-  //   if (!product) {
-  //     try {
-  //       const response = await fetch(
-  //         `https://e-commerce-server-beta-flax.vercel.app/products/${productId}`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch product details");
-  //       }
-  //       product = await response.json();
-  //     } catch (error) {
-  //       console.error("Error fetching product:", error);
-  //     }
-  //   }
-
   return product;
 };
 
-// To render the product details on the html product page
+//______________________________________________________________________________________
+// Function to extract unique colors from the stock
+const extractUniqueColors = (stock) => {
+  return new Set(stock.map(item => item.color));
+};
+
+// Function to create a color button
+const createColorButton = (color) => {
+  const colorButton = document.createElement("button");
+  colorButton.style.backgroundColor = color;
+  colorButton.classList.add("color-btn");
+  colorButton.setAttribute('data-color', color);
+
+  return colorButton;
+};
+
+// Function to handle the color button click
+const handleColorButtonClick = (color, stock) => {
+  console.log("Color selected:", color);
+  
+  document.querySelectorAll(".color-btn").forEach(btn => btn.classList.remove("selected"));
+  
+  const selectedButton = document.querySelector(`[data-color="${color}"]`);
+  selectedButton.classList.add("selected");
+
+  updateProductDetailsForColor(color, stock);
+};
+
+// Function to render color buttons dynamically
+const renderColorButtons = (stock) => {
+  const colorSelectDiv = document.getElementById("colorSelect");
+  colorSelectDiv.innerHTML = "";
+
+  const uniqueColors = [...extractUniqueColors(stock)];
+
+  uniqueColors.forEach((color, index) => {
+    const colorButton = createColorButton(color);
+    colorButton.addEventListener("click", () => handleColorButtonClick(color, stock));
+    colorSelectDiv.appendChild(colorButton);
+
+      if (index === 0) {
+        colorButton.classList.add('selected');
+        updateProductDetailsForColor(color, stock);
+      }
+  });
+
+};
+
+// Function to update the product details based on the selected color
+const updateProductDetailsForColor = (selectedColor, stock) => {
+  const selectedColorStock = stock.filter(item => item.color === selectedColor);
+
+  renderSizeButtons(selectedColorStock);
+
+  const firstSize = selectedColorStock[0]?.size;
+  if (firstSize) {
+    updateQuantityForSize(firstSize, selectedColorStock);
+  }
+ 
+};
+
+//_______________________________________________________________________________________
+//Functions to check the quantity of the size
+const handleSizeButtonClick = (size, selectedColorStock) => {
+  console.log("Size selected:", size);
+  document.querySelectorAll(".sizes button").forEach(btn => btn.classList.remove("selected"));
+  const selectedButton = document.querySelector(`[data-size="${size}"]`);
+  selectedButton.classList.add("selected");
+
+  updateQuantityForSize(size, selectedColorStock);
+};
+
+// Function to update quantity based on the selected size
+const updateQuantityForSize = (size, selectedColorStock) => {
+  const sizeStock = selectedColorStock.filter(item => item.size === size);
+  const maxStock = sizeStock.reduce((sum, item) => sum + item.quantity, 0); // Sum of all stock for the selected size
+
+  initializeQuantityControls(sizeStock, maxStock);
+};
+
+// Function to render size buttons dynamically based on the selected color
+const renderSizeButtons = (selectedColorStock) => {
+  const sizeSelectDiv = document.getElementById("sizeSelect");
+  const sizeButtons = sizeSelectDiv.querySelectorAll("button");
+
+  sizeButtons.forEach(button => {
+    const size = button.textContent;
+    const stockForSize = selectedColorStock.find(item => item.size === size);
+    if (stockForSize && stockForSize.quantity > 0) {
+      button.disabled = false;
+      button.setAttribute('data-size', size)
+    } else {
+      button.disabled = true;
+    }
+
+    button.setAttribute('data-size', size);
+  });
+
+  sizeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const size = button.textContent;
+      handleSizeButtonClick(size, selectedColorStock); // Call the function when a size is clicked
+    });
+  });
+
+  const firstAvailableSize = selectedColorStock.find(item => item.quantity)?.size;
+  if (firstAvailableSize) {
+    const firstSizeButton = document.querySelector(`[data-size="${firstAvailableSize}"]`);
+    firstSizeButton.classList.add('selected');
+    updateQuantityForSize(firstAvailableSize, selectedColorStock); // Update the quantity based on the first size
+  }
+};
+
+//_______________________________________________________________________________________
+
+// To render the product details on the page
 const renderProductDetails = (product) => {
   console.log("Rendering product:", product);
   if (!product) {
-    document.querySelector(
-      ".container"
-    ).innerHTML = `<p class="noProductText">Product not found</p>`;
+    document.querySelector(".container").innerHTML = "<p>Product not found</p>";
     return;
   }
 
   document.querySelector(".productImg").src = product.image;
   document.querySelector(".productImg").alt = product.name;
   document.querySelector(".productDetails h1").textContent = product.name;
-  document.querySelector(
-    ".price"
-  ).textContent = `${product.price.$numberDecimal} sek`;
-  document.querySelector(".color").innerHTML = `Color <br> Select a size`;
+  document.querySelector(".price").textContent = `${product.price.$numberDecimal} sek`;
+  document.querySelector(".color").innerHTML = `Color <br>${product.color || "N/A"}`;
   document.querySelector(".description p").textContent = product.description;
+
+  renderColorButtons(product.stock);
 
   // Hide the loading text and show the product details
   document.getElementById("loading").style.display = "none";
   document.querySelector(".productImageDiv").style.display = "block";
   document.querySelector(".productDetailsContainer").style.display = "block";
-
-  // Size button with stock notification and low in stock
-  const sizeContainer = document.querySelector(".sizes");
-  sizeContainer.innerHTML = `<p class="sizeText">EU SIZE</p>`;
-
-  const lowStockText = document.createElement("span");
-  lowStockText.textContent = " - Low in stock";
-  lowStockText.classList.add("lowStockText");
-
-  const sizeText = sizeContainer.querySelector(".sizeText");
-  sizeText.appendChild(lowStockText);
-
-  product.stock.forEach((item) => {
-    const button = document.createElement("button");
-    button.textContent = item.size;
-
-    // Disabel the size button if stock is empty.
-    if (item.quantity === 0) {
-      button.disabled = true;
-    }
-
-    button.addEventListener("click", () => {
-      document.querySelector(
-        ".color"
-      ).innerHTML = `Color <p class="colorText">${item.color}</p>`;
-      if (item.quantity <= 5) {
-        lowStockText.style.display = "inline";
-      } else {
-        lowStockText.style.display = "none";
-      }
-    });
-
-    sizeContainer.appendChild(button);
-  });
 };
 
+//________________________________________________________________________________________
 // Main logic to load the product page
 document.addEventListener("DOMContentLoaded", async () => {
   const productId = getProductIdFromQuery();
@@ -108,16 +174,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Wait for products to load first
   document.addEventListener("productsReady", async () => {
     const product = await fetchProductById(productId);
-    renderProductDetails(product);
-
-    const addToCartBtn = document.getElementById("addToCartBtn"); //Peter
-    addToCartBtn.addEventListener("click", (event) => {
-      event.preventDefault(); // Prevent default link behavior
-      addToCart(productId); // Call addToCart with the product ID
-    }); // Peter
+    if (product) {
+      renderProductDetails(product);
+      initializeQuantityControls(product);
+      addToCartListener(productId);
+    }  
   });
 });
 
+//_______________________________________________________________________________________
 //AddToCartBtn functions, Peter
 const addToCartListener = (productId) => {
   document.getElementById('addToCartBtn').addEventListener("click", (event) => {
@@ -132,6 +197,7 @@ const addToCartListener = (productId) => {
   });
 };
 
+//________________________________________________________________________________________
 //Function for checking and changing the quantity
 const updateQuantityDisplay = (quantityInput, maxStock) => {
   const currentQuantity = parseInt(quantityInput.value);
@@ -163,14 +229,12 @@ const validateQuantityInput = (quantityInput, maxStock) => {
   }
 };
 
-const initializeQuantityControls = (product) => {
+
+const initializeQuantityControls = (selectedSizeStock, maxStock) => {
   const quantityInput = document.getElementById('quantity');
   const increaseBtn = document.getElementById('increaseBtn');
   const decreaseBtn = document.getElementById('decreaseBtn');
 
-  const maxStock = product.stock;
-
-  // Set the initial quantity based on stock
   if (maxStock > 0) {
     quantityInput.value = 1;
   } else {
@@ -178,7 +242,6 @@ const initializeQuantityControls = (product) => {
     console.log('This product is out of stock.');
   }
 
-  // Add event listeners for buttons
   decreaseBtn.addEventListener("click", () => {
     decreaseQuantity(quantityInput);
     updateQuantityDisplay(quantityInput, maxStock);
@@ -189,7 +252,6 @@ const initializeQuantityControls = (product) => {
     updateQuantityDisplay(quantityInput, maxStock);
   });
 
-  // Add event listener to validate manual input
   quantityInput.addEventListener("input", () => {
     validateQuantityInput(quantityInput, maxStock);
   });

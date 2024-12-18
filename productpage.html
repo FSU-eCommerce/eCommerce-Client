@@ -65,6 +65,38 @@
 
     <div class="container">
       <p id="loading">Loading product details...</p>
+      <div class="productImageDiv" style="display: none">
+        <img src="" alt="product image" class="productImg" />
+      </div>
+      <div class="productDetailsContainer" style="display: none">
+        <div class="productDetails">
+          <h1></h1>
+          <div class="price"></div>
+          <div id="colorSelect" class="color"></div>
+          <div id="sizeSelect" class="sizes">
+            <p>EU SIZE</p>
+
+            <button class="size-btn">XS</button>
+            <button class="size-btn">S</button>
+            <button class="size-btn">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+          </div>
+          <div id="quantityInputContainer">
+            <button id="decreaseBtn">-</button>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <button id="increaseBtn">+</button>
+          </div>
+          <a href="#" id="addToCartBtn" class="add-to-bag">ADD TO BAG</a>
+          <div class="description">
+            <h3 class="decriptionHeader">Description</h3>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
+      <p id="loading">Loading product details...</p>
       <div class="productImageDiv">
         <img src="" alt="product image" class="productImg" />
       </div>
@@ -81,7 +113,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <script type="module" src="scripts/main.js"></script>
     <script type="module" src="scripts/FT-42-productpageinfo.js"></script>
