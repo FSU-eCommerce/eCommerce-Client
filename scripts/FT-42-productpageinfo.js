@@ -51,9 +51,7 @@ const renderProductDetails = (product) => {
   document.querySelector(
     ".price"
   ).textContent = `${product.price.$numberDecimal} sek`;
-  document.querySelector(".color").innerHTML = `Color <br>${
-    product.stock[0].color || "N/A"
-  }`; // FIXA MED FÄRGEN
+  document.querySelector(".color").innerHTML = `Color <br> Select a size`;
   document.querySelector(".description p").textContent = product.description;
 
   // Hide the loading text and show the product details
@@ -82,6 +80,9 @@ const renderProductDetails = (product) => {
     }
 
     button.addEventListener("click", () => {
+      document.querySelector(
+        ".color"
+      ).innerHTML = `Color <p class="colorText">${item.color}</p>`;
       if (item.quantity <= 5) {
         lowStockText.style.display = "inline";
       } else {

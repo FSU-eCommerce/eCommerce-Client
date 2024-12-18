@@ -61,6 +61,10 @@ h1 {
   margin-bottom: 1.5em;
 }
 
+.colorText {
+  text-transform: capitalize;
+}
+
 .sizes {
   margin: 3em 0px 4em 0px;
   font-size: 20px;
