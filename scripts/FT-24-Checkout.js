@@ -322,5 +322,3 @@ if (checkoutForm) {
 
 // Wait for the DOM to be fully loaded, then set up event listeners
 document.addEventListener('DOMContentLoaded', setupEventListeners);
-
-
