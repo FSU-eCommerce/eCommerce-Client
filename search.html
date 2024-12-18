@@ -3,22 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Page</title>
+    <meta
+      name="description"
+      content="En enkel e-handelssida byggd med HTML, CSS och JS"
+    />
+    <title>Ecommerce Client</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="styles/FT-33.css" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/FT-31.css" />
+    <link rel="stylesheet" href="styles/FT-20.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
+
+    <link rel="stylesheet" href="styles/FT-21.css" />
     <link rel="stylesheet" href="styles/FT-7.css" />
+
+    <link rel="stylesheet" href="styles/FT-22.css" />
     <link rel="stylesheet" href="styles/FT-3.css" />
-    <link rel="stylesheet" href="styles/FT-10.css" />
   </head>
   <body>
     <header>
@@ -43,7 +46,6 @@
           </form>
         </div>
       </section>
-
       <nav>
         <div class="hamburger" id="hamburger-icon">
           <div class="line"></div>
@@ -88,58 +90,28 @@
       </div>
     </header>
 
-    <div class="container">
-      <p id="loading">Loading product details...</p>
-      <div class="productImageDiv">
-        <img src="" alt="product image" class="productImg" />
-      </div>
-      <div class="productDetailsContainer">
-        <div class="productDetails">
-          <h1></h1>
-          <div class="price"></div>
-          <div class="color"></div>
-          <div class="sizes"></div>
-          <a href="#" id="addToCartBtn" class="add-to-bag">ADD TO BAG</a>
-          <div class="description">
-            <h3 class="decriptionHeader">Description</h3>
-            <p></p>
+    <main>
+      <!-- Search Results -->
+      <section id="search-results-wrapper" class="search-container-main">
+        <heading id="search-results-heading"></heading>
+        <div class="alert"></div>
+        <div id="search-results" class="grid"></div>
+        <div id="pagination">
+          <div class="pagination">
+            <button type="button" class="btn btn-primary" id="prev">
+              Prev
+            </button>
+            <button type="button" class="btn btn-primary" id="next">
+              Next
+            </button>
+            <div class="page-counter">Page 1 of 1</div>
           </div>
         </div>
-      </div>
-    </div>
-    
-    <!-- Swiper -->
-    <!-- <div class="flash-category">
-        <span class="flash-category-span"></span>
-        <p class="flash-category-p">Similar Products</p>
-      </div> -->
-    <!-- Smilar Products Section -->
-    <section class="smilar" id="smilar">
-      <div class="header-similar">
-        <h2>Smilar Products</h2>
-      </div>
-      <!-- Slider main container -->
-      <div class="swiper">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
-      </div>
-    </section>
-
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2024 Ecommerce Client. All rights reserved.</p>
+    </footer>
     <script type="module" src="scripts/FT-3.js"></script>
-    <script type="module" src="scripts/main.js"></script>
-    <script type="module" src="scripts/FT-42-productpageinfo.js"></script>
-    <script type="module" src="scripts/FT-10.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>
