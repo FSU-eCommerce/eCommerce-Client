@@ -6,13 +6,6 @@ export const renderOrderConfirmation = () => {
   const recieptContainer = document.getElementById('recieptContainer');
   const cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve cart from localStorage
 
-
-
-
-
-//   checkoutCartContainer.querySelector('.header2 h2').innerHTML = `In your cart (${cart.length})`;
-
-
   // Render cart items
   orderList.innerHTML = cart.map(item => `  
     <div class="orderListRow"> 
@@ -29,9 +22,6 @@ export const renderOrderConfirmation = () => {
         </div>
     </div>
   `).join('');
-
-
-
 
   // Calculate Subtotal
   const subtotal = cart.reduce((sum, item) => sum + (item.price.$numberDecimal * item.quantity), 0);
