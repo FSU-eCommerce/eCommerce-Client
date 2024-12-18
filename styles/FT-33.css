@@ -16,7 +16,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 5%;
-  /* align-items: center; */
 }
 
 .productImageDiv {
@@ -25,6 +24,7 @@ body {
   display: flex;
   justify-content: center;
   height: 80vh;
+  display: none;
 }
 
 .productImg {
@@ -38,6 +38,7 @@ body {
   min-width: 300px;
   display: flex;
   justify-content: center;
+  display: none;
 }
 
 .productDetails {
@@ -59,9 +60,17 @@ h1 {
   margin-bottom: 1.5em;
 }
 
+.colorText {
+  text-transform: capitalize;
+}
+
 .sizes {
   margin: 3em 0px 4em 0px;
   font-size: 20px;
+}
+
+.sizeText {
+  margin-bottom: 1rem;
 }
 
 .sizes button {
@@ -71,10 +80,28 @@ h1 {
   margin-right: 15px;
   cursor: pointer;
   font-size: 20px;
+  transition: all 0.3s ease;
 }
 
 .sizes button:hover {
   border-color: #000;
+}
+
+.sizes button:focus {
+  border-color: #000;
+}
+.sizes button:disabled {
+  color: #999;
+  border-color: #ddd;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.sizes .lowStockText {
+  display: none;
+  margin: 10px 0;
+  font-size: 18px;
+  color: rgb(211, 28, 28);
 }
 
 .add-to-bag {
