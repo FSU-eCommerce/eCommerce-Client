@@ -1,10 +1,7 @@
-
 // scripts/main.js
-import fetchProducts from './fetchProducts.js';  // Import the function to fetch products
+import fetchProducts from './fetchProducts.js'; // Import the function to fetch products
 import { addToCart, renderCart, changeQuantity } from './FT-7.js'; // Import the addToCart and renderCart functions
 import { getProductsForFT22 } from './FT-22.js';
-
-
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch products before rendering
@@ -14,11 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addToCart = addToCart;
   window.changeQuantity = changeQuantity;
 
-   // Fire a custom event to notify other scripts that products are ready
-   const productsReadyEvent = new Event('productsReady');
-   document.dispatchEvent(productsReadyEvent);
+  // Fire a custom event to notify other scripts that products are ready
+  const productsReadyEvent = new Event('productsReady');
+  document.dispatchEvent(productsReadyEvent);
 
   getProductsForFT22();
   renderCart();
 });
-
