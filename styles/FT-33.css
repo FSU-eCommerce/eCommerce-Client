@@ -66,6 +66,10 @@ h1 {
   font-size: 20px;
 }
 
+.sizeText {
+  margin-bottom: 1rem;
+}
+
 .sizes button {
   border: 2px solid #d9d9d9;
   background: none;
@@ -73,10 +77,28 @@ h1 {
   margin-right: 15px;
   cursor: pointer;
   font-size: 20px;
+  transition: all 0.3s ease;
 }
 
 .sizes button:hover {
   border-color: #000;
+}
+
+.sizes button:focus {
+  border-color: #000;
+}
+.sizes button:disabled {
+  color: #999;
+  border-color: #ddd;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.sizes .lowStockText {
+  display: none;
+  margin: 10px 0;
+  font-size: 18px;
+  color: rgb(211, 28, 28);
 }
 
 .add-to-bag {

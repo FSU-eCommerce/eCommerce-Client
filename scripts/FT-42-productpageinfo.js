@@ -52,8 +52,8 @@ const renderProductDetails = (product) => {
     ".price"
   ).textContent = `${product.price.$numberDecimal} sek`;
   document.querySelector(".color").innerHTML = `Color <br>${
-    product.color || "N/A"
-  }`;
+    product.stock[0].color || "N/A"
+  }`; // FIXA MED FÄRGEN
   document.querySelector(".description p").textContent = product.description;
 
   // Hide the loading text and show the product details
@@ -65,22 +65,31 @@ const renderProductDetails = (product) => {
   const sizeContainer = document.querySelector(".sizes");
   sizeContainer.innerHTML = `<p class="sizeText">EU SIZE</p>`;
 
-  const sizes = ["XS", "S", "M", "L", "XL"];
-  sizes.forEach((size) => {
+  const lowStockText = document.createElement("span");
+  lowStockText.textContent = " - Low in stock";
+  lowStockText.classList.add("lowStockText");
+
+  const sizeText = sizeContainer.querySelector(".sizeText");
+  sizeText.appendChild(lowStockText);
+
+  product.stock.forEach((item) => {
     const button = document.createElement("button");
+    button.textContent = item.size;
 
-    button.textContent = size;
-    button.style.marginRight = "15px";
-
-    // Check stock
-    if (product.stock === 0) {
-      button.textContent = `${size} ✖`;
+    // Disabel the size button if stock is empty.
+    if (item.quantity === 0) {
       button.disabled = true;
-    } else if (product.stock <= 5) {
-      const lowStockText = document.createElement("span");
-      lowStockText.classList.add("lowStockText");
-      lowStockText.textContent = "Low stock";
     }
+
+    button.addEventListener("click", () => {
+      if (item.quantity <= 5) {
+        lowStockText.style.display = "inline";
+      } else {
+        lowStockText.style.display = "none";
+      }
+    });
+
+    sizeContainer.appendChild(button);
   });
 };
 
