@@ -15,6 +15,9 @@
   <header>
     <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
 
+
+
+
      <nav>
          <div class="hamburger" id="hamburger-icon">
              <div class="line"></div>
@@ -29,12 +32,14 @@
                    <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
                  </ul>
                </li>
-             <!-- <li><a href="productpage.html">Productpage</a></li> -->
              <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
              <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
              <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
          </ul>
      </nav>
+
+
+
 
      <div id="cart" class="cart" >
          <h2>Your Cart</h2>
@@ -44,42 +49,54 @@
      </div>
    </header>
 
+
+
+
   <main class="main-wrapper">
-      <h1>Checkout</h1>
-    <section class="row">
-3
+    <section class="row gap topspace">
+
+
+
+
         <section class="checkoutFormContainer">
-          <!-- <div class="checkoutForm"> -->
-            
+           
             <div class="checkoutForm">
                 <div class="header">
                     <h2>1. Shipping</h2>
                 </div>
-                <form id="checkout-form" action="#" method="POST">
+
+
+
+
+                  <form id="checkout-form" action="#" method="POST">
+
+
+
 
                   <div class="form-grid">
-                
-                    <!-- Column for Labels -->
-                    <div class="form-labels">
-                      <label for="firstName">First Name*</label>
-                      <label for="lastName">Last Name*</label>
-                      <label for="postalCode">Postal Code*</label>
+                    <div class="row">
+                     
+                      <!-- Column for Labels -->
+                      <div class="form-labels">
+                        <label for="firstName">First Name*</label>
+                        <label for="lastName">Last Name*</label>
+                        <label for="postalCode">Postal Code*</label>
                       <label for="addressLine1">Address Line 1*</label>
                       <label for="addressLine2">Address Line 2 (optional)</label>
                       <label for="province">Province/State*</label>
                       <label for="country">Country/Region*</label>
                       <label for="phone">Shipping Phone*</label>
-                      <label for="email" class="space">Email*</label>
+                      <label for="email">Email*</label>
                     </div>
-                
+                   
                     <!-- Column for Inputs -->
                     <div class="form-inputs">
                       <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
                       <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
                       <input type="text" id="postalCode" name="postalCode" required placeholder="Enter your postal code">
                       <input type="text" id="addressLine1" name="addressLine1" required placeholder="Enter your address">
-                      <input type="text" id="addressLine2" class="space" name="addressLine2" placeholder="Apartment, suite, etc. (optional)">
-                      <select id="province" name="province" required>
+                      <input type="text" id="addressLine2" name="addressLine2" placeholder="Apartment, suite, etc. (optional)">
+                      <select id="province"name="province" required>
                         <option value="">Select your province/state</option>
                         <!-- United States -->
                         <option value="">Select your state</option>
@@ -133,7 +150,7 @@
                         <option value="WV">West Virginia</option>
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
-
+                       
                         <!-- Canada -->
                         <option value="">Select your province</option>
                         <option value="AB">Alberta</option>
@@ -149,7 +166,7 @@
                         <option value="NT">Northwest Territories</option>
                         <option value="NU">Nunavut</option>
                         <option value="YT">Yukon</option>
-
+                       
                         <!-- Australia -->
                         <option value="">Select your state/territory</option>
                         <option value="ACT">Australian Capital Territory</option>
@@ -160,16 +177,17 @@
                         <option value="TAS">Tasmania</option>
                         <option value="VIC">Victoria</option>
                         <option value="WA">Western Australia</option>
-
+                       
                         <!-- United Kingdom -->
                         <option value="">Select your region</option>
                         <option value="ENG">England</option>
                         <option value="NIR">Northern Ireland</option>
                         <option value="SCT">Scotland</option>
                         <option value="WLS">Wales</option>
-
+                       
                         <!-- Germany -->
                         <option value="">Select your state</option>
+                        <option value="None">Not on the list</option>
                         <option value="BW">Baden-Württemberg</option>
                         <option value="BY">Bavaria (Bayern)</option>
                         <option value="BE">Berlin</option>
@@ -186,7 +204,7 @@
                         <option value="ST">Saxony-Anhalt (Sachsen-Anhalt)</option>
                         <option value="SH">Schleswig-Holstein</option>
                         <option value="TH">Thuringia (Thüringen)</option>
-
+                       
                       </select>
                       <select id="country" name="country" required>
                         <option value="">Select your country/region</option>
@@ -228,99 +246,105 @@
                         <option value="US">United States</option>
                         <option value="VN">Vietnam</option>
                         <option value="ZA">South Africa</option>
-
+                       
                       </select>
                       <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
                       <input type="email" id="email" name="email" required placeholder="Enter your email">
                     </div>
-                
                   </div>
-                
-                  <!-- Delivery Method -->
-                   <div class="topspace bold gap">
-
-                     <label>Select Delivery Method</label>
-                     <div>
-                       <input type="radio" id="standard" name="deliveryMethod" value="standard" required>
-                       <label for="standard">Standard <span class="orange">FREE</span></label>
-                     </div>
-                     <div class="space">
-                       <input type="radio" id="express" class="space" name="deliveryMethod" value="express">
-                       <label for="express" >Express <span class="regular">$40.00</span></label>
-                     </div>
-                   </div>
-                
-                  <!-- Newsletter -->
-                  <div>
-                    <input type="checkbox" id="newsletter" name="newsletter">
-                    <label for="newsletter" class="bold margin">Join our newsletter for the latest news, deals and coupons</label>
-                  </div>
-                
-                  <!-- Sign In Link -->
-                  <p class="space bold">Already a member? <a href="login.html" class="link">Sign in.</a></p>
-                
-                  <!-- Privacy Policy -->
-                  <div class="agreement">
+                   
+                    <!-- Delivery Method -->
+                    <div class="topspace bold column">
+                     
+                      <label>Select Delivery Method</label>
+                      <div>
+                        <input type="radio" id="standard" name="deliveryMethod" value="standard" required>
+                        <label for="standard">Standard <span class="orange">FREE</span></label>
+                      </div>
+                      <div>
+                        <input type="radio" id="express" class="space" name="deliveryMethod" value="express">
+                        <label for="express" >Express <span class="regular">$40.00</span></label>
+                      </div>
+                    </div>
+                   
+                    <!-- Newsletter -->
+                    <div>
+                      <input type="checkbox" id="newsletter" name="newsletter">
+                      <label for="newsletter" class="bold margin">Join our newsletter for the latest news, deals and coupons</label>
+                    </div>
+               
+                    <!-- Sign In Link -->
+                    <p>Already a member? <a href="login.html" class="link">Sign in.</a></p>
+                   
+                    <!-- Privacy Policy -->
+                    <div class="agreement">
                     <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
                     <label for="privacyConsent">I have read and consent to STYLE’s processing my information in accordance with the Privacy Statement and Cookie Policy.</label>
                   </div>
                   <p class="required">* Required fields</p>
-                  
-
-                  
-                  
-                  <!-- Submit Button -->
-                  <button type="submit" class="topspace">Proceed to Payment</button>
-                </form>
-
               </div>
-              
-            <!-- </div> -->
+              </div>
+
 
 
 
             <section class="payment">
-  
-              
-              <!-- <div class="checkoutForm"> -->
-                
+
+
+
+
               <div class="checkoutForm">
                 <div class="header">
                   <h2>2. Payment</h2>
                 </div>
-              <form id="checkout-form" action="#" method="POST">
-
-                <div class="form-grid d-none">
-          
+                <div class="form-grid padding" id="row">
+         
                   <!-- Column for Labels -->
                   <div class="form-labels">
-                    <label for="cardInfo">Card information*</label>
+                    <label for="cardInfo">Card number*</label>
+                    <label for="expirationDate">Expiration Date*</label>
+                    <label for="cvc">CVC*</label>
                     <label for="nameOnCard">Name on card*</label>
                   </div>
-            
+           
                 <!-- Column for Inputs -->
                 <div class="form-inputs">
-                  <input type="text" id="cardInfo" name="cardInfo" required placeholder="1234 1234 1234 1234">
-                  <input type="text" id="cardDate" name="cardDate" required placeholder="MM/YY">
-                  <input type="text" id="cvc" name="cvc" required placeholder="CVC">
+                  <input type="number" id="cardInfo" name="cardInfo" required placeholder="1234 1234 1234 1234">
+                  <input type="text2" id="cardDate" name="cardDate" required placeholder="MM/YY">
+                  <input type="number" id="cvc" name="cvc" required placeholder="CVC">
                   <input type="text" id="nameOnCard" name="nameOnCard" required placeholder="Full name as shown">
-                  <button id="checkoutButton">Submit order</button>
+                  <button id="checkoutButton" type="submit" class="btn-main">Submit order</button>
+                </div>
                 </div>
               </form>
             </section>
           </section>
-          
-          
+         
+         
 <!-- Right side - Summary & Cart -->
 
-          <section class="column">
+
+
+
+        <section class="column">
+
+
+
 
             <section id="summaryContainer">
-                <div class="header2">
+                <div class="summaryHeader">
                     <h2>Summary</h2>
                 </div>
-                <div id="summaryContent"></div>
+                <div id="summaryContent">
+                 
+                </div>
             </section>
+
+
+
+
+
+
 
 
             <section id="checkoutCartContainer">
@@ -332,22 +356,41 @@
                 </div>
             </section>
 
+
+
+
         </section>
+
+
+
 
      
     </section>
 
+
+
+
   </main>
 
-  <!-- <footer>
+
+
+
+  <footer>
     <p>&copy; 2024 Ecommerce Client. All rights reserved.</p>
-  </footer> -->
+  </footer>
+
+
+
 
   <script type="module" src="scripts/main.js"></script>
   <script type="module" src="scripts/FT-8-Hamburger.js"></script>
   <script type="module" src="scripts/FT-24-Checkout.js"></script>
-  <script src="scripts/FT-8-Hamburger.js"></script>
-    <script type="module" src="scripts/FT-7.js"></script>
+  <script type="module" src="scripts/FT-7.js"></script>
+
+
+
 
 </body>
 </html>
+
+
