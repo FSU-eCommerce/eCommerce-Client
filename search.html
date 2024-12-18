@@ -31,16 +31,15 @@
       <!-- Search -->
       <section class="search">
         <div class="search-container">
-          <div class="alert"></div>
           <form action="/search.html" class="search-form">
             <div class="search-flex">
               <input
-                type="text"
+                type="search"
                 id="search-term"
                 name="search-term"
-                placeholder="Search..."
+                placeholder="Search for category"
               />
-              <button type="submit" class="btn">
+              <button type="button" class="btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
@@ -95,6 +94,7 @@
       <!-- Search Results -->
       <section id="search-results-wrapper" class="search-container-main">
         <heading id="search-results-heading"></heading>
+        <div class="alert"></div>
         <div id="search-results" class="grid"></div>
         <div id="pagination">
           <div class="pagination">
@@ -109,6 +109,9 @@
         </div>
       </section>
     </main>
+    <footer>
+      <p>&copy; 2024 Ecommerce Client. All rights reserved.</p>
+    </footer>
     <script type="module" src="scripts/FT-3.js"></script>
   </body>
 </html>

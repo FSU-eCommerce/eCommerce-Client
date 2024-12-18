@@ -1,11 +1,19 @@
+:root {
+  --color-primary: #f27a1a;
+  --color-secondary: #ffffff;
+}
+
 /* Search Section */
 
 .search {
-  margin-bottom: 15px;
+  /* margin-bottom: 5px; */
 }
 
 .search-container-main {
-  /* margin-top: 50px; */
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 header {
@@ -26,51 +34,70 @@ header {
 }
 
 .search-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
+  position: relative;
+  height: 50px;
 }
 
-.search .search-container form input[type='text'] {
-  flex: 6;
-  width: 100%;
+.search .search-container form input[type='search'] {
+  position: relative;
+  border: 0;
+  font-size: 18px;
+  padding: 15px;
   height: 50px;
-  padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #fff;
+  width: 50px;
+  z-index: 100;
+  transition: width 0.2s ease-in-out;
   border-radius: 10px;
   background: transparent;
-  color: #fff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
 }
 
-.search .search-container form input[type='text']::placeholder {
-  color: #fff;
+.search .search-container form input[type='search']::placeholder {
+  color: var(--color-primary);
 }
 
-.search .search-container form input[type='text']:focus {
+.search .search-container form input[type='search']:focus {
   outline: none;
 }
 
 .search .search-container form .btn {
-  flex: 1;
-  display: block;
-  width: 100%;
-  height: 50px;
-  padding: 10px;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  background-color: #fff;
+  background-color: var(--color-primary);
+  border: 0;
   cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  z-index: 100;
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search .search-container form .btn :focus,
+.search .search-container form input[type='search']:focus {
+  outline: none;
+}
+
+.search-flex.active #search-term {
+  width: 299px;
+}
+
+.search-flex.active .btn {
+  transform: translateX(248px);
 }
 
 .search .search-container form .btn:hover {
   /* background-color: transparent; */
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .search .search-container form .btn i {
-  color: #000000;
+  color: var(--color-secondary);
 }
 
 input[type='search']::-webkit-search-cancel-button {
@@ -89,6 +116,9 @@ input[type='search']:focus::-webkit-search-cancel-button {
   opacity: 1;
   pointer-events: all;
   cursor: pointer;
+  /* background-color: #a91d3a; */
+  background-color: var(--color-primary);
+  margin-right: 40px;
 }
 
 /* Flash Section */
@@ -147,16 +177,17 @@ input[type='search']:focus::-webkit-search-cancel-button {
 /* Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 10px;
-  width: 1250px;
+  max-width: 1250px;
   margin: auto;
+  /* justify-items: center; */
 }
 
 /* Card */
 .card {
   background: #fff;
-  padding: 5px;
+  max-width: 300px;
 }
 
 .card img {
@@ -176,6 +207,42 @@ input[type='search']:focus::-webkit-search-cancel-button {
 
 .card:hover * {
   color: #fff;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 20px;
+  color: var(--color-primary);
+}
+
+.btn-primary {
+  display: inline-block;
+  font-size: 16px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  color: var(--color-primary);
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+.btn-primary:disabled:hover {
+  background: transparent;
+}
+
+/* Other Css Rules */
+
+#search-results-heading > h2 {
+  color: var(--color-primary);
 }
 
 .price-container {
@@ -224,6 +291,21 @@ input[type='search']:focus::-webkit-search-cancel-button {
   padding: 15px 0;
   position: relative;
   width: clamp(660px, 100%, 1600px);
+}
+
+a > div.info > div > div.price-wrapper > p {
+  color: #f27a1a;
+  font-weight: 600;
+}
+
+a > div.info > div > div.brand {
+  font-weight: 700;
+  font-size: larger;
+}
+
+a > div.info > div > div.price-wrapper > p > sup {
+  color: #f27a1a;
+  font-weight: 600;
 }
 
 /* Alert */

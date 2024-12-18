@@ -16,24 +16,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   await fetchProducts(); // Fetch and store products in the context
 
   const products = productContext.getProducts();
-  console.log(products);
+  //   console.log(products);
 
   async function searchAll() {
     const queryStr = window.location.search;
     const params = new URLSearchParams(queryStr);
 
     const searchResults = [];
-    let searchTerm = params.get('search-term');
-
-    globalObj.search.term =
-      searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1);
+    globalObj.search.term = params.get('search-term');
 
     if (globalObj.search.term !== '' && globalObj.search.term !== null) {
       products.forEach((result) => {
+        result.categories = result.categories.map((v) => v.toLowerCase());
+        // console.log(result.categories);
         if (result.categories.includes(globalObj.search.term)) {
           searchResults.push(result);
         }
       });
+      //   console.log(searchResults);
 
       if (searchResults.length === 0) {
         showAlert('No results found');
@@ -54,41 +54,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('search-results').innerHTML = '';
     document.getElementById('search-results-heading').innerHTML = '';
     document.getElementById('pagination').innerHTML = '';
+    // console.log(results.length);
 
-    results.forEach((result) => {
-      const div = document.createElement('div');
-      div.classList.add('card');
-      div.innerHTML = `
-    <a
-      class="link"
-      href="#"
-      title="${result.name}"
-      ><div class="image-wrapper">
-        <img
-          class="image"
-          src="${result.image}"
-          alt="${result.name}"
-          placeholder="img/product-placeholder.jpg"
-        />  
-      </div>
-      <div class="info">
-        <div >
-          <div class="brand">${result.name}</div>
-          <div class="price-wrapper">
-              <p class="selling-price">
-                ${result.price.$numberDecimal}<sup class="currency-symbol">€</sup>
-              </p>
-            </div>
+    if (results.length) {
+      results.forEach((result) => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `
+      <a
+        class="link"
+        href="productpage.html?id=${result._id}"
+        title="${result.name}"
+        ><div class="image-wrapper">
+          <img
+            class="image"
+            src="${result.image}"
+            alt="${result.name}"
+            placeholder="img/product-placeholder.jpg"
+          />  
         </div>
-      </div>
-      </a
-    >`;
+        <div class="info">
+          <div >
+            <div class="brand">${result.name}</div>
+            <div class="price-wrapper">
+                <p class="selling-price">
+                  ${result.price.$numberDecimal}<sup class="currency-symbol">€</sup>
+                </p>
+              </div>
+          </div>
+        </div>
+        </a
+      >`;
 
-      document.querySelector('#search-results-heading').innerHTML = `
-              <h2>${results.length} search results </h2>
-    `;
-      document.getElementById('search-results').appendChild(div);
-    });
+        document.querySelector('#search-results-heading').innerHTML = `
+                <h2>${results.length} search results </h2>
+      `;
+        document.getElementById('search-results').appendChild(div);
+      });
+    } else {
+    }
     displayPagination();
   }
 
@@ -127,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Show message in case of Empty Search
+  //   Show message in case of Empty Search
   function showAlert(message) {
     const alertEl = document.querySelector('.alert');
     alertEl.classList.add('alert', 'error');
@@ -148,4 +152,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   init();
+  const search = document.querySelector('.search-flex');
+  const btn = document.querySelector('.btn');
+  const input = document.querySelector('#search-term');
+
+  btn.addEventListener('click', (e) => {
+    search.classList.toggle('active');
+    input.focus();
+    if (!search.classList.contains('active')) {
+      btn.setAttribute('type', 'submit');
+    }
+  });
 });
