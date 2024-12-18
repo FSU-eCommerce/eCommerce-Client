@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Disable prev button if on first page
     if (globalObj.search.page === 1) {
       document.getElementById('prev').disabled = true;
-      // document.getElementById('prev').setAttribute('disabled', '');
     }
 
     // Disable next button if on last page
