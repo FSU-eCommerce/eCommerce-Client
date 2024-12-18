@@ -15,13 +15,6 @@ const fetchProductById = async (productId) => {
   console.log("ID", productId);
   console.log("context", products);
 
-  //   products.forEach((product) => {
-  //     console.log("Comparing:", product._id, "with", productId);
-  //     console.log("Match:", product._id === productId);
-  //   });
-
-  //const product = products.find((product) => product._id === productId.trim());
-
   const product = products.find((p) => p._id === productId);
   console.log("Product found in context", product);
 
@@ -42,11 +35,13 @@ const fetchProductById = async (productId) => {
   return product;
 };
 
-// To render the product details on the page
+// To render the product details on the html product page
 const renderProductDetails = (product) => {
   console.log("Rendering product:", product);
   if (!product) {
-    document.querySelector(".container").innerHTML = "<p>Product not found</p>";
+    document.querySelector(
+      ".container"
+    ).innerHTML = `<p class="noProductText">Product not found</p>`;
     return;
   }
 
@@ -56,15 +51,47 @@ const renderProductDetails = (product) => {
   document.querySelector(
     ".price"
   ).textContent = `${product.price.$numberDecimal} sek`;
-  document.querySelector(".color").innerHTML = `Color <br>${
-    product.color || "N/A"
-  }`;
+  document.querySelector(".color").innerHTML = `Color <br> Select a size`;
   document.querySelector(".description p").textContent = product.description;
 
   // Hide the loading text and show the product details
   document.getElementById("loading").style.display = "none";
   document.querySelector(".productImageDiv").style.display = "block";
   document.querySelector(".productDetailsContainer").style.display = "block";
+
+  // Size button with stock notification and low in stock
+  const sizeContainer = document.querySelector(".sizes");
+  sizeContainer.innerHTML = `<p class="sizeText">EU SIZE</p>`;
+
+  const lowStockText = document.createElement("span");
+  lowStockText.textContent = " - Low in stock";
+  lowStockText.classList.add("lowStockText");
+
+  const sizeText = sizeContainer.querySelector(".sizeText");
+  sizeText.appendChild(lowStockText);
+
+  product.stock.forEach((item) => {
+    const button = document.createElement("button");
+    button.textContent = item.size;
+
+    // Disabel the size button if stock is empty.
+    if (item.quantity === 0) {
+      button.disabled = true;
+    }
+
+    button.addEventListener("click", () => {
+      document.querySelector(
+        ".color"
+      ).innerHTML = `Color <p class="colorText">${item.color}</p>`;
+      if (item.quantity <= 5) {
+        lowStockText.style.display = "inline";
+      } else {
+        lowStockText.style.display = "none";
+      }
+    });
+
+    sizeContainer.appendChild(button);
+  });
 };
 
 // Main logic to load the product page
@@ -81,11 +108,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Wait for products to load first
   document.addEventListener("productsReady", async () => {
     const product = await fetchProductById(productId);
-    if (product) {
-      renderProductDetails(product);
-      initializeQuantityControls(product);
-      addToCartListener(productId);
-    }  
+    renderProductDetails(product);
+
+    const addToCartBtn = document.getElementById("addToCartBtn"); //Peter
+    addToCartBtn.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent default link behavior
+      addToCart(productId); // Call addToCart with the product ID
+    }); // Peter
   });
 });
 

@@ -53,13 +53,19 @@ ul:hover {
 }
 
 .social-media-wrapper{
-height: auto;
-justify-content: center;
+    display: inline-block;
+    align-items: center;
+    gap: 10px;
+}
+
+a {
+    width: 40px;
+    display: inline;
 }
 
 .socialmedia-img{
-    width: 30px;
-
+    width: auto;
+    height: 40px;
 }
 
 footer{
