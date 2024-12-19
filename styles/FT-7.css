@@ -41,17 +41,17 @@
 
 .cart-item {
     display: flex;
-    align-items: center;
+    justify-content: space-between;  
     margin: 5px 0;
     padding: 10px;
     border-bottom: 1px solid #ddd;
     border-radius: 8px;
     height: 120px;
-    overflow: hidden;
+    position: relative;  
 }
 
 .cart-item img {
-    width: 25%;
+    width: 25%; 
     height: auto;
     max-height: 105px;
     border-radius: 8px;
@@ -63,8 +63,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 115px;
-    
+    justify-content: space-between;
 }
 
 .cart-item-details h3 {
@@ -77,45 +76,53 @@
 .cart-item-details p {
     margin: 0;
     font-size: 12px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+    justify-content: flex-start; 
+    height: 100%;
+    margin-left: 10px; 
+}
+
+
+.remove-btn {
+    font-size: 18px; 
+    color: #888;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    position: absolute; 
+    top: 10px;  
+    right: 10px;  
+}
+
+.remove-btn:hover {
+    color: #e60000; 
 }
 
 .quantity {
     display: flex;
     align-items: center;
-    justify-content: baseline;
-    margin-top: 15px;
+    justify-content: center;
+    position: absolute; 
+    bottom: 10px;  
+    right: 0;   
 }
 
 .quantity button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15px;
-    height: 15px;
+    width: 25px; 
+    height: 25px;
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin: 0 5px;
 }
-
-.quantity button:hover {
-    background-color: #e0e0e0;
-}
-
-.quantity span {
-    font-size: 10px;
-}
-
-/* button {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-} */
 
 #checkoutLink {
     width: 100%;
@@ -135,23 +142,5 @@
     color: black;
 }
 
-#closeCart {
-    position: absolute; 
-    top: 10px; 
-    right: 10px; 
-    cursor: pointer;
-    font-size: 20px; 
-    color: black; 
-    font-weight: bold;
-    border: none;
-    background: none; 
-    padding: 0; 
-    width: 30px;
-    height: 30px;
-    text-align: center;
-}
 
-#closeCart:hover {
-    color: grey; 
-}
 
