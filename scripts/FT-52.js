@@ -15,8 +15,8 @@ export const renderOrderConfirmation = () => {
         <div class="orderList">
             <h4 class="itemTitle">${item.name}</h4>
             <p class="description">${item.description}
-            <p><b>Color:</b> ${item.stock.color}</p>
-            <p><b>Size:</b> ${item.stock.size}</p>
+            <p><b>Color:</b> ${item.color}</p>
+            <p><b>Size:</b> ${item.size}</p>
             <p><b>Qty:</b> ${item.quantity}</>  
             <p><b>Price:</b> $${item.price.$numberDecimal * item.quantity}</p>
         </div>
