@@ -4,7 +4,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
     const pass= document.querySelector('#pass').value; //hämta lösenord
 
     try {
-        const res= await fetch('http://localhost:5000/user/login', {
+        const res= await fetch('https://e-commerce-server-beta-flax.vercel.app/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ name, pass }), //skicka data
