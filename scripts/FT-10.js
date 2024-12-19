@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   <div class="brand">${result.name}</div>
                   <div class="price-wrapper">
                       <p class="selling-price">
-                        ${result.price.$numberDecimal}<sup class="currency-symbol">€</sup>
+                        ${result.price.$numberDecimal}<sup class="currency-symbol">$</sup>
                       </p>
                     </div>
                 </div>
