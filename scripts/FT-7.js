@@ -232,6 +232,7 @@ quantityButtons.forEach((button) => {
 //_______________________________________________________________________________________________
 // Function to navigate to checkout-page
 document.addEventListener("DOMContentLoaded", () => {
+  event.preventDefault();
   const checkoutLink = document.getElementById("checkoutLink");
   const cartContainer = document.getElementById("cartContainer");
   const cart = JSON.parse(localStorage.getItem("cart")) || [];

@@ -17,6 +17,8 @@ export const renderCheckoutCart = () => {
     return;
   }
 
+  console.log("cart")
+  console.log(cart)
 
   checkoutCartContainer.querySelector('.header2 h2').innerHTML = `In your cart (${cart.length})`;
 
@@ -31,8 +33,8 @@ export const renderCheckoutCart = () => {
         </div>
         <div class="column">
         <p>Price: $${item.price.$numberDecimal}</p>
-        <p>Color: ${item.stock.color}</p>
-        <p>Size: ${item.stock.size}</p>
+        <p>Color: ${item.color}</p>
+        <p>Size: ${item.size}</p>
         <div class="row gap1">
             <label for="quantity-${item._id}">Qty: </label>
             <input
