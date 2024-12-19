@@ -17,8 +17,9 @@ export const addToCart = (productId, userChoices) => {
     console.log("Product not found");
     return;
   }
-   //const maxStock = product.stock.reduce((sum, item) => sum + item.quantity, 0);
-   const sizeStock = product.stock.find(item => item.size === userChoices.size); // change
+   
+   const sizeStock = product.stock.find(item => item.size === userChoices.size); 
+   console.log(sizeStock);
    const maxStock = sizeStock ? sizeStock.quantity : 0; //change
   
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -79,31 +80,6 @@ const checkValidQuantity = (quantity, maxStock) => {
   return true;
 };
 
-//function to update eexisting product in cart
-/* const updateExistingProduct = (cart, product, quantity, color, size) => {
-  const existingProduct = cart.find(item => item._id === product._id && item.color === color && item.size === size);
-  if (existingProduct) {
-    const newQuantity = existingProduct.quantity + quantity;
-    if (newQuantity > product.stock) {
-      alert(`You can only add up to ${maxStock} of this product to your cart.`);
-        return cart;
-    }
-  return cart;  
-  }
-}; */
-
-//function to add new product
-/* const addNewProductToCart = (cart, product, quantity, color, size) => {
-  cart.push({ ...product, quantity, color, size });
-  console.log(`${product.name} added to cart with quantity ${quantity}`);
-  return cart;
-} */
-//function to save to local
-/* const saveTolocalStorage = (cart) => {
-  localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('Saved to Cart:', cart);
-} */
-
 // ____________________________________________________________________________________________
 
 // Function to render the cart
@@ -117,39 +93,36 @@ export const renderCart = () => {
   }
 
   cartContainer.innerHTML = cart
-    .map(
-      (item) => {
-      const product = findProductById(item._id);
-      const sizeStock = product.stock.find(stock => stock.size === item.size).quantity;
-        return`
-    <div class="cart-item">
-      <img src="${product.image}" alt="${item.name}" class="cart-item-img" />
-      <div class="cart-item-details">  
-        <a href="productpage.html?id=${item._id}" class="cart-product-link">
-          <h3>${item.name}</h3>
-        </a>
-        <p>Price: ${item.price.$numberDecimal} $</p>
-        <p>Color: ${item.color}</p> <!-- Display selected color -->
-        <p>Size: ${item.size}</p> 
-        <div class="quantity">
-          <button onclick="changeQuantity('${item._id}', -1)">-</button>
-          <span>${item.quantity}</span> <!-- Display current quantity -->
-          <button onclick="changeQuantity('${item._id}', 1)">+</button>
+    .map((item) => 
+        `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}" class="cart-item-img" />
+          <div class="cart-item-details">  
+            <a href="productpage.html?id=${item._id}" class="cart-product-link">
+              <h3>${item.name}</h3>
+            </a>
+            <p>Price: ${item.price.$numberDecimal} $</p>
+            <p>Color: ${item.color}</p> <!-- Display selected color -->
+            <p>Size: ${item.size}</p> <!-- Display selected size -->
+            <div class="quantity">
+              <button onclick="changeQuantity('${item._id}', -1)">-</button>
+              <span>${item.quantity}</span> <!-- Display current quantity -->
+              <button onclick="changeQuantity('${item._id}', 1)">+</button>
+            </div>
+            <button onclick="removeFromCart('${item._id}')">Remove</button>
+          </div>  
         </div>
-        <button onclick="removeFromCart('${item._id}')">Remove</button>
-      </div>  
-    </div>
-  `;
-})
-    .join("");
+      `
+    )
+    .join('');
 
-  /* const removeButtons = document.querySelectorAll(".remove-btn");
+  const removeButtons = document.querySelectorAll(".remove-btn");
   removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const productId = button.getAttribute("data-id");
       removeFromCart(productId);
     });
-  }); */
+  });
 };
 
 // ____________________________________________________________________________________________
