@@ -4,7 +4,7 @@ import productContext from "../context/productContext.js";
 const saveTolocalStorage = (cart) => {
   console.log("Attempting to save cart:", cart);
   localStorage.setItem("cart", JSON.stringify(cart));
-  console.log("Saved to Cart:", cart); // Verify if it's being saved
+  console.log("Saved to Cart:", cart);
 };
 
 export const addToCart = (productId, userChoices) => {
@@ -12,14 +12,17 @@ export const addToCart = (productId, userChoices) => {
   console.log("User Choices:", userChoices);
 
   const product = findProductById(productId);
-  // const maxStock = product.stock.length;  // Assuming max stock is the length of the stock array
-  const maxStock = product.stock.reduce((sum, item) => sum + item.quantity, 0);
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (!product) {
     console.log("Product not found");
     return;
   }
+   //const maxStock = product.stock.reduce((sum, item) => sum + item.quantity, 0);
+   const sizeStock = product.stock.find(item => item.size === userChoices.size); // change
+   const maxStock = sizeStock ? sizeStock.quantity : 0; //change
+  
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
   if (!checkValidQuantity(userChoices.quantity, maxStock)) {
     return;
@@ -38,9 +41,9 @@ export const addToCart = (productId, userChoices) => {
       existingProduct.quantity = maxStock;
     }
   } else {
-    // cart.push({ ...product, ...userChoices });
     cart.push({
       _id: productId,
+      image: product.image,
       name: product.name,
       price: product.price,
       color: userChoices.color,
@@ -115,52 +118,60 @@ export const renderCart = () => {
 
   cartContainer.innerHTML = cart
     .map(
-      (item) => `
+      (item) => {
+      const product = findProductById(item._id);
+      const sizeStock = product.stock.find(stock => stock.size === item.size).quantity;
+        return`
     <div class="cart-item">
-      <a href="productpage.html?id=${item._id}" class="cart-product-link">
-        <h3>${item.name}</h3>
-      </a>
-      <p>Price: ${item.price.$numberDecimal} sek</p>
-      <p>Color: ${item.color}</p> <!-- Display selected color -->
-      <p>Size: ${item.size}</p> 
-      <div class="quantity">
-      <button onclick="changeQuantity('${item._id}', -1)">-</button>
-      <span>${item.quantity}</span> <!-- Display current quantity -->
-      <button onclick="changeQuantity('${item._id}', 1)">+</button>
+      <img src="${product.image}" alt="${item.name}" class="cart-item-img" />
+      <div class="cart-item-details">  
+        <a href="productpage.html?id=${item._id}" class="cart-product-link">
+          <h3>${item.name}</h3>
+        </a>
+        <p>Price: ${item.price.$numberDecimal} $</p>
+        <p>Color: ${item.color}</p> <!-- Display selected color -->
+        <p>Size: ${item.size}</p> 
+        <div class="quantity">
+          <button onclick="changeQuantity('${item._id}', -1)">-</button>
+          <span>${item.quantity}</span> <!-- Display current quantity -->
+          <button onclick="changeQuantity('${item._id}', 1)">+</button>
+        </div>
+        <button onclick="removeFromCart('${item._id}')">Remove</button>
+      </div>  
     </div>
-      <button onclick="removeFromCart('${item._id}')">Remove</button>
-    </div>
-  `
-    )
+  `;
+})
     .join("");
 
-  const removeButtons = document.querySelectorAll(".remove-btn");
+  /* const removeButtons = document.querySelectorAll(".remove-btn");
   removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const productId = button.getAttribute("data-id");
       removeFromCart(productId);
     });
-  });
+  }); */
 };
 
 // ____________________________________________________________________________________________
 // Function to change the quantity
 export const changeQuantity = (productId, change) => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
   const product = cart.find((item) => item._id === productId);
 
   if (product) {
+    const sizeStock = productContext.getProducts().find(p => p._id === productId)
+      .stock.find(item => item.size === product.size).quantity;
     product.quantity += change;
 
     if (product.quantity < 1) {
       product.quantity = 1;
     }
 
-    const maxStock = product.stock;
+    //const maxStock = product.stock;
 
-    if (product.quantity > maxStock) {
-      product.quantity = maxStock;
+    if (product.quantity > sizeStock) {
+      product.quantity = sizeStock;
+      console.log(`You can only add up to ${sizeStock} of this product in size ${product.size} to your cart.`);
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -174,7 +185,7 @@ export const changeQuantity = (productId, change) => {
 // ____________________________________________________________________________________________
 
 // Function to remove a product from the cart
-export const removeFromCart = (productId) => {
+export const removeFromCart = (productId,) => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   cart = cart.filter((item) => item._id !== productId);
@@ -192,11 +203,8 @@ window.removeFromCart = removeFromCart;
 // function to open and close cart
 document.getElementById("cartLink").addEventListener("click", (event) => {
   event.preventDefault();
-  document.getElementById("cart").classList.add("open");
-});
-
-document.getElementById("closeCart").addEventListener("click", () => {
-  document.getElementById("cart").classList.remove("open");
+  const cart = document.getElementById("cart");
+  cart.classList.toggle("open");
 });
 
 window.addEventListener("click", (event) => {
@@ -235,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   checkoutLink.addEventListener("click", () => {
     if (cart.length > 0) {
-      window.location.href = "#.html";
+      window.location.href = "checkout.html";
     }
   });
 
