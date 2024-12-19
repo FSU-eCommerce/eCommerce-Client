@@ -4,6 +4,7 @@
     height: auto;
     overflow: hidden;
     display: flex;
+    background-color: black;
 }
 
 .swiper-wrapper {

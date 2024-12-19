@@ -1,56 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ContactPage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/FT-44.css">
-    <link rel="stylesheet" href="styles/FT-7.css">
-
-</head>
-<body>
-
-        <header>
-        <a href="index.html"><img src="./img/logo.png" alt="Logo" class="logo"></a>
-   
-         <nav>
-             <div class="hamburger" id="hamburger-icon">
-                 <div class="line"></div>
-                 <div class="line"></div>
-                 <div class="line"></div>
-             </div>
-             <ul id="menu" class="menu">
-                 <li class="menu-link"><a href="productlist.html">Products</a>
-                     <ul class="dropdown">
-                       <li class="dropdown-link"><a href="allproducts.html">All Products</a></li>
-                       <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
-                       <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
-                     </ul>
-                   </li>
-                 <!-- <li><a href="productpage.html">Productpage</a></li> -->
-                 <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
-                 <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
-                 <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
-             </ul>
-         </nav>
- 
-         <div id="cart" class="cart" >
-             <h2>Your Cart</h2>
-             <div id="cartContainer"></div>
-             <button id="checkoutLink">Go to checkout</button>
-             <button id="closeCart" class="close-cart">Close cart</button>
-         </div>
-       </header>
-
-
-      <main>
-        <div class="img-wrapper">
-        <img class="yellow" src="img/bright yellow.jpg">
-        <img class="yellow" src="img/FT-20 slide 3.jpg">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/FT-44.css" />
+    <link rel="stylesheet" href="styles/FT-7.css" />
+    <link rel="stylesheet" href="styles/FT-3.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img src="./img/logo.png" alt="Logo" class="logo"
+      /></a>
+      <link rel="stylesheet" href="styles/FT-3.css" />
+      <!-- Search -->
+      <section class="search">
+        <div class="search-container">
+          <form action="/search.html" class="search-form">
+            <div class="search-flex">
+              <input
+                type="search"
+                id="search-term"
+                name="search-term"
+                placeholder="Search for category"
+              />
+              <button type="button" class="btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </form>
         </div>
+      </section>
+      <nav>
+        <div class="hamburger" id="hamburger-icon">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <ul id="menu" class="menu">
+          <li class="menu-link">
+            <a href="productlist.html">Products</a>
+            <ul class="dropdown">
+              <li class="dropdown-link">
+                <a href="productlist.html">All Products</a>
+              </li>
+              <li class="dropdown-link">
+                <a href="productlist.html?sex=Men">Men</a>
+              </li>
+              <li class="dropdown-link">
+                <a href="productlist.html?sex=Women">Women</a>
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a href="productpage.html">Productpage</a></li> -->
+          <li class="menu-link">
+            <a href="#"
+              ><i class="fa-solid fa-bag-shopping" id="cartLink"></i
+            ></a>
+          </li>
+          <li class="menu-link">
+            <a href="index.html"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="menu-link">
+            <a href="contactpage.html"><i class="fa-solid fa-phone"></i></a>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="cart" class="cart">
+        <h2>Your Cart</h2>
+        <div id="cartContainer"></div>
+        <button href="checkout.html" id="checkoutLink">Go to checkout</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="img-wrapper">
+        <img class="yellow" src="img/bright yellow.jpg" />
+        <img class="yellow" src="img/FT-20 slide 3.jpg" />
+      </div>
 
         <div class="contact">
             <h1>Contact us</h1>
@@ -97,18 +132,15 @@
                 </div>
                 </div>
 
-
       </main>
 
     <footer>
-        <p>&copy: 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
+      <p>&copy: 2024 Ecommerce Client. Alla rättigheter förbehålls.</p>
     </footer>
-    
+    <script type="module" src="scripts/FT-3.js"></script>
     <script type="module" src="scripts/fetchProducts.js"></script>
     <script type="module" src="scripts/main.js"></script>
     <script src="scripts/FT-8-Hamburger.js"></script>
     <script src="scripts/FT-44.js"></script>
-    <main>
-
-</body>
+  </body>
 </html>

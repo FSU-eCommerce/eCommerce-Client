@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/FT-24-Checkout.css">
   <link rel="stylesheet" href="styles/FT-7.css">
+  <link rel="stylesheet" href="styles/FT-52.css">
 </head>
 <body>
   <header>
@@ -28,46 +29,59 @@
                    <li class="dropdown-link"><a href="productlist.html?sex=Men">Men</a></li>
                    <li class="dropdown-link"><a href="productlist.html?sex=Women">Women</a></li>
                  </ul>
-             </li>
+               </li>
              <li class="menu-link"><a href="#"><i class="fa-solid fa-bag-shopping" id="cartLink"></i></a></li>
              <li class="menu-link"><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
              <li class="menu-link"><a href="contactpage.html"><i class="fa-solid fa-phone"></i></a></li>
          </ul>
      </nav>
-        <div id="cart" class="cart" >
-            <h2>Your Cart</h2>
-            <div id="cartContainer"></div>
-            <button id="checkoutLink">Go to checkout</button>
-            <button id="closeCart" class="close-cart">Close cart</button>
-        </div>
+
+     <div id="cart" class="cart" >
+         <h2>Your Cart</h2>
+         <div id="cartContainer"></div>
+         <button href="checkout.html" id="checkoutLink">Go to checkout</button>
+     </div>
    </header>
 
   <main class="main-wrapper">
-            
-        
 
-        <section class="completedOrder">
+      
+      <div id="orderContainer">
+        <h1 class="orderConfirmedTitle">Thank you for your order!</h1>
+        <p class="orderConfirmedText">We have recived your order and have sent you an email confirming the order. 
+            We will handle your order as soon as possible aswell as update you along the process. 
+            Your parcel will be sent within 24 hours, compleatly eco friendy. 
+            In fact for every order we plant a tree, so you have just made the world a better place! 
+            You can track your delivery in our app. And if you have any questions, don´t hesitate to contact our support.
+            We are always happy to help, and we hope to see you again soon!
+        </p>
 
-            <h1>Thank you for your order!</h1>
-            
-            <div id="cartItemList">
-                <!-- Cart items will be rendered dynamically here -->
-            </div>
-            <div id="summaryContent">
-              <!-- Subtotal, Shipping cost, Taxes and Total will be rendered dynamically here -->
-            </div>
-     
-    </section>
+        <div id="orderList">
+            <!-- Cart items will be rendered dynamically here -->
+        </div>
+   
+        <div id="recieptContainer">
+            <!-- Dynamically rendered order reciept -->
+        </div>
+    </div>
+    
   </main>
+
 
   <footer>
     <p>&copy; 2024 Ecommerce Client. All rights reserved.</p>
   </footer>
 
+
   <script type="module" src="scripts/main.js"></script>
   <script type="module" src="scripts/FT-8-Hamburger.js"></script>
-  <script type="module" src="scripts/FT-24-Checkout.js"></script>
+  <script type="module" src="scripts/FT-52.js"></script>
   <script type="module" src="scripts/FT-7.js"></script>
+
 
 </body>
 </html>
+
+
+
+
