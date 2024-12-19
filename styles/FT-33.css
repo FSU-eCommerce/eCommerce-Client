@@ -90,6 +90,7 @@ h1 {
 .sizes button:focus {
   border-color: #000;
 }
+
 .sizes button:disabled {
   color: #999;
   border-color: #ddd;
@@ -152,8 +153,8 @@ h1 {
 .color-btn.selected {
   height: 25px;
   width: 25px;
-  border: 2px solid #000;  
-  background-color: #f0f0f0;  
+  border: 2px solid #000;
+  background-color: #f0f0f0;
 }
 
 #quantityInputContainer {
