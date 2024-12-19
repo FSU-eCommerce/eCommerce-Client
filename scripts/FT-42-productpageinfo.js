@@ -182,7 +182,7 @@ const renderProductDetails = (product) => {
   document.querySelector(".productDetails h1").textContent = product.name;
   document.querySelector(
     ".price"
-  ).textContent = `${product.price.$numberDecimal} sek`;
+  ).textContent = `${product.price.$numberDecimal} $`;
   document.querySelector(".description p").textContent = product.description;
 
   renderColorButtons(product.stock);
