@@ -1,24 +1,48 @@
 import productContext from '../context/productContext.js'; 
 
 // Function to add a product to the cart
-export const addToCart = (productId, quantity) => {
+const saveTolocalStorage = (cart) => {
+  console.log('Attempting to save cart:', cart);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  console.log('Saved to Cart:', cart);  // Verify if it's being saved
+};
+
+export const addToCart = (productId, userChoices) => {
+  console.log("Product ID:", productId);
+  console.log("User Choices:", userChoices);
+
   const product = findProductById(productId);
-  const maxStock = product.stock;
+  const maxStock = product.stock.length;  // Assuming max stock is the length of the stock array
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   if (!product) {
-    console.log('product not found');
+    console.log('Product not found');
     return;
   }
 
-  if (!checkValidQuantity(quantity, maxStock)) {
+  if (!checkValidQuantity(userChoices.quantity, maxStock)) {
     return;
   }
-  
-  cart = updateExistingProduct(cart, product, quantity) || addNewProductToCart(cart, product, quantity);
+
+  const existingProduct = cart.find(item =>
+    item._id === productId && item.color === userChoices.color && item.size === userChoices.size
+  );
+
+  if (existingProduct) {
+    existingProduct.quantity += userChoices.quantity;
+    if (existingProduct.quantity > maxStock) {
+      existingProduct.quantity = maxStock;
+    }
+  } else {
+    cart.push({ ...product, ...userChoices });
+  }
+
+  console.log("Saving to localStorage with cart:", cart);
   saveTolocalStorage(cart);
   renderCart();
 };
+
+
 
 //Function to find productId
 const findProductById = (productId) => {
@@ -41,8 +65,8 @@ const checkValidQuantity = (quantity, maxStock) => {
 }
 
 //function to update eexisting product in cart
-const updateExistingProduct = (cart, product, quantity) => {
-  const existingProduct = cart.find(item => item._id === product._id);
+/* const updateExistingProduct = (cart, product, quantity, color, size) => {
+  const existingProduct = cart.find(item => item._id === product._id && item.color === color && item.size === size);
   if (existingProduct) {
     const newQuantity = existingProduct.quantity + quantity;
     if (newQuantity > product.stock) {
@@ -51,19 +75,19 @@ const updateExistingProduct = (cart, product, quantity) => {
     }
   return cart;  
   }
-};
+}; */
 
 //function to add new product
-const addNewProductToCart = (cart, product, quantity) => {
-  cart.push({ ...product, quantity });
+/* const addNewProductToCart = (cart, product, quantity, color, size) => {
+  cart.push({ ...product, quantity, color, size });
   console.log(`${product.name} added to cart with quantity ${quantity}`);
   return cart;
-}
+} */
  //function to save to local
-const saveTolocalStorage = (cart) => {
+/* const saveTolocalStorage = (cart) => {
   localStorage.setItem('cart', JSON.stringify(cart));
     console.log('Saved to Cart:', cart);
-}
+} */
 
 // ____________________________________________________________________________________________
 
@@ -82,8 +106,9 @@ export const renderCart = () => {
       <a href="productpage.html?id=${item._id}" class="cart-product-link">
         <h3>${item.name}</h3>
       </a>
-      <p>${item.description}</p>
       <p>Price: ${item.price.$numberDecimal} $</p>
+      <p>Color: ${item.color}</p> <!-- Display selected color -->
+      <p>Size: ${item.size}</p> 
       <div class="quantity">
       <button onclick="changeQuantity('${item._id}', -1)">-</button>
       <span>${item.quantity}</span> <!-- Display current quantity -->

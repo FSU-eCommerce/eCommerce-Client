@@ -1,6 +1,12 @@
 import productContext from "../context/productContext.js";
 import { addToCart } from "./FT-7.js"; //Peter
 
+let userChoices = {
+  color: null,
+  size: null,
+  quantity: 1,
+};
+
 // Function to get the product ID from the query string
 const getProductIdFromQuery = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -40,6 +46,9 @@ const createColorButton = (color) => {
 // Function to handle the color button click
 const handleColorButtonClick = (color, stock) => {
   console.log("Color selected:", color);
+
+  userChoices.color = color;
+  console.log("User choices after color selection:", userChoices);
   
   document.querySelectorAll(".color-btn").forEach(btn => btn.classList.remove("selected"));
   
@@ -47,6 +56,15 @@ const handleColorButtonClick = (color, stock) => {
   selectedButton.classList.add("selected");
 
   updateProductDetailsForColor(color, stock);
+
+  const quantityInput = document.getElementById('quantity');
+  
+  const selectedColorStock = stock.filter(item => item.color === color);
+  const maxStock = selectedColorStock.reduce((sum, item) => sum + item.quantity, 0);
+  if (parseInt(quantityInput.value) > maxStock) {
+    quantityInput.value = maxStock;
+  }
+  console.log('after color selection ', userChoices);
 };
 
 // Function to render color buttons dynamically
@@ -63,6 +81,8 @@ const renderColorButtons = (stock) => {
 
       if (index === 0) {
         colorButton.classList.add('selected');
+        userChoices.color = color;
+        console.log('default color ' + userChoices.color)
         updateProductDetailsForColor(color, stock);
       }
   });
@@ -86,9 +106,20 @@ const updateProductDetailsForColor = (selectedColor, stock) => {
 //Functions to check the quantity of the size
 const handleSizeButtonClick = (size, selectedColorStock) => {
   console.log("Size selected:", size);
+
+  userChoices.size = size;
+  
+  console.log("User choices after size selection:", userChoices);
+
   document.querySelectorAll(".sizes button").forEach(btn => btn.classList.remove("selected"));
   const selectedButton = document.querySelector(`[data-size="${size}"]`);
   selectedButton.classList.add("selected");
+
+  const quantityInput = document.getElementById('quantityInputContainer');
+  quantityInput.style.display = 'block';
+
+  const sizeStock = selectedColorStock.filter(item => item.size === size);
+  const maxStock = sizeStock.reduce((sum, item) => sum + item.quantity, 0);
 
   updateQuantityForSize(size, selectedColorStock);
 };
@@ -125,13 +156,6 @@ const renderSizeButtons = (selectedColorStock) => {
       handleSizeButtonClick(size, selectedColorStock);
     });
   });
-
-  const firstAvailableSize = selectedColorStock.find(item => item.quantity)?.size;
-  if (firstAvailableSize) {
-    const firstSizeButton = document.querySelector(`[data-size="${firstAvailableSize}"]`);
-    firstSizeButton.classList.add('selected');
-    updateQuantityForSize(firstAvailableSize, selectedColorStock);
-  }
 };
 
 //_______________________________________________________________________________________
@@ -187,12 +211,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 const addToCartListener = (productId) => {
   document.getElementById('addToCartBtn').addEventListener("click", (event) => {
     event.preventDefault();
-   
-  const quantityInput = document.getElementById('quantity');
-  const quantity = parseInt(quantityInput.value);
 
-   if (productId && quantity > 0) {
-    addToCart(productId, quantity);
+    const quantity = userChoices.quantity;
+    const color = userChoices.color;
+    const size = userChoices.size;
+
+    if (productId && quantity > 0 && color && size) {
+      console.log("Adding to cart:", { productId, quantity, color, size });
+      addToCart(productId, quantity, color, size);
+    } else {
+      console.log("Please select color, size, and quantity before adding to cart.");
     }
   });
 };
@@ -206,19 +234,34 @@ const updateQuantityDisplay = (quantityInput, maxStock) => {
   }
 };
 
-const decreaseQuantity = (quantityInput) => {
-  let currentQuantity = parseInt(quantityInput.value);
-  if (currentQuantity > 1) {
-    quantityInput.value = currentQuantity - 1;
-  }
-};
-
 const increaseQuantity = (quantityInput, maxStock) => {
   let currentQuantity = parseInt(quantityInput.value);
+  
   if (currentQuantity < maxStock) {
-    quantityInput.value = currentQuantity + 1;
+    currentQuantity += 1;
+    quantityInput.value = currentQuantity; 
+  } else {
+    console.log("Max stock reached");
   }
+
+  userChoices.quantity = currentQuantity;
+  console.log("Updated userChoices after increase:", userChoices);
 };
+
+const decreaseQuantity = (quantityInput) => {
+  let currentQuantity = parseInt(quantityInput.value);
+  
+  if (currentQuantity > 1) {
+    currentQuantity -= 1;
+    quantityInput.value = currentQuantity; 
+  } else {
+    console.log("Min quantity reached");
+  }
+
+  userChoices.quantity = currentQuantity;
+  console.log("Updated userChoices after decrease:", userChoices);
+};
+
 
 const validateQuantityInput = (quantityInput, maxStock) => {
   let currentQuantity = parseInt(quantityInput.value);
@@ -230,7 +273,73 @@ const validateQuantityInput = (quantityInput, maxStock) => {
 };
 
 
-const initializeQuantityControls = (selectedSizeStock, maxStock) => {
+    const initializeQuantityControls = (selectedSizeStock, maxStock) => {
+      const quantityInput = document.getElementById('quantity');
+      const increaseBtn = document.getElementById('increaseBtn');
+      const decreaseBtn = document.getElementById('decreaseBtn');
+    
+      if (userChoices.quantity === undefined || userChoices.quantity === 0) {
+        userChoices.quantity = 1; 
+      }
+    
+      
+      quantityInput.value = Math.min(userChoices.quantity, maxStock); 
+    
+      if (maxStock === 0) {
+        quantityInput.value = 0;
+        console.log('This product is out of stock.');
+      }
+
+      console.log("Initial userChoices:", userChoices)
+      decreaseBtn.addEventListener("click", () => {
+        decreaseQuantity(quantityInput);
+        updateQuantityDisplay(quantityInput, maxStock);
+        console.log("Updated userChoices after decrease:", userChoices); 
+      });
+
+      increaseBtn.addEventListener("click", () => {
+        increaseQuantity(quantityInput, maxStock);
+        updateQuantityDisplay(quantityInput, maxStock);
+        console.log("Updated userChoices after increase:", userChoices); 
+      });
+    
+      quantityInput.addEventListener("input", () => {
+        validateQuantityInput(quantityInput, maxStock);
+        userChoices.quantity = parseInt(quantityInput.value);
+        console.log("Updated userChoices on input change:", userChoices); 
+      });
+    };
+/* const initializeQuantityControls = (selectedSizeStock, maxStock) => {
+  const quantityInput = document.getElementById('quantity');
+  const increaseBtn = document.getElementById('increaseBtn');
+  const decreaseBtn = document.getElementById('decreaseBtn');
+
+  if (maxStock > 0) {
+    quantityInput.value = 1;
+  } else {
+    quantityInput.value = 0;
+    console.log('This product is out of stock.');
+  }
+
+  // Update userChoices when the quantity changes
+  decreaseBtn.addEventListener("click", () => {
+    decreaseQuantity(quantityInput);
+    updateQuantityDisplay(quantityInput, maxStock);
+    userChoices.quantity = parseInt(quantityInput.value);
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    increaseQuantity(quantityInput, maxStock);
+    updateQuantityDisplay(quantityInput, maxStock);
+    userChoices.quantity = parseInt(quantityInput.value);
+  });
+
+  quantityInput.addEventListener("input", () => {
+    validateQuantityInput(quantityInput, maxStock);
+    userChoices.quantity = parseInt(quantityInput.value);
+  });
+}; */
+/* const initializeQuantityControls = (selectedSizeStock, maxStock) => {
   const quantityInput = document.getElementById('quantity');
   const increaseBtn = document.getElementById('increaseBtn');
   const decreaseBtn = document.getElementById('decreaseBtn');
@@ -255,4 +364,4 @@ const initializeQuantityControls = (selectedSizeStock, maxStock) => {
   quantityInput.addEventListener("input", () => {
     validateQuantityInput(quantityInput, maxStock);
   });
-};
+}; */
