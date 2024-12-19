@@ -1,10 +1,10 @@
-import productContext from '../context/productContext.js'; 
+import productContext from "../context/productContext.js";
 
 // Function to add a product to the cart
 const saveTolocalStorage = (cart) => {
-  console.log('Attempting to save cart:', cart);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  console.log('Saved to Cart:', cart);  // Verify if it's being saved
+  console.log("Attempting to save cart:", cart);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  console.log("Saved to Cart:", cart); // Verify if it's being saved
 };
 
 export const addToCart = (productId, userChoices) => {
@@ -12,11 +12,12 @@ export const addToCart = (productId, userChoices) => {
   console.log("User Choices:", userChoices);
 
   const product = findProductById(productId);
-  const maxStock = product.stock.length;  // Assuming max stock is the length of the stock array
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // const maxStock = product.stock.length;  // Assuming max stock is the length of the stock array
+  const maxStock = product.stock.reduce((sum, item) => sum + item.quantity, 0);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (!product) {
-    console.log('Product not found');
+    console.log("Product not found");
     return;
   }
 
@@ -24,8 +25,11 @@ export const addToCart = (productId, userChoices) => {
     return;
   }
 
-  const existingProduct = cart.find(item =>
-    item._id === productId && item.color === userChoices.color && item.size === userChoices.size
+  const existingProduct = cart.find(
+    (item) =>
+      item._id === productId &&
+      item.color === userChoices.color &&
+      item.size === userChoices.size
   );
 
   if (existingProduct) {
@@ -34,7 +38,14 @@ export const addToCart = (productId, userChoices) => {
       existingProduct.quantity = maxStock;
     }
   } else {
-    cart.push({ ...product, ...userChoices });
+    // cart.push({ ...product, ...userChoices });
+    cart.push({
+      name: product.name,
+      price: product.price.$numberDecimal,
+      color: userChoices.color,
+      size: userChoices.size,
+      quantity: userChoices.quantity,
+    });
   }
 
   console.log("Saving to localStorage with cart:", cart);
@@ -42,12 +53,10 @@ export const addToCart = (productId, userChoices) => {
   renderCart();
 };
 
-
-
 //Function to find productId
 const findProductById = (productId) => {
   const products = productContext.getProducts();
-  return products.find(p => p._id === productId);
+  return products.find((p) => p._id === productId);
 };
 
 //Function to check quantity validity
@@ -58,11 +67,13 @@ const checkValidQuantity = (quantity, maxStock) => {
   }
 
   if (quantity > maxStock) {
-    console.log(`You can only add up to ${maxStock} of this product to your cart.`);
+    console.log(
+      `You can only add up to ${maxStock} of this product to your cart.`
+    );
     return false;
   }
   return true;
-}
+};
 
 //function to update eexisting product in cart
 /* const updateExistingProduct = (cart, product, quantity, color, size) => {
@@ -83,7 +94,7 @@ const checkValidQuantity = (quantity, maxStock) => {
   console.log(`${product.name} added to cart with quantity ${quantity}`);
   return cart;
 } */
- //function to save to local
+//function to save to local
 /* const saveTolocalStorage = (cart) => {
   localStorage.setItem('cart', JSON.stringify(cart));
     console.log('Saved to Cart:', cart);
@@ -93,15 +104,17 @@ const checkValidQuantity = (quantity, maxStock) => {
 
 // Function to render the cart
 export const renderCart = () => {
-  const cartContainer = document.getElementById('cartContainer');
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartContainer = document.getElementById("cartContainer");
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (cart.length === 0) {
-    cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
     return;
   }
 
-  cartContainer.innerHTML = cart.map(item => `
+  cartContainer.innerHTML = cart
+    .map(
+      (item) => `
     <div class="cart-item">
       <a href="productpage.html?id=${item._id}" class="cart-product-link">
         <h3>${item.name}</h3>
@@ -116,15 +129,17 @@ export const renderCart = () => {
     </div>
       <button onclick="removeFromCart('${item._id}')">Remove</button>
     </div>
-  `).join('');
+  `
+    )
+    .join("");
 };
-  
+
 // ____________________________________________________________________________________________
 // Function to change the quantity
-export const changeQuantity = (productId, change) =>  {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+export const changeQuantity = (productId, change) => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const product = cart.find(item => item._id === productId);
+  const product = cart.find((item) => item._id === productId);
 
   if (product) {
     product.quantity += change;
@@ -139,81 +154,79 @@ export const changeQuantity = (productId, change) =>  {
       product.quantity = maxStock;
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
     console.log(`${product.name} quantity changed to ${product.quantity}`);
     renderCart();
   } else {
-    console.error('product not found')
+    console.error("product not found");
   }
 };
-
 
 // ____________________________________________________________________________________________
 
 // Function to remove a product from the cart
 export const removeFromCart = (productId) => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  cart = cart.filter(item => item._id !== productId);
-  localStorage.setItem('cart', JSON.stringify(cart));
+  cart = cart.filter((item) => item._id !== productId);
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-  console.log('Product removed from cart.');
+  console.log("Product removed from cart.");
 
   renderCart();
 };
 
 window.removeFromCart = removeFromCart;
 
-
-
 //______________________________________________________________________________________________
 
 // function to open and close cart
-document.getElementById('cartLink').addEventListener('click', (event) => {
+document.getElementById("cartLink").addEventListener("click", (event) => {
   event.preventDefault();
-  document.getElementById('cart').classList.add('open');
-})
-
-document.getElementById('closeCart').addEventListener('click', () => {
-  document.getElementById('cart').classList.remove('open');
+  document.getElementById("cart").classList.add("open");
 });
 
-window.addEventListener('click', (event) => {
-  const cart = document.getElementById('cart');
-  const cartLink = document.getElementById('cartLink');
+document.getElementById("closeCart").addEventListener("click", () => {
+  document.getElementById("cart").classList.remove("open");
+});
+
+window.addEventListener("click", (event) => {
+  const cart = document.getElementById("cart");
+  const cartLink = document.getElementById("cartLink");
 
   if (!cart.contains(event.target) && event.target !== cartLink) {
-    cart.classList.remove('open');
+    cart.classList.remove("open");
   }
 });
 
-document.getElementById('cart').addEventListener('click', (event) => {
-  event.stopPropagation(); 
+document.getElementById("cart").addEventListener("click", (event) => {
+  event.stopPropagation();
 });
 
-const quantityButtons = document.querySelectorAll('.cart-item .quantity button');
-quantityButtons.forEach(button => {
-  button.addEventListener('click', (event) => {
+const quantityButtons = document.querySelectorAll(
+  ".cart-item .quantity button"
+);
+quantityButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
     event.stopPropagation();
   });
 });
 
-
 //_______________________________________________________________________________________________
 // Function to navigate to checkout-page
-document.addEventListener('DOMContentLoaded', () => {
-  const checkoutLink = document.getElementById('checkoutLink');
-  const cartContainer = document.getElementById('cartContainer');
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  
-    if (cart.length === 0) {
-      cartContainer.innerHTML = '<p>Your cart is empty.</p>';
-      return;
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const checkoutLink = document.getElementById("checkoutLink");
+  const cartContainer = document.getElementById("cartContainer");
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  checkoutLink.addEventListener('click', () => {
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  checkoutLink.addEventListener("click", () => {
     if (cart.length > 0) {
-      window.location.href = '#.html';
+      window.location.href = "#.html";
     }
   });
 

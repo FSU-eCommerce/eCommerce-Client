@@ -255,13 +255,13 @@ const addToCartListener = (productId) => {
   document.getElementById("addToCartBtn").addEventListener("click", (event) => {
     event.preventDefault();
 
-    const quantity = userChoices.quantity;
+    const quantity = parseInt(userChoices.quantity);
     const color = userChoices.color;
     const size = userChoices.size;
 
     if (productId && quantity > 0 && color && size) {
       console.log("Adding to cart:", { productId, quantity, color, size });
-      addToCart(productId, quantity, color, size);
+      addToCart(productId, { quantity, color, size });
     } else {
       console.log(
         "Please select color, size, and quantity before adding to cart."
