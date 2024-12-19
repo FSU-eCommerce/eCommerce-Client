@@ -40,8 +40,9 @@ export const addToCart = (productId, userChoices) => {
   } else {
     // cart.push({ ...product, ...userChoices });
     cart.push({
+      _id: productId,
       name: product.name,
-      price: product.price.$numberDecimal,
+      price: product.price,
       color: userChoices.color,
       size: userChoices.size,
       quantity: userChoices.quantity,
@@ -119,7 +120,7 @@ export const renderCart = () => {
       <a href="productpage.html?id=${item._id}" class="cart-product-link">
         <h3>${item.name}</h3>
       </a>
-      <p>Price: ${item.price.$numberDecimal} $</p>
+      <p>Price: ${item.price.$numberDecimal} sek</p>
       <p>Color: ${item.color}</p> <!-- Display selected color -->
       <p>Size: ${item.size}</p> 
       <div class="quantity">
@@ -132,6 +133,14 @@ export const renderCart = () => {
   `
     )
     .join("");
+
+  const removeButtons = document.querySelectorAll(".remove-btn");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productId = button.getAttribute("data-id");
+      removeFromCart(productId);
+    });
+  });
 };
 
 // ____________________________________________________________________________________________
