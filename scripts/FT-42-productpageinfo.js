@@ -290,7 +290,6 @@ const increaseQuantity = (quantityInput, maxStock) => {
   }
 
   userChoices.quantity = currentQuantity;
-  console.log("Updated userChoices after increase:", userChoices);
 };
 
 const decreaseQuantity = (quantityInput) => {
@@ -333,13 +332,21 @@ const initializeQuantityControls = (selectedSizeStock, maxStock) => {
   }
 
   console.log("Initial userChoices:", userChoices);
-  decreaseBtn.addEventListener("click", () => {
+
+  // Remove previous event listeners to prevent duplication
+  const newIncreaseBtn = increaseBtn.cloneNode(true);
+  const newDecreaseBtn = decreaseBtn.cloneNode(true);
+
+  increaseBtn.parentNode.replaceChild(newIncreaseBtn, increaseBtn);
+  decreaseBtn.parentNode.replaceChild(newDecreaseBtn, decreaseBtn);
+
+  newDecreaseBtn.addEventListener("click", () => {
     decreaseQuantity(quantityInput);
     updateQuantityDisplay(quantityInput, maxStock);
     console.log("Updated userChoices after decrease:", userChoices);
   });
 
-  increaseBtn.addEventListener("click", () => {
+  newIncreaseBtn.addEventListener("click", () => {
     increaseQuantity(quantityInput, maxStock);
     updateQuantityDisplay(quantityInput, maxStock);
     console.log("Updated userChoices after increase:", userChoices);
