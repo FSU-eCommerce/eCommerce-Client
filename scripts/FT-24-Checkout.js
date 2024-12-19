@@ -17,6 +17,8 @@ export const renderCheckoutCart = () => {
     return;
   }
 
+  console.log("cart")
+  console.log(cart)
 
   checkoutCartContainer.querySelector('.header2 h2').innerHTML = `In your cart (${cart.length})`;
 
