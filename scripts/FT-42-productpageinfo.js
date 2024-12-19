@@ -263,9 +263,7 @@ const addToCartListener = (productId) => {
       console.log("Adding to cart:", { productId, quantity, color, size });
       addToCart(productId, { quantity, color, size });
     } else {
-      console.log(
-        "Please select color, size, and quantity before adding to cart."
-      );
+      alert("Please select size before adding to cart.");
     }
   });
 };
