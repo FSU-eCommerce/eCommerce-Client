@@ -46,6 +46,7 @@ export const addToCart = (productId, userChoices) => {
       _id: productId,
       image: product.image,
       name: product.name,
+      description: product.description,
       price: product.price,
       color: userChoices.color,
       size: userChoices.size,
@@ -104,12 +105,16 @@ export const renderCart = () => {
             <p>Price: ${item.price.$numberDecimal} $</p>
             <p>Color: ${item.color}</p> <!-- Display selected color -->
             <p>Size: ${item.size}</p> <!-- Display selected size -->
+          </div>
+          <div class="cart-btn-input">
+            <button class="remove-btn" onclick="removeFromCart('${item._id}')">
+            <i class="fas fa-trash-alt"></i> <!-- FontAwesome trashcan icon -->
+            </button>  
             <div class="quantity">
               <button onclick="changeQuantity('${item._id}', -1)">-</button>
               <span>${item.quantity}</span> <!-- Display current quantity -->
               <button onclick="changeQuantity('${item._id}', 1)">+</button>
             </div>
-            <button onclick="removeFromCart('${item._id}')">Remove</button>
           </div>  
         </div>
       `
