@@ -5,7 +5,7 @@ document.querySelector('#register-form').addEventListener('submit', async (e) =>
 
     try {
         // skicka datan till servern med POST
-        const res = await fetch('http://localhost:5000/user/signup', {
+        const res = await fetch('https://e-commerce-server-beta-flax.vercel.app/users/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, pass }),
