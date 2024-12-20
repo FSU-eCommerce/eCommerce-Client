@@ -246,7 +246,7 @@ export const handleSubmitOrder = async (event) => {
 
 
 
-    // window.location.href = 'order-confirmation.html';
+    window.location.href = 'order-confirmation.html';
   } catch (error) {
     console.error('Error submitting order:', error);
   }
